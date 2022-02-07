@@ -25,7 +25,7 @@
 	<context:component-scan base-package="web.com.itbay" />
 	
 	<!-- DataSource 정보 등록 -->
-	<context:property-placeholder location="classpath:/oracle/oracle_connection.prop"/>
+	<context:property-placeholder location="file:///C:/Users/YHJ/oracle_connection.prop"/>
 	<beans:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<beans:property name="driverClassName" value="oracle.jdbc.OracleDriver"></beans:property>
 		<beans:property name="url" value="${url}"></beans:property>

@@ -6,13 +6,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Home</title>
+<meta charset="UTF-8">
+<title>Insert title here</title>
 </head>
 <body>
-<h1>
-	ITBAY
-</h1>
-<a href="/login">로그인</a>
-
+	로그인페이지
+	
+		<form action="/login" method="post">
+			<input type="text" name="nickname">
+			<input type="password" name="pw">
+			<button type="submit">Login</button>
+		</form>
 </body>
 </html>
