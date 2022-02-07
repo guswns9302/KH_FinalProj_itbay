@@ -9,6 +9,18 @@
 <title>Insert title here</title>
 </head>
 <body>
-후기 작성 
+ITBAY
+
+<a href="/review_board"><button>취소</button></a>
+            	<p><%=session.getAttribute("login") %>님</p>
+            	
+            	<ul>
+            		<li><a href="/members">회원정보</a></li>
+            		<li><a href="/cart">장바구니</a></li>
+                	<li><a href="/purchase_history">구매내역</a></li>
+                	<li><a href="/reply">채팅문의</a></li>
+            	</ul>
+        	</div>
+    	</div>
 </body>
 </html>
