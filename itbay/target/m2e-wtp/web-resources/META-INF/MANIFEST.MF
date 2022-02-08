@@ -1,5 +1,10 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: ￭ﾙﾩ￬ﾛﾐ￬ﾤﾀ
 Build-Jdk: 11.0.13
+=======
+Built-By: user
+Build-Jdk: 16.0.1
+>>>>>>> refs/remotes/origin/마솔_0207
 Created-By: Maven Integration for Eclipse
 
