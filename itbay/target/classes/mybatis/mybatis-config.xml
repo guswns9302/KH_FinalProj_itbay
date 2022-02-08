@@ -4,10 +4,6 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
   <typeAliases>
-  	<!--
-  	<typeAlias type="com.web.springProj1.account.model.AccountMemberDTO" alias="accountmember" />
-  	<typeAlias type="com.web.springProj1.account.model.AccountMemberInfoDTO" alias="accountmemberinfo" />
-  	<typeAlias type="web.com.itday.testDTO" alias="test"/>
-  	-->
+
   </typeAliases>
 </configuration>
