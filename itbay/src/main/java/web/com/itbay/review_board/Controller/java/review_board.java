@@ -24,7 +24,11 @@ public String review_boardlist() {
 		
 		return "/review_board";
 	}
-	
+	@RequestMapping(value = "/review_boardwrite", method = RequestMethod.GET)
+	public String review_boardwrite() {
+			
+			return "/review_boardwrite";
+		}
 	
 	
 }
