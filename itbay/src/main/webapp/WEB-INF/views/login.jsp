@@ -6,12 +6,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<title>Login</title>
 	<c:url var="head_url" value="/WEB-INF/views/module/default_js_css.jsp"></c:url>
 	<jsp:include page="${head_url }" flush="false" />
 	<meta charset="UTF-8">
-	<title>Insert title here</title>
 </head>
 <body>
+<header>
+	<jsp:include page="/WEB-INF/views/module/top-navigation.jsp" flush="false" >
+		<jsp:param name="login" value="${sessionScope.login }" />
+	</jsp:include>
+</header>
 
 <div class="container">
 	<form action="/login" method="post">

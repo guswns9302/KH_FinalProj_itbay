@@ -37,15 +37,15 @@
 							<li class="nav-item dropdown">
 								<a class="nav-link dropdown-toggle" href="/account/info" role="button" data-bs-toggle="dropdown">마이페이지</a>
 								<ul class="dropdown-menu">
-									<li><a class="dropdown-item" href="/myinfo">내 정보</a></li>
-									<li><a class="dropdown-item" href="/">비밀번호 변경</a></li>
-									<li><a class="dropdown-item" href="/">회원 탈퇴</a></li>
+									<li><a class="dropdown-item" href="/myinfo">Profile</a></li>
+									<li><a class="dropdown-item" href="/">Cart</a></li>
+									<li><a class="dropdown-item" href="/">Purchase History</a></li>
 								</ul>
 							</li>
-							<li class="nav-item"><a class="nav-link" href="/kakaologout">카카오로그아웃</a></li>
+							<li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
 						</c:when>
 						<c:otherwise>
-								<li class="nav-item"><a class="nav-link" href="/login">로그인</a></li>
+								<li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
 						</c:otherwise>
 					</c:choose>
 				</ul>

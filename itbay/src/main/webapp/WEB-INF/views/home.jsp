@@ -13,10 +13,10 @@
 </head>
 <body>
 <header>
-		<jsp:include page="/WEB-INF/views/module/top-navigation.jsp" flush="false" >
-			<jsp:param name="login" value="${sessionScope.login }" />
-		</jsp:include>
-	</header>
+	<jsp:include page="/WEB-INF/views/module/top-navigation.jsp" flush="false" >
+		<jsp:param name="login" value="${sessionScope.login }" />
+	</jsp:include>
+</header>
 
 <a href="/login">로그인</a>
 <a href="/myinfo">마이페이지</a>

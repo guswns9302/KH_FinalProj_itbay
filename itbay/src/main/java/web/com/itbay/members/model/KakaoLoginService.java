@@ -103,26 +103,26 @@ public class KakaoLoginService {
 		return kakaoMember;
 	}
 
-	public void logout(String access_Token) {
-		String kakao_logout_url = "https://kapi.kakao.com/v1/user/logout";
-		
-		try {
-			URL url = new URL(kakao_logout_url);
-			HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-			
-			httpURLConnection.setRequestMethod("POST");
-			httpURLConnection.setRequestProperty("Authorization", "Bearer " + access_Token);
-			
-			// 응답 확인 : 200이면 성공
-//			int responseCode = httpURLConnection.getResponseCode();
-//			System.out.println("responseCode : " + responseCode);
-			
-			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
-			String result = bufferedReader.readLine();
-			
-			System.out.println("logout 요청 : " + result);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+//	public void logout(String access_Token) {
+//		String kakao_logout_url = "https://kapi.kakao.com/v1/user/logout";
+//		
+//		try {
+//			URL url = new URL(kakao_logout_url);
+//			HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+//			
+//			httpURLConnection.setRequestMethod("POST");
+//			httpURLConnection.setRequestProperty("Authorization", "Bearer " + access_Token);
+//			
+//			// 응답 확인 : 200이면 성공
+////			int responseCode = httpURLConnection.getResponseCode();
+////			System.out.println("responseCode : " + responseCode);
+//			
+//			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
+//			String result = bufferedReader.readLine();
+//			
+//			System.out.println("logout 요청 : " + result);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
 }

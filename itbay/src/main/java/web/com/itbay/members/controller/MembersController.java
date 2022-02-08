@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import web.com.itbay.members.model.KakaoLoginService;
 import web.com.itbay.members.model.MembersDTO;
@@ -30,7 +31,7 @@ public class MembersController {
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(String nickname,String pw) {
+	public String login(String nickname,String pw, HttpSession session) {
 		MembersDTO inputdata = new MembersDTO(nickname,pw);
 		MembersDTO logindata = new MembersDTO();
 		logindata = service.login(inputdata);
@@ -38,11 +39,20 @@ public class MembersController {
 		if(logindata != null) {
 			System.out.println("로그인 성공");
 			System.out.println("접속한 아이디 : " + logindata.getNickname());
+			session.setAttribute("login", true);
+			session.setAttribute("loginMember", logindata);
 			return "redirect:/";
 		}
 		else {
+			session.setAttribute("login", false);
 			return "/login";
 		}	
+	}
+	
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String Logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/";
 	}
 	
 	@RequestMapping(value = "/kakao", method = RequestMethod.GET)
@@ -57,7 +67,12 @@ public class MembersController {
 		
 		session.setAttribute("token", token.get("access_token"));
 		session.setAttribute("kakaoMember", kakaoLogin_Memberinfo);
-				
+		
+		MembersDTO logindata = new MembersDTO();
+		logindata.setNickname(kakaoLogin_Memberinfo.get("email"));
+		logindata.setUsername(kakaoLogin_Memberinfo.get("kakaoNickName"));
+		logindata.setEmail_address(kakaoLogin_Memberinfo.get("email"));
+		
 		if(session.getAttribute("token") != null) {
 			session.setAttribute("login", true);
 		}
@@ -65,19 +80,21 @@ public class MembersController {
 			session.setAttribute("login", false);
 		}
 		
-		return "home";
-	}
-	
-	@RequestMapping(value = "/kakaologout", method = RequestMethod.GET)
-	public String kakaoLogout(HttpSession session) {
-		kakaoservice.logout(session.getAttribute("token").toString());
-		session.invalidate();
 		return "redirect:/";
 	}
 	
+//	@RequestMapping(value = "/kakaologout", method = RequestMethod.GET)
+//	public String kakaoLogout(HttpSession session) {
+//		kakaoservice.logout(session.getAttribute("token").toString());
+//		session.invalidate();
+//		return "redirect:/";
+//	}
+	
 	@RequestMapping(value = "/myinfo", method = RequestMethod.GET)
 	public String kakaologin(Model model, HttpSession session) {
-		model.addAttribute("kakaoMember", session.getAttribute("kakaoMember"));
+		
+			MembersDTO loginData = (MembersDTO) session.getAttribute("loginMember");
+			model.addAttribute("loginData",loginData);
 		
 		return "myinfo";
 	}
