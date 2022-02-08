@@ -6,8 +6,6 @@
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>purchase_history</title>
 </head>
 <body>
@@ -18,14 +16,15 @@
             <option value="">10개씩 정렬</option>
         </select>
     </div>
-
+	<form action="/purchase_history" method="get">
     <div>
-        <span><img src="" alt="대표이미지"></span>
-        <span>제품번호</span>
-        <span>제품명</span>
-        <span>가격</span>
-        <span>구매날짜</span>
+	    	<span><img src="" alt="대표이미지"></span>
+	        <span>번호</span>
+	        <span>회원번호</span>
+	        <span>제품번호</span>
+	        <span>구매날짜</span>
+	    
     </div>
-
+	</form>
 </body>
 </html>
