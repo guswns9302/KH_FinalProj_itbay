@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <!DOCTYPE html>
+<html>
 <head>
     <meta charset="UTF-8">
     <title>myinfo_nav</title>
@@ -16,6 +17,7 @@
         <img src="" alt="프로필사진">
     </div>
     <div>
+    <ul>
         <li>
             <a href="">회원정보</a>
         </li>
@@ -28,6 +30,7 @@
         <li>
             <a href="">채팅문의</a>
         </li>
+    </ul>
 
     </div>
 </body>
