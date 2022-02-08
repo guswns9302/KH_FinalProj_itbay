@@ -10,17 +10,17 @@
 </head>
 <body>
 ITBAY
+<form method="get">
 
-<table>
-            	<tr>
-                	<td>제목</td>
-                	<td><input type="text" name="subject" required></td>
-            	</tr>
-           	 	<tr>
-               		<td>내용</td>
-               		<td><textarea name="contents"></textarea></td>
-           		</tr>
-           		<tr>
+<label>제목</label>
+<input type="text" name="subject" /><br />
+
+<label>내용</label>
+<textarea name="contents"></textarea><br />
+
+<button type="submit">작성</button>
+
+</form>
            		
 <a href="/review_board"><button>취소</button></a>
 				
