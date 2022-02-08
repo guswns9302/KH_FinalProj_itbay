@@ -15,5 +15,6 @@
 3
 4
 5
+<a href="/review_boardwrite"><button>후기글 작성</button></a>
 </body>
 </html>

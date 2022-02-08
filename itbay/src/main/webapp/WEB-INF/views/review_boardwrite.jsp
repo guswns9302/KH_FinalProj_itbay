@@ -11,8 +11,20 @@
 <body>
 ITBAY
 
+<table>
+            	<tr>
+                	<td>제목</td>
+                	<td><input type="text" name="subject" required></td>
+            	</tr>
+           	 	<tr>
+               		<td>내용</td>
+               		<td><textarea name="contents"></textarea></td>
+           		</tr>
+           		<tr>
+           		
 <a href="/review_board"><button>취소</button></a>
-            	<p><%=session.getAttribute("login") %>님</p>
+				
+            	<p><%=session.getAttribute("nickname") %>님</p>
             	
             	<ul>
             		<li><a href="/members">회원정보</a></li>
@@ -20,7 +32,5 @@ ITBAY
                 	<li><a href="/purchase_history">구매내역</a></li>
                 	<li><a href="/reply">채팅문의</a></li>
             	</ul>
-        	</div>
-    	</div>
 </body>
 </html>
