@@ -10,9 +10,9 @@ public class PurchaseHistoryService {
 	@Autowired
 	private PurchaseHistoryDAO dao;
 	
-	public List<PurchaseHistoryDTO> getAllPurchaseHistory(int id){
+	public List<PurchaseHistoryDTO> selectPurchaseHistory(){
 		PurchaseHistoryDTO dto = new PurchaseHistoryDTO();
-		dto.setId(id);
+
 		return dao.selectPurchaseHistory(dto);
 	}
 }

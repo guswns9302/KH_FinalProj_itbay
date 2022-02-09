@@ -27,6 +27,13 @@
 	<c:forEach var="purchase_history" items="${purchaseList}" varStatus="status">
 			
 			<c:out value="${purchaseList.id}" />
+			
+			<c:out value="${purchaseList.members_id}" />
+			
+			<c:out value="${purchaseList.product_id}" />
+			
+			<c:out value="${purchaseList.purchase_date}" />
+
 
 			<br><br>
 			

@@ -22,13 +22,11 @@ public class PurchaseHistoryController {
 	ImgService imgService;
 	
 	@RequestMapping(value="/purchase_history", method=RequestMethod.GET)
-	public String purchaseHistoryList(Model model, int id) {
-		System.out.println("purchaseHistoryList 메서드 실행합니다.");
+	public String purchaseHistoryList(Model model) {
 		
-		List<PurchaseHistoryDTO> purchaseList = purchaseService.getAllPurchaseHistory(id);
+		List<PurchaseHistoryDTO> purchaseList = purchaseService.selectPurchaseHistory();
 		
 		model.addAttribute("purchaseList", purchaseList);
-		
 		return "/purchase_history";
 	}
 }
