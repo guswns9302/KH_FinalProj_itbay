@@ -20,17 +20,23 @@
 <table>
 	<thead>
 		<th>번호</th>
+		<th>상품 사진</th>
+		<th>제품번호</th>		
 		<th>제목</th>
-		<th>작성자</th>
+		<th>내용</th>
 		<th>날짜</th>
+		
 	</thead>
 	<tbody>
 	<c:forEach var="data" items="${list}">
 		<tr>
 			<td>${data.id}</td>
+			<td>${data.img_name}</td>
+			<td>${data.product_id}</td>
 			<td>${data.subject}</td>
-			<td>${data.members_id}</td>
+			<td>${data.contents}</td>
 			<td>${data.create_date}</td>
+			<td>${data.img_name}</td>
 		</tr>
 	</c:forEach>
 	</tbody>

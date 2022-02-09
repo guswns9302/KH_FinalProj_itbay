@@ -5,5 +5,6 @@
 <configuration>
   <typeAliases>
 	<typeAlias type="web.com.itbay.product.model.ProductDTO" alias="product"/>
+	<typeAlias type="web.com.itbay.review_board.model.review_boardDTO" alias="review_boardlist"/>
   </typeAliases>
 </configuration>
