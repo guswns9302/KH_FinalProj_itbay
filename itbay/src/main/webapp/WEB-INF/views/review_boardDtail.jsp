@@ -9,12 +9,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-후기 게시판
-<table>
-
-
-</table>
-<a href="/review_boardwrite"><button>후기글 작성</button></a>
-<a href="/review_boardDtail"><button>후기글 상세보기</button></a>
+후기 게시판 상세보기
 </body>
 </html>
