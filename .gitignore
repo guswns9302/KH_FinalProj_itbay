@@ -26,5 +26,6 @@ hs_err_pid*
 .project
 .settings/
 
-/oracle_connection.prop
+**/oracle_connection.prop
 **/target/
+**/dev/
