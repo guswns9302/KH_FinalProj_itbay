@@ -15,13 +15,13 @@
 					<a class="nav-link" href="/">Home</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/">Notice</a>
+					<a class="nav-link" href="/notice_board">Notice</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/">Used Market</a>
+					<a class="nav-link" href="/product">Used Market</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/">Purchase Review</a>
+					<a class="nav-link" href="/review_board">Purchase Review</a>
 				</li>
 				<li>
 					<form class="d-flex">
@@ -39,7 +39,7 @@
 								<ul class="dropdown-menu">
 									<li><a class="dropdown-item" href="/myinfo">Profile</a></li>
 									<li><a class="dropdown-item" href="/">Cart</a></li>
-									<li><a class="dropdown-item" href="/">Purchase History</a></li>
+									<li><a class="dropdown-item" href="/purchase_history">Purchase History</a></li>
 								</ul>
 							</li>
 							<li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>

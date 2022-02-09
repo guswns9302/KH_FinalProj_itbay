@@ -6,10 +6,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>공지사항</title>
+	<title>공지사항</title>
+	<c:url var="head_url" value="/WEB-INF/views/module/default_js_css.jsp"></c:url>
+	<jsp:include page="${head_url }" flush="false" />
+	<meta charset="UTF-8">
 </head>
 <body>
+<header>
+	<jsp:include page="/WEB-INF/views/module/top-navigation.jsp" flush="false" >
+		<jsp:param name="login" value="${sessionScope.login }" />
+	</jsp:include>
+</header>
 <table>
 	<thead>
 		<th>번호</th>

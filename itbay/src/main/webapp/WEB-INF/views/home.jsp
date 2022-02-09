@@ -18,10 +18,7 @@
 	</jsp:include>
 </header>
 
-<a href="/login">로그인</a>
-<a href="/myinfo">마이페이지</a>
-<a href="/review_board">후기 게시판</a>
-<a href="/review_boardwrite">후기 작성</a>
+메인페이지 
 
 </body>
 </html>

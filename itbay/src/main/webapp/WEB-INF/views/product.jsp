@@ -5,10 +5,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>중고 상품</title>
+	<title>중고 상품</title>
+	<c:url var="head_url" value="/WEB-INF/views/module/default_js_css.jsp"></c:url>
+	<jsp:include page="${head_url }" flush="false" />
+	<meta charset="UTF-8">
 </head>
 <body>
+<header>
+	<jsp:include page="/WEB-INF/views/module/top-navigation.jsp" flush="false" >
+		<jsp:param name="login" value="${sessionScope.login }" />
+	</jsp:include>
+</header>
 		<c:forEach var="product" items="${list}" varStatus="status">
 			
 			<c:out value="${product.img_name}" />

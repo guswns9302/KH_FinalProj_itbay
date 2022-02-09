@@ -5,10 +5,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<title>Review</title>
+	<c:url var="head_url" value="/WEB-INF/views/module/default_js_css.jsp"></c:url>
+	<jsp:include page="${head_url }" flush="false" />
+	<meta charset="UTF-8">
 </head>
 <body>
+<header>
+	<jsp:include page="/WEB-INF/views/module/top-navigation.jsp" flush="false" >
+		<jsp:param name="login" value="${sessionScope.login }" />
+	</jsp:include>
+</header>
 후기 게시판
 <table>
 
