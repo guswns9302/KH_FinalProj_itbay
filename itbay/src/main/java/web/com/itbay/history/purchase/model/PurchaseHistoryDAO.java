@@ -12,8 +12,10 @@ public class PurchaseHistoryDAO {
 	@Autowired
 	SqlSession session;
 	
-	public List<PurchaseHistoryDTO> selectPurchaseHistory(){
-		return this.session.selectList("purchaseHistoryMapper.selectPurchaseHistory");
+	public List<PurchaseHistoryDTO> selectPurchaseHistory(PurchaseHistoryDTO purchaseHistoryDto){
+		List<PurchaseHistoryDTO> dtoList = this.session.selectList("PurchaseHistoryMapper.selectPurchaseHistory", purchaseHistoryDto);
+		
+		return dtoList;
 	}
 	
 }

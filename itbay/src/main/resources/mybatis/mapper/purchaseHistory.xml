@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="PurchaseHistoryMapper">
+	<select id="selectPurchaseHistory" parameterType="web.com.itbay.history.purchase.model.PurchaseHistoryDTO" resultType="web.com.itbay.history.purchase.model.PurchaseHistoryDTO">
+		SELECT ID  
+	      FROM PURCHASE_HISTORY
+	     WHERE ID = #{id}
+	</select>
+</mapper>

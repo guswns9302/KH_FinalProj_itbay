@@ -7,16 +7,7 @@ public class PurchaseHistoryDTO {
 	private int id;
 	private int members_id;
 	private int product_id;
-	private Date create_date;
-	
-	public PurchaseHistoryDTO() {}
-	
-	public PurchaseHistoryDTO(int id, int members_id, int product_id, Date create_date) {
-		this.id=id;
-		this.members_id=members_id;
-		this.product_id=product_id;
-		this.create_date=create_date;
-	}
+	private Date purchase_date;
 	
 	public int getId() {
 		return id;
@@ -36,11 +27,11 @@ public class PurchaseHistoryDTO {
 	public void setProduct_id(int product_id) {
 		this.product_id = product_id;
 	}
-	public Date getCreate_date() {
-		return create_date;
+	public Date getPurchase_date() {
+		return purchase_date;
 	}
-	public void setCreate_date(Date create_date) {
-		this.create_date = create_date;
+	public void setPurchase_date(Date purchase_date) {
+		this.purchase_date = purchase_date;
 	}
 	
 }
