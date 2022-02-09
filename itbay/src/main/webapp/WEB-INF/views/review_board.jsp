@@ -25,6 +25,7 @@
 		<th>제목</th>
 		<th>내용</th>
 		<th>날짜</th>
+		<th>구매한 가격</th>
 		
 	</thead>
 	<tbody>
@@ -36,10 +37,29 @@
 			<td>${data.subject}</td>
 			<td>${data.contents}</td>
 			<td>${data.create_date}</td>
-			<td>${data.img_name}</td>
+			<td>${data.price}</td>
 		</tr>
 	</c:forEach>
 	</tbody>
 </table>
+
+            	<ul>
+            	<c:if test="${sessionScope.login !=null}">
+           
+   
+				<ul>
+            		<li><a href="/myinfo">회원정보</a></li>
+            		<li><a href="/cart">장바구니</a></li>
+                	<li><a href="/purchase_history">구매내역</a></li>
+                	<li><a href="/reply">채팅문의</a></li>
+            	</ul>
+            	</c:if>
+            	
+            	
+<c:if test="${sessionScope.login !=null}">
+<a href="/review_boardwrite"><button type="button" id="review_boardwrite">
+후기 작성</button></a>
+</c:if>
+
 </body>
 </html>

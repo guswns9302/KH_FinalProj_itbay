@@ -13,9 +13,17 @@ public class review_boardDTO {
 	private Date create_date;
 	private Date order_date;
 	private String img_name;
-	
+	private int price;
 	
 
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
 
 	public String getImg_name() {
 		return img_name;

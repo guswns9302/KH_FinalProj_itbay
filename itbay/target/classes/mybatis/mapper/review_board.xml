@@ -4,8 +4,12 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="review_boardMapper">
 <select id="selectReview" resultType="web.com.itbay.review_board.model.review_boardDTO">
-SELECT a.id, a.product_id ,a.subject, a.contents, a.create_date, b.img_name
+
+SELECT a.id, a.product_id,a.subject, a.contents,a.create_date, b.img_name, c.price
   FROM review_board a LEFT JOIN img b 
-    ON a.id = b.id 
+    ON a.id = b.id  
+   LEFT JOIN PRODUCT_BOARD c 
+    on a.id = c.id
+
 </select>
 </mapper>
