@@ -3,5 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="review_boardMapper">
-
+<select id="selectReview" parameterType="web.com.itbay.review_board.model.review_boardDTO" resultType="web.com.itbay.review_board.model.review_boardDTO">
+		SELECT * FROM REVIEW_BOARD
+	</select>
 </mapper>
