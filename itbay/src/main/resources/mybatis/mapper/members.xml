@@ -7,6 +7,10 @@
 		SELECT * FROM MEMBERS A JOIN IMG B ON A.ID = B.MEMBERS_ID WHERE NICKNAME = #{nickname} AND PW = #{pw}
 	</select>
 	
+	<select id="selectKakaoLogin" parameterType="web.com.itbay.members.model.MembersDTO" resultType="web.com.itbay.members.model.MembersDTO">
+		SELECT * FROM MEMBERS A JOIN IMG B ON A.ID = B.MEMBERS_ID WHERE A.NICKNAME = #{nickname} AND B.R_IMG = 'Y'
+	</select>
+	
 	<select id="selectDuplicate" parameterType="String" resultType="web.com.itbay.members.model.MembersDTO">
 		SELECT * FROM MEMBERS WHERE NICKNAME = #{NICKNAME}
 	</select>

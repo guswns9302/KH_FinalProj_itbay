@@ -20,6 +20,7 @@
 
 <div class="container">
 	<form action="/login" method="post">
+	 	<h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 		<div class="form-floating mb-3 mt-3">
 			<input type="text" class="form-control" id="nickname" placeholder="Enter email" name="nickname">
 			<label for="email">Email</label>
@@ -37,5 +38,6 @@
 	</a>
 	</form>
 </div>
+
 </body>
 </html>

@@ -17,10 +17,16 @@
 		<jsp:param name="login" value="${sessionScope.login }" />
 	</jsp:include>
 </header>
-
     <form action="" method="post">
         <div>
-            <img src="resources/img/${loginData.getImg_name() }.png" alt="프로필사진">
+        	<c:choose>
+        		<c:when test="${loginMember.getSocial_login() eq 'Y'.charAt(0) }">
+            		<img src="${loginMember.getImg_name() }.jpg" />
+        		</c:when>
+        		<c:otherwise>
+            		<img src="resources/img/${loginMember.getImg_name() }.png" alt="프로필사진">
+        		</c:otherwise>
+        	</c:choose>
         </div>
         <button type="submit"> 프로필 사진 변경</button>
     </form>
@@ -30,11 +36,11 @@
         <ul>
             <li>
                 <label for="">아이디</label>
-                <input type="text" name="nickname" value="${loginData.getNickname() }">
+                <input type="text" name="nickname" value="${loginMember.getNickname() }">
             </li>
             <li>
                 <label for="">패스워드</label>
-                <input type="password" name="pw" value="${loginData.getPw() }">
+                <input type="password" name="pw" value="${loginMember.getPw() }">
             </li>
             <li>
                 <label for="">패스워드확인</label>
@@ -42,19 +48,19 @@
             </li>
              <li>
                 <label for="">이름</label>
-                <input type="text" name="username" value="${loginData.getUsername() }">
+                <input type="text" name="username" value="${loginMember.getUsername() }">
             </li>
             <li>
                 <label for="">메일주소</label>
-                <input type="email" name="email_address" value="${loginData.getEmail_address() }">
+                <input type="email" name="email_address" value="${loginMember.getEmail_address() }">
             </li>
             <li>
                 <label for="">전화번호</label>
-                <input type="tel" name="phone" value="${loginData.getPhone() }">
+                <input type="tel" name="phone" value="${loginMember.getPhone() }">
             </li>
             <li>
                 <label for="">주소</label>
-                <input type="text" name="address" value="${loginData.getAddress() }">
+                <input type="text" name="address" value="${loginMember.getAddress() }">
             </li>
         </ul>
             <button type="submit"> 정보 변경</button>

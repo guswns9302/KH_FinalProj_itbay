@@ -33,4 +33,9 @@ public class MembersDAO {
 		kakaoLoginImg = this.session.insert("MembersMapper.insertKakaoProfileImg", imgdto);
 		return kakaoLoginImg;
 	}
+
+	public MembersDTO selectKakaoLogin(MembersDTO kakaoLogindata) {
+		MembersDTO kakaoLogin = this.session.selectOne("MembersMapper.selectKakaoLogin", kakaoLogindata);
+		return kakaoLogin;
+	}
 }

@@ -147,6 +147,11 @@ public class KakaoLoginService {
 		}
 	}
 
+	public MembersDTO getLoginData(MembersDTO kakaoLogindata) {
+		MembersDTO kakaoLogin = dao.selectKakaoLogin(kakaoLogindata);
+		return kakaoLogin;
+	}
+
 //	public void logout(String access_Token) {
 //		String kakao_logout_url = "https://kapi.kakao.com/v1/user/logout";
 //		
