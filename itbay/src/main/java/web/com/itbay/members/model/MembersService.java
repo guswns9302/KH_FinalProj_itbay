@@ -10,8 +10,6 @@ public class MembersService {
 	MembersDAO dao;
 	
 	public MembersDTO login(MembersDTO inputdata) {
-		System.out.println("서비스에서 출력 : " + inputdata.getNickname());
-		System.out.println("서비스에서 출력 : " + inputdata.getPw());
 		MembersDTO logindata = dao.selectLogin(inputdata);
 		return logindata;
 	}

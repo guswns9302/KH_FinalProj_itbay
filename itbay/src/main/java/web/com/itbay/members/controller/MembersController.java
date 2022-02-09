@@ -66,15 +66,26 @@ public class MembersController {
 		System.out.println("kakao gender = " + kakaoLogin_Memberinfo.get("gender"));
 		
 		session.setAttribute("token", token.get("access_token"));
-		session.setAttribute("kakaoMember", kakaoLogin_Memberinfo);
+		//session.setAttribute("kakaoMember", kakaoLogin_Memberinfo);
 		
 		MembersDTO logindata = new MembersDTO();
 		logindata.setNickname(kakaoLogin_Memberinfo.get("email"));
 		logindata.setUsername(kakaoLogin_Memberinfo.get("kakaoNickName"));
 		logindata.setEmail_address(kakaoLogin_Memberinfo.get("email"));
+		logindata.setImg_name(kakaoLogin_Memberinfo.get("profile_image"));
+		
+		if(kakaoservice.duplicateLoginData(logindata.getNickname())) {
+			System.out.println("이미 데이터가 존재합니다.");
+		}
+		else {
+			System.out.println("없는 데이터 입니다.");
+			kakaoservice.dataInsert(logindata);
+			kakaoservice.dataInsert_img(logindata);
+		}
 		
 		if(session.getAttribute("token") != null) {
 			session.setAttribute("login", true);
+			session.setAttribute("loginMember", logindata);
 		}
 		else {
 			session.setAttribute("login", false);

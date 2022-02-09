@@ -5,6 +5,17 @@
 <mapper namespace="MembersMapper">
 	<select id="selectLogin" parameterType="web.com.itbay.members.model.MembersDTO" resultType="web.com.itbay.members.model.MembersDTO">
 		SELECT * FROM MEMBERS A JOIN IMG B ON A.ID = B.MEMBERS_ID WHERE NICKNAME = #{nickname} AND PW = #{pw}
-		
 	</select>
+	
+	<select id="selectDuplicate" parameterType="String" resultType="web.com.itbay.members.model.MembersDTO">
+		SELECT * FROM MEMBERS WHERE NICKNAME = #{NICKNAME}
+	</select>
+	
+	<insert id="insertKakaoData" parameterType="web.com.itbay.members.model.MembersDTO">
+		INSERT INTO MEMBERS VALUES(MEMBERS_ID_SEQ.NEXTVAL, #{nickname} , NULL , #{username}, NULL, NULL, NULL, NULL, #{email_address}, SYSDATE, SYSDATE, 'Y', 'N')
+	</insert>
+	
+	<insert id="insertKakaoProfileImg" parameterType="web.com.itbay.img.model.ImgDTO">
+		INSERT INTO IMG VALUES(IMG_ID_SEQ.NEXTVAL, #{img_name}, #{members_id}, NULL, 'Y')
+	</insert>
 </mapper>

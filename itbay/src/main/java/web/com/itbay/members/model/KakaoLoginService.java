@@ -10,11 +10,18 @@ import java.util.HashMap;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.support.DaoSupport;
 import org.springframework.stereotype.Service;
+
+import web.com.itbay.img.model.ImgDTO;
 
 @Service
 public class KakaoLoginService {
 
+	@Autowired
+	MembersDAO dao;
+	
 	public HashMap<String, String> accessToken(String code) {
 		String token_URL = "https://kauth.kakao.com/oauth/token";
 		String access_Token = null;
@@ -101,6 +108,43 @@ public class KakaoLoginService {
 			e.printStackTrace();
 		}
 		return kakaoMember;
+	}
+
+	public void dataInsert(MembersDTO logindata) {
+		int result = dao.insertKakaoLoginData(logindata);
+		
+		if(result == 1) {
+			System.out.println("데이터 입력 성공");
+		}
+		else {
+			System.out.println("데이터 입력 실패");
+		}
+	}
+
+	public boolean duplicateLoginData(String nickname) {
+		MembersDTO dto = dao.duplicateLoginData(nickname);
+		if(dto == null) {
+			// 중복된 아이디가 있음
+			return false;
+		}
+		else {
+			// 중복된 아이디가 없음
+			return true;
+		}
+	}
+
+	public void dataInsert_img(MembersDTO logindata) {
+		ImgDTO imgdto = new ImgDTO();
+		imgdto.setMembers_id(logindata.getId());
+		imgdto.setImg_name(logindata.getImg_name());
+		
+		int result = dao.insertKakaoProfileImg(imgdto);
+		if(result == 1) {
+			System.out.println("카카오 프로필 데이터 입력 성공");
+		}
+		else {
+			System.out.println("카카오 프로필 데이터 입력 실패");
+		}
 	}
 
 //	public void logout(String access_Token) {
