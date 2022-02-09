@@ -17,6 +17,16 @@ public class MembersDTO {
 	private char social_login;
 	private char master;
 	
+	private String img_name;
+	
+	
+	public String getImg_name() {
+		return img_name;
+	}
+	public void setImg_name(String img_name) {
+		this.img_name = img_name;
+	}
+	
 	public MembersDTO(String nickname, String pw) {
 		this.nickname = nickname;
 		this.pw = pw;

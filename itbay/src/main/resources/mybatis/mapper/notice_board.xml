@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="NoticeMapper">
+  <select id="getNotice" resultType="web.com.itbay.notice_board.model.Notice_boardDTO">
+    select * from notice_board order by id desc
+  </select>
+</mapper>

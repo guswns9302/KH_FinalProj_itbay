@@ -10,9 +10,21 @@
 </head>
 <body>
 ITBAY
+<form method="get">
 
+<label>제목</label>
+<input type="text" name="subject" /><br />
+
+<label>내용</label>
+<textarea name="contents"></textarea><br />
+
+<button type="submit">작성</button>
+
+</form>
+           		
 <a href="/review_board"><button>취소</button></a>
-            	<p><%=session.getAttribute("login") %>님</p>
+				
+            	<p><%=session.getAttribute("nickname") %>님</p>
             	
             	<ul>
             		<li><a href="/members">회원정보</a></li>
@@ -20,7 +32,5 @@ ITBAY
                 	<li><a href="/purchase_history">구매내역</a></li>
                 	<li><a href="/reply">채팅문의</a></li>
             	</ul>
-        	</div>
-    	</div>
 </body>
 </html>
