@@ -18,10 +18,10 @@
 					<a class="nav-link" href="/notice_board">Notice</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/product">Used Market</a>
+					<a class="nav-link" href="/product">Market</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/review_board">Purchase Review</a>
+					<a class="nav-link" href="/review_board">Review</a>
 				</li>
 				<li>
 					<form class="d-flex">

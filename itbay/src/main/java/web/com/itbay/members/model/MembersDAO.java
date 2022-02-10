@@ -28,14 +28,13 @@ public class MembersDAO {
 		return data;
 	}
 
-	public int insertKakaoProfileImg(ImgDTO imgdto) {
-		int kakaoLoginImg = 0;
-		kakaoLoginImg = this.session.insert("MembersMapper.insertKakaoProfileImg", imgdto);
-		return kakaoLoginImg;
-	}
-
 	public MembersDTO selectKakaoLogin(MembersDTO kakaoLogindata) {
 		MembersDTO kakaoLogin = this.session.selectOne("MembersMapper.selectKakaoLogin", kakaoLogindata);
 		return kakaoLogin;
+	}
+
+	public int updateModify(MembersDTO logindata) {
+		int result = this.session.update("MembersMapper.updateInfo",logindata);
+		return result;
 	}
 }

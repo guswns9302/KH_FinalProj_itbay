@@ -4,11 +4,13 @@ import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import web.com.itbay.members.model.KakaoLoginService;
@@ -37,8 +39,6 @@ public class MembersController {
 		logindata = service.login(inputdata);
 		
 		if(logindata != null) {
-			System.out.println("로그인 성공");
-			System.out.println("접속한 아이디 : " + logindata.getNickname());
 			session.setAttribute("login", true);
 			session.setAttribute("loginMember", logindata);
 			return "redirect:/";
@@ -59,11 +59,6 @@ public class MembersController {
 	public String kakaologin(String code, Model model, HttpSession session) {
 		HashMap<String , String> token = kakaoservice.accessToken(code);
 		HashMap<String , String> kakaoLogin_Memberinfo = kakaoservice.kakaoMemberInfo(token.get("access_token"));
-		System.out.println("login for kakao");
-		System.out.println("kakao nickname = " + kakaoLogin_Memberinfo.get("kakaoNickName"));
-		System.out.println("kakao profile_image = " + kakaoLogin_Memberinfo.get("profile_image"));
-		System.out.println("kakao email = " + kakaoLogin_Memberinfo.get("email"));
-		System.out.println("kakao gender = " + kakaoLogin_Memberinfo.get("gender"));
 		
 		session.setAttribute("token", token.get("access_token"));
 		
@@ -71,20 +66,16 @@ public class MembersController {
 		kakaoLogindata.setNickname(kakaoLogin_Memberinfo.get("email"));
 		kakaoLogindata.setUsername(kakaoLogin_Memberinfo.get("kakaoNickName"));
 		kakaoLogindata.setEmail_address(kakaoLogin_Memberinfo.get("email"));
-		kakaoLogindata.setImg_name(kakaoLogin_Memberinfo.get("profile_image"));
 		
 		if(session.getAttribute("token") != null) {
 			session.setAttribute("login", true);
-			
 			if(kakaoservice.duplicateLoginData(kakaoLogindata.getNickname())) {
-				System.out.println("이미 데이터가 존재합니다.");
 			}
 			else {
-				System.out.println("없는 데이터 입니다.");
 				kakaoservice.dataInsert(kakaoLogindata);
-				kakaoservice.dataInsert_img(kakaoLogindata);
 			}
 			MembersDTO logindata = kakaoservice.getLoginData(kakaoLogindata);
+			session.setAttribute("loginMember_img", kakaoLogin_Memberinfo.get("profile_image"));
 			session.setAttribute("loginMember", logindata);
 		}
 		else {
@@ -94,19 +85,31 @@ public class MembersController {
 		return "redirect:/";
 	}
 	
-//	@RequestMapping(value = "/kakaologout", method = RequestMethod.GET)
-//	public String kakaoLogout(HttpSession session) {
-//		kakaoservice.logout(session.getAttribute("token").toString());
-//		session.invalidate();
-//		return "redirect:/";
-//	}
-	
 	@RequestMapping(value = "/myinfo", method = RequestMethod.GET)
-	public String kakaologin(Model model, HttpSession session) {
+	public String profile(Model model, HttpSession session) {
 		
 			MembersDTO loginData = (MembersDTO) session.getAttribute("loginMember");
 			model.addAttribute("loginData",loginData);
 		
 		return "myinfo";
+	}
+	@RequestMapping(value = "/myinfo", method = RequestMethod.POST, produces = "applicaton/json; charset=utf-8")
+	@ResponseBody
+	public String profile(HttpSession session ,String phone, String address) {
+		MembersDTO logindata = (MembersDTO) session.getAttribute("loginMember");
+		logindata.setPhone(phone);
+		logindata.setAddress(address);
+		
+		boolean result = service.modifyInfo(logindata);
+		JSONObject json = new JSONObject();
+		if(result) {
+			json.put("status", "success");
+			json.put("message", "변경이 완료되었습니다.");
+		}
+		else {
+			json.put("status", "fail");
+			json.put("message", "패스워드 변경을 실패했습니다.");
+		}
+		return json.toJSONString();
 	}
 }

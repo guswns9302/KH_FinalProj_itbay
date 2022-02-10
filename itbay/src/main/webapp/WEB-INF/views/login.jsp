@@ -11,14 +11,9 @@
 	<jsp:include page="${head_url }" flush="false" />
 	<meta charset="UTF-8">
 </head>
-<body>
-<header>
-	<jsp:include page="/WEB-INF/views/module/top-navigation.jsp" flush="false" >
-		<jsp:param name="login" value="${sessionScope.login }" />
-	</jsp:include>
-</header>
+<body style="margin-top: 130px">
 
-<div class="container">
+<section class="container p-5 my-5" style="text-align:center;">
 	<form action="/login" method="post">
 	 	<h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 		<div class="form-floating mb-3 mt-3">
@@ -29,15 +24,19 @@
 			<input type="text" class="form-control" id="pw" placeholder="Enter password" name="pw">
 			<label for="pwd">Password</label>
 		</div>
-		<button type="submit" class="btn btn-primary">login</button>
-		<a href="https://kauth.kakao.com/oauth/authorize?
-			client_id=ea71971929c14c8aef7a4bef54e9b082&
-			redirect_uri=http://localhost/kakao&
-			response_type=code">
-		<img src="resources/icon/kakao_login_medium_narrow.png">
-	</a>
+		<div style="margin : 10px;">
+			<button type="submit" class="btn btn-secondary text-uppercase" style="width: 183px;">login</button>
+		</div>
+		<div>
+			<a href="https://kauth.kakao.com/oauth/authorize?
+				client_id=ea71971929c14c8aef7a4bef54e9b082&
+				redirect_uri=http://localhost/kakao&
+				response_type=code">
+				<img src="resources/icon/kakao_login_medium_narrow.png">
+			</a>
+		</div>
 	</form>
-</div>
+</section>
 
 </body>
 </html>

@@ -13,4 +13,9 @@ public class MembersService {
 		MembersDTO logindata = dao.selectLogin(inputdata);
 		return logindata;
 	}
+
+	public boolean modifyInfo(MembersDTO logindata) {
+		int result = dao.updateModify(logindata);
+		return result == 1 ? true : false;
+	}
 }

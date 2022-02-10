@@ -133,45 +133,8 @@ public class KakaoLoginService {
 		}
 	}
 
-	public void dataInsert_img(MembersDTO logindata) {
-		ImgDTO imgdto = new ImgDTO();
-		imgdto.setMembers_id(logindata.getId());
-		imgdto.setImg_name(logindata.getImg_name());
-		
-		int result = dao.insertKakaoProfileImg(imgdto);
-		if(result == 1) {
-			System.out.println("카카오 프로필 데이터 입력 성공");
-		}
-		else {
-			System.out.println("카카오 프로필 데이터 입력 실패");
-		}
-	}
-
 	public MembersDTO getLoginData(MembersDTO kakaoLogindata) {
 		MembersDTO kakaoLogin = dao.selectKakaoLogin(kakaoLogindata);
 		return kakaoLogin;
 	}
-
-//	public void logout(String access_Token) {
-//		String kakao_logout_url = "https://kapi.kakao.com/v1/user/logout";
-//		
-//		try {
-//			URL url = new URL(kakao_logout_url);
-//			HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-//			
-//			httpURLConnection.setRequestMethod("POST");
-//			httpURLConnection.setRequestProperty("Authorization", "Bearer " + access_Token);
-//			
-//			// 응답 확인 : 200이면 성공
-////			int responseCode = httpURLConnection.getResponseCode();
-////			System.out.println("responseCode : " + responseCode);
-//			
-//			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
-//			String result = bufferedReader.readLine();
-//			
-//			System.out.println("logout 요청 : " + result);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//	}
 }
