@@ -35,15 +35,15 @@ public class review_board {
 	ImgService imgService;
 	
 	@RequestMapping(value = "/review_board", method = RequestMethod.GET)
-public String review_boardlist(Model model,HttpSession session) {	
+public String review_boardlist(Model model,HttpSession session) {
 		List<review_boardDTO> list = service.selectReview();
 		model.addAttribute("list", list);
 		return "/review_board";
 	}
-	@RequestMapping(value = "/review_boardDtail", method = RequestMethod.GET)
+	@RequestMapping(value = "/review_boardDetail", method = RequestMethod.GET)
 	public String review_boardDtail() {
 			
-			return "/review_boardDtail";
+			return "/review_boardDetail";
 	}
 	@RequestMapping(value = "/review_boardwrite", method = RequestMethod.GET)
 	public String review_boardwrite(Model model,String subject,String contents,String score,HttpSession session) {

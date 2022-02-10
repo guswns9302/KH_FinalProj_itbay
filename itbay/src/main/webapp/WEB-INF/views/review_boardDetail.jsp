@@ -20,36 +20,7 @@
 		<jsp:param name="login" value="${sessionScope.login }" />
 	</jsp:include>
 </header>
-<table>
-	<thead>
-		<th> 글 번호</th>
-		<th>상품 사진</th>
-		<th>제품번호</th>		
-		<th>제목</th>
-		<th>내용</th>
-		<th>날짜</th>
-		<th>구매한 가격</th>
-		<th>구매자 이름</th>
-		
-		
-	</thead>
-	<tbody>
-	<c:forEach var="data" items="${list}">
-		<tr>
-			<td>${data.id}</td>
-			<td> <img src="resources/img/${data.img_name}".png width="50" height="50"></td>
-			<td>${data.product_id}</td>
-			<td>${data.subject}</td>
-			<td>${data.contents}</td>
-			<td>${data.create_date}</td>
-			<td>${data.price}원</td>
-			<td>${data.usernickname}</td>
-		</tr>
-	</c:forEach>
-	</tbody>
-</table>
-
-            	<ul>
+<ul>
             	<c:if test="${sessionScope.login !=null}">     
             		
 				<ul>
@@ -61,11 +32,5 @@
             	</ul>
             	</c:if>
             	</ul>
-            	
-            	
-<c:if test="${sessionScope.login !=null}">
-<a href="/review_boardwrite"><button type="button" id="review_boardwrite">
-후기 작성</button></a>
-</c:if>
 </body>
 </html>

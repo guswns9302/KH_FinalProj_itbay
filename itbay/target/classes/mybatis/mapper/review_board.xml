@@ -5,11 +5,18 @@
 <mapper namespace="review_boardMapper">
 <select id="selectReview" resultType="web.com.itbay.review_board.model.review_boardDTO">
 
-SELECT a.id, a.product_id,a.subject, a.contents,a.create_date, b.img_name, c.price
-  FROM review_board a LEFT JOIN img b 
-    ON a.id = b.id  
-   LEFT JOIN PRODUCT_BOARD c 
-    on a.id = c.id
-
+SELECT 
+		A.id,
+       (SELECT C.IMG_NAME FROM IMG C WHERE C.PRODUCT_ID = B.ID AND C.R_IMG = 'Y') 
+	   AS IMG_NAME
+     , A.PRODUCT_ID
+     , B.SUBJECT
+     , B.PRICE
+     ,A.contents
+     , A.create_DATE,
+(SELECT D.nickname FROM members D  WHERE a.members_id=d.id AND D.master = 'N') 
+	   AS usernickname
+  FROM review_board A 
+  LEFT JOIN PRODUCT_BOARD B ON A.PRODUCT_ID = B.ID
 </select>
 </mapper>
