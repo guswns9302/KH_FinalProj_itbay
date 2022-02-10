@@ -1,11 +1,12 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Review</title>
+	<title>후기 게시판</title>
 	<c:url var="head_url" value="/WEB-INF/views/module/default_js_css.jsp"></c:url>
 	<jsp:include page="${head_url }" flush="false" />
 	<meta charset="UTF-8">
@@ -16,12 +17,49 @@
 		<jsp:param name="login" value="${sessionScope.login }" />
 	</jsp:include>
 </header>
-후기 게시판
 <table>
-
-
+	<thead>
+		<th>번호</th>
+		<th>상품 사진</th>
+		<th>제품번호</th>		
+		<th>제목</th>
+		<th>내용</th>
+		<th>날짜</th>
+		<th>구매한 가격</th>
+		
+	</thead>
+	<tbody>
+	<c:forEach var="data" items="${list}">
+		<tr>
+			<td>${data.id}</td>
+			<td>${data.img_name}</td>
+			<td>${data.product_id}</td>
+			<td>${data.subject}</td>
+			<td>${data.contents}</td>
+			<td>${data.create_date}</td>
+			<td>${data.price}</td>
+		</tr>
+	</c:forEach>
+	</tbody>
 </table>
-<a href="/review_boardwrite"><button>후기글 작성</button></a>
-<a href="/review_boardDtail"><button>후기글 상세보기</button></a>
+
+            	<ul>
+            	<c:if test="${sessionScope.login !=null}">
+           
+   
+				<ul>
+            		<li><a href="/myinfo">회원정보</a></li>
+            		<li><a href="/cart">장바구니</a></li>
+                	<li><a href="/purchase_history">구매내역</a></li>
+                	<li><a href="/reply">채팅문의</a></li>
+            	</ul>
+            	</c:if>
+            	
+            	
+<c:if test="${sessionScope.login !=null}">
+<a href="/review_boardwrite"><button type="button" id="review_boardwrite">
+후기 작성</button></a>
+</c:if>
+
 </body>
 </html>

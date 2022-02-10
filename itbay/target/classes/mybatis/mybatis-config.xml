@@ -4,5 +4,6 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
   <typeAliases>
+	<typeAlias type="web.com.itbay.review_board.model.review_boardDTO" alias="review_boardlist"/>
   </typeAliases>
 </configuration>

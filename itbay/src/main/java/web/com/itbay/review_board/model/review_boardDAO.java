@@ -1,8 +1,12 @@
 package web.com.itbay.review_board.model;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import web.com.itbay.notice_board.model.Notice_boardDTO;
 
 @Repository
 public class review_boardDAO {
@@ -11,11 +15,8 @@ public class review_boardDAO {
 	@Autowired
 	SqlSession session;
 
-	public review_boardDTO selectreview_board(review_boardDTO inputdata) {
-		
-		
-		review_boardDTO data = this.session.selectOne("review_boardMapper.selectreview_board", inputdata);
-		return data;
+	public List<review_boardDTO> select(){
+		List<review_boardDTO> List = this.session.selectList("review_boardMapper.selectReview");
+		return List;
 	}
-	
 }

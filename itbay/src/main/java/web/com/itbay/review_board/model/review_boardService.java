@@ -1,7 +1,11 @@
 package web.com.itbay.review_board.model;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import web.com.itbay.notice_board.model.Notice_boardDTO;
 
 @Service
 public class review_boardService {
@@ -10,12 +14,9 @@ public class review_boardService {
 	
 	review_boardDAO dao;
 	
-
-	public review_boardDTO review_board(review_boardDTO inputdata)
-	{	
-	
-		review_boardDTO data=dao.selectreview_board(inputdata);
-		return data;
+	public List<review_boardDTO> selectReview() {
+		List<review_boardDTO> List = dao.select();
+		return List;
 	}
-	
+
 }

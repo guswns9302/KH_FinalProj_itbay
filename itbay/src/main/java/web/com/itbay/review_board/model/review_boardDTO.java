@@ -12,13 +12,28 @@ public class review_boardDTO {
 	private int view_CNT;
 	private Date create_date;
 	private Date order_date;
+	private String img_name;
+	private int price;
 	
-	public review_boardDTO(String subject,String contents,int score)
-	{
-		this.subject=subject;
-		this.contents=contents;
-		this.score=score;		
+
+
+	public int getPrice() {
+		return price;
 	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+	public String getImg_name() {
+		return img_name;
+	}
+
+	public void setImg_name(String img_name) {
+		this.img_name = img_name;
+	}
+	
+	
 	
 	
 	
