@@ -1,5 +1,7 @@
 package web.com.itbay.members.controller;
 
+
+import java.util.Date;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
@@ -108,5 +110,35 @@ public class MembersController {
 			model.addAttribute("loginData",loginData);
 		
 		return "myinfo";
+	}
+	
+	@RequestMapping(value = "/join", method = RequestMethod.GET)
+	public String join(Model model) {
+		
+		return "join";
+	}
+	
+	@RequestMapping(value = "/join", method = RequestMethod.POST)
+	public String join(String nickname, String pw, String email_address, String username, Date birth, String phone, String address) {
+		
+		MembersDTO membersjoin = new MembersDTO();
+		membersjoin.setNickname(nickname);
+		membersjoin.setPw(pw);
+		membersjoin.setUsername(username);
+		membersjoin.setBirth(null);
+		membersjoin.setPhone(phone);
+		membersjoin.setAddress(address);
+		
+		MembersService joinservice = new MembersService();
+		boolean result = joinservice.join(membersjoin);
+		
+		if(result == true) {
+			System.out.println("회원가입 성공");
+		}
+		else
+		{
+			System.out.println("회원가입 실패");
+		}
+		return "redirect:/";
 	}
 }

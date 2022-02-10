@@ -11,33 +11,47 @@
 	<jsp:include page="${head_url }" flush="false" />
 	<meta charset="UTF-8">
 </head>
-<body>
-<header>
-	<jsp:include page="/WEB-INF/views/module/top-navigation.jsp" flush="false" >
-		<jsp:param name="login" value="${sessionScope.login }" />
-	</jsp:include>
-</header>
-
-<div class="container">
-	<form action="/login" method="post">
-	 	<h1 class="h3 mb-3 fw-normal">Please sign in</h1>
-		<div class="form-floating mb-3 mt-3">
-			<input type="text" class="form-control" id="nickname" placeholder="Enter email" name="nickname">
-			<label for="email">Email</label>
+	<body>
+	<header>
+		<jsp:include page="/WEB-INF/views/module/top-navigation.jsp" flush="false" >
+			<jsp:param name="login" value="${sessionScope.login }" />
+		</jsp:include>
+	</header>
+	
+	
+	<div class="container">
+		<div class="col-lg-4"></div>
+		<div class="col-lg-4">
+			<div class="jumbotron" style = "padding-top: 20px;">
+				<form action="/login" method="post">
+					<h3 style="text-align: center;">로그인 화면</h3>
+					<div class="form-floating mb-3 mt-3">
+						<input type="text" class="form-control" id="nickname" placeholder="Enter email" name="nickname" maxlength="20">
+						<label for="email">Email</label>
+					</div>
+					<div class="form-floating mt-3 mb-3">
+						<input type="text" class="form-control" id="pw" placeholder="Enter password" name="pw" maxlength="20">
+						<label for="pwd">Password</label>
+					</div>
+					<div class="form-floating mt-3 mb-3">
+					<button type="submit" class="btn btn-primary">로그인</button>
+					</div>
+										
+					<a href="https://kauth.kakao.com/oauth/authorize?
+					client_id=ea71971929c14c8aef7a4bef54e9b082&
+					redirect_uri=http://localhost/kakao&
+					response_type=code">
+						<img src="resources/icon/kakao_login_medium_narrow.png">
+					</a>
+				</form>
+				<form action="/join" method="get">
+					<div class="form-floating mt-3 mb-3">
+						<button type="submit" class="btn btn-primary" >회원가입</button>
+					</div>	
+				</form>
+			</div>
 		</div>
-		<div class="form-floating mt-3 mb-3">
-			<input type="text" class="form-control" id="pw" placeholder="Enter password" name="pw">
-			<label for="pwd">Password</label>
+		<div class="col-lg-4"></div>
 		</div>
-		<button type="submit" class="btn btn-primary">login</button>
-		<a href="https://kauth.kakao.com/oauth/authorize?
-			client_id=ea71971929c14c8aef7a4bef54e9b082&
-			redirect_uri=http://localhost/kakao&
-			response_type=code">
-		<img src="resources/icon/kakao_login_medium_narrow.png">
-	</a>
-	</form>
-</div>
-
-</body>
+	</body>
 </html>

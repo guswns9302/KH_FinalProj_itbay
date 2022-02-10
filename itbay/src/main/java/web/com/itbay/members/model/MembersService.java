@@ -13,4 +13,17 @@ public class MembersService {
 		MembersDTO logindata = dao.selectLogin(inputdata);
 		return logindata;
 	}
+
+	public boolean join(MembersDTO membersjoin) {
+		
+		int result = dao.join(membersjoin);
+		if(result == 1) {
+			return true;
+		}
+		else {
+			return false;
+		}
+		
+	}
+	
 }

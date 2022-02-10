@@ -38,4 +38,11 @@ public class MembersDAO {
 		MembersDTO kakaoLogin = this.session.selectOne("MembersMapper.selectKakaoLogin", kakaoLogindata);
 		return kakaoLogin;
 	}
+
+	public int join(MembersDTO membersjoin) {
+		int result = this.session.insert("MembersMapper.JoinMembers",membersjoin);
+		
+		return result;
+	}
+		
 }
