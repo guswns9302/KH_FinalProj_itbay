@@ -9,6 +9,14 @@ public class Notice_boardDTO {
 	private String members_id;
 	private Date create_date;
 	private int view_CNT;
+	
+	public Notice_boardDTO() {}
+	
+	public Notice_boardDTO(String subject, String contents) {
+		this.setSubject(subject);
+		this.setContents(contents);
+	}
+	
 	public int getId() {
 		return id;
 	}

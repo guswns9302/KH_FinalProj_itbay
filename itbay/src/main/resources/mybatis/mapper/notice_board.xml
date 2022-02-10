@@ -6,4 +6,25 @@
   <select id="getNotice" resultType="web.com.itbay.notice_board.model.Notice_boardDTO">
     select * from notice_board order by id desc
   </select>
+  
+  <select id="getContents" resultType="web.com.itbay.notice_board.model.Notice_boardDTO">
+    select * 
+      from notice_board
+     where id = #{id}
+  </select>
+
+  <select id="getMembers" resultType="web.com.itbay.members.model.MembersDTO">
+    select * from members order by id desc
+  </select>
+  
+  <insert id="insertNotice" parameterType="web.com.itbay.notice_board.model.Notice_boardDTO">
+  	INSERT INTO NOTICE_BOARD VALUES(
+  		   NOTICE_BOARD_ID_SEQ.NEXTVAL
+  		 , #{subject}, #{contents}
+  		 , 1, SYSDATE ,0);
+  </insert>
+  <delete id="deletNotice" parameterType="int">
+	DELETE FROM NOTICE_BOARD
+	 WHERE ID = #{id}
+  </delete>
 </mapper>

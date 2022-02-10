@@ -17,6 +17,9 @@
 		<jsp:param name="login" value="${sessionScope.login }" />
 	</jsp:include>
 </header>
+	<c:if test="${sessionScope.loginMember.username eq '마스터' }">
+		<button type="button" onclick="location.href='/noticeWrite'">공지 등록</button>
+	</c:if>
 <table>
 	<thead>
 		<th>번호</th>
@@ -27,13 +30,20 @@
 	<tbody>
 	<c:forEach var="data" items="${list}">
 		<tr>
-			<td>${data.id}</td>
-			<td>${data.subject}</td>
-			<td>${data.members_id}</td>
-			<td>${data.create_date}</td>
+			<td align="center">${data.id}</td>
+			<td align="center"><a href="/noticeContents?noticeId=${data.id}">${data.subject}</a></td>
+			<td align="center">
+				<c:forEach var="admin" items="${admin}">
+					<c:if test="${data.members_id eq admin.id}">
+						${admin.username}
+					</c:if>
+				</c:forEach>
+			</td>
+			<td align="center"><fmt:formatDate value="${data.create_date}" pattern="yyyy년 MM월 dd일"/></td>
 		</tr>
 	</c:forEach>
 	</tbody>
 </table>
+
 </body>
 </html>
