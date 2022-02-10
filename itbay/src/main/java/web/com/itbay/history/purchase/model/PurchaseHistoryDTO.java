@@ -8,7 +8,28 @@ public class PurchaseHistoryDTO {
 	private int members_id;
 	private int product_id;
 	private Date purchase_date;
+	private String subject;
+	private String img_name;
+	private int price;
 	
+	public String getSubject() {
+		return subject;
+	}
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
+	public String getImg_name() {
+		return img_name;
+	}
+	public void setImg_name(String img_name) {
+		this.img_name = img_name;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
 	public int getId() {
 		return id;
 	}

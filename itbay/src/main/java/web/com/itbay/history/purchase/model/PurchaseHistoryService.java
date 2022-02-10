@@ -8,11 +8,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class PurchaseHistoryService {
 	@Autowired
-	private PurchaseHistoryDAO dao;
+	PurchaseHistoryDAO dao;
 	
 	public List<PurchaseHistoryDTO> selectPurchaseHistory(){
-		PurchaseHistoryDTO dto = new PurchaseHistoryDTO();
-
-		return dao.selectPurchaseHistory(dto);
+		List<PurchaseHistoryDTO> purchaseList = dao.selectPurchaseHistory();
+		return purchaseList;
 	}
 }

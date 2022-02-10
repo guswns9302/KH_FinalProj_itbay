@@ -24,19 +24,36 @@
             <option value="">10개씩 정렬</option>
         </select>
     </div>
-	<c:forEach var="purchase_history" items="${purchaseList}" varStatus="status">
-			
-			<c:out value="${purchaseList.id}" />
-			
-			<c:out value="${purchaseList.members_id}" />
-			
-			<c:out value="${purchaseList.product_id}" />
-			
-			<c:out value="${purchaseList.purchase_date}" />
-
-
-			<br><br>
-			
-		</c:forEach>
+	<table>
+		<thead>
+			<th>상품 사진</th>
+			<th>제품번호</th>
+			<th>제품명</th>		
+			<th>가격</th>
+			<th>구매 날짜</th>
+		</thead>
+		<tbody>
+			<c:forEach var="purchase_history" items="${purchaseList}">
+				<tr>
+					<td>${purchase_history.img_name}</td>
+					<td>${purchase_history.product_id}</td>
+					<td>${purchase_history.subject}</td>
+					<td>${purchase_history.price}</td>
+					<td>${purchase_history.purchase_date}</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+	<c:set var="page" value="${(param.p==null)?1:param.p}"/>
+	<c:set var="startNum" value="${page-(page-1)%5}"/>
+	
+	<ul class="-List- center">
+	<c:forEach var="n" begin="0" end="4">
+	<li><a class="-test- orange bold" href="?p=${startNum+n}&t=&q=">${startNum+n}</a></li>
+	</c:forEach>
+	</ul>
+	
+	<c:if test="${startNum+5<LastNum}"><a href="?p=${startNum+5}&t=&q=" class btn-next">다음</a></c:if>
+	<c:if test="${startNum+5>=LastNum}"><span class="btn btn-next" onclick="alert('다음 페이지가 없습니다.')">다음</span></c:if>
 </body>
 </html>
