@@ -53,7 +53,9 @@
 	</c:forEach>
 	</ul>
 	
-	<c:if test="${startNum+5<LastNum}"><a href="?p=${startNum+5}&t=&q=" class btn-next">다음</a></c:if>
+	<c:if test="${startNum+5<LastNum}"><a href="?p=${startNum+5}&t=&q=" class btn-next"">다음</a></c:if>
 	<c:if test="${startNum+5>=LastNum}"><span class="btn btn-next" onclick="alert('다음 페이지가 없습니다.')">다음</span></c:if>
+	<c:if test="${startNum>1}"><a href="?p=${startNum-1}&t=&q=" class="btn btn-prev"">이전</a></c:if>
+	<c:if test="${startNum<=1}"><span class="btn btn-prev" onclick="alert('이전페이지가 없습니다')">이전</span></c:if>
 </body>
 </html>
