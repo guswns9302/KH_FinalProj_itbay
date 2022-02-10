@@ -22,5 +22,8 @@
 	<update id="updateInfo" parameterType="web.com.itbay.members.model.MembersDTO">
 		UPDATE MEMBERS SET PHONE = #{phone}, ADDRESS = #{address} WHERE ID = #{id}
 	</update>
-
+	
+	<select id="selectUpdateIMGdata" parameterType="web.com.itbay.members.model.MembersDTO" resultType="web.com.itbay.members.model.MembersDTO">
+		SELECT * FROM MEMBERS A JOIN IMG B ON A.ID = B.MEMBERS_ID WHERE A.ID = #{id}
+	</select>
 </mapper>

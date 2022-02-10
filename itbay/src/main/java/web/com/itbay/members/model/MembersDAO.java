@@ -37,4 +37,9 @@ public class MembersDAO {
 		int result = this.session.update("MembersMapper.updateInfo",logindata);
 		return result;
 	}
+
+	public MembersDTO imgUpdate_LoginData(int id) {
+		MembersDTO updateIMG_logindata = this.session.selectOne("MembersMapper.selectUpdateIMGdata",id);
+		return updateIMG_logindata;
+	}
 }

@@ -7,4 +7,8 @@
 		SELECT * FROM IMG 
 		WHERE PRODUCT_ID = ${product_id} 
 	</select>
+	
+	<update id="updateProfileimg" parameterType="web.com.itbay.img.model.ImgDTO">
+		UPDATE IMG SET IMG_NAME = #{img_name} WHERE MEMBERS_ID = #{members_id}
+	</update>
 </mapper>

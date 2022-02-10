@@ -3,6 +3,7 @@ package web.com.itbay.img.model;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.support.DaoSupport;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,5 +19,15 @@ public class ImgService {
 		
 		return imgDao.selectImg(imgDto);
 		
+	}
+
+	public boolean updateProfileImg(ImgDTO login_img_dto) {
+		int res = imgDao.updateProfileImg(login_img_dto);
+		if(res == 1) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 }

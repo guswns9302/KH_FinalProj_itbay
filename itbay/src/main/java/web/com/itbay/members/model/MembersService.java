@@ -18,4 +18,9 @@ public class MembersService {
 		int result = dao.updateModify(logindata);
 		return result == 1 ? true : false;
 	}
+
+	public MembersDTO getlogindata(int id) {
+		MembersDTO dto = dao.imgUpdate_LoginData(id);
+		return dto;
+	}
 }

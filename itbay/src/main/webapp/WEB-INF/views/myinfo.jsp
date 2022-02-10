@@ -76,7 +76,6 @@
 			<div class="col-sm-6">
 			<section class="container p-5 my-5">
 				<div class="card">
-  					<form action="" method="post">
 						<div>
 							<c:choose>
 								<c:when test="${loginMember.getSocial_login() eq 'Y'.charAt(0) }">
@@ -95,18 +94,20 @@
 													<h1 class="h3 mb-3 fw-normal">Profile Img</h1>
 												</div>
 												<div class="col-sm-6">
-													<button type="submit" class="btn btn-secondary text-uppercase">Modify</button>
+													<form action="/myinfo/profileImg" method="post" enctype="multipart/form-data">
+														<input type="file" name="file" multiple />
+														<button type="submit" class="btn btn-secondary text-uppercase">Modify</button>
+													</form>
 												</div>
 											</div>
 										</div>
 								  	</div>
 								  	<div style="text-align:center;">
-										<img src="resources/img/${loginMember.getImg_name() }.png" class="img-thumbnail" alt="Cinque Terre">
+										<img src="resources/img/${loginMember.getImg_name() }" class="img-thumbnail" alt="Cinque Terre">
 									</div>
 								</c:otherwise>
 							</c:choose>
 						</div>
-					</form>
 				</div>
 				</section>
 			</div>

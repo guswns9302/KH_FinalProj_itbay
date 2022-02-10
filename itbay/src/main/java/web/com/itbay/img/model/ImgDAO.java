@@ -17,4 +17,9 @@ public class ImgDAO {
 		
 		return imgList;
 	}
+
+	public int updateProfileImg(ImgDTO login_img_dto) {
+		int res = this.session.update("ImgMapper.updateProfileimg",login_img_dto);
+		return res;
+	}
 }
