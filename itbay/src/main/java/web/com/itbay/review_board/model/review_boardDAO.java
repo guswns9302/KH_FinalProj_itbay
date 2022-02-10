@@ -19,4 +19,10 @@ public class review_boardDAO {
 		List<review_boardDTO> List = this.session.selectList("review_boardMapper.selectReview");
 		return List;
 	}
+	
+ 
+ public void insertreview(review_boardDTO review_boardDto)  throws Exception
+ {
+  session.insert("review_boardMapper.insertreview",review_boardDto);
+ }
 }

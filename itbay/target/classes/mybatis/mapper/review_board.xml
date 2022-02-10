@@ -19,4 +19,10 @@ SELECT
   FROM review_board A 
   LEFT JOIN PRODUCT_BOARD B ON A.PRODUCT_ID = B.ID
 </select>
+
+
+<insert id="insertreview" parameterType="web.com.itbay.review_board.model.review_boardDTO">
+      INSERT INTO review_boarad
+       VALUES(#{SUBJECT},#{CONTENTS})
+       </insert>
 </mapper>

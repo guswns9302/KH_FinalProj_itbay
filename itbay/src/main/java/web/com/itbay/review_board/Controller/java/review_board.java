@@ -27,7 +27,7 @@ import web.com.itbay.members.model.MembersDTO;
 import web.com.itbay.members.model.MembersService;
 @Controller
 
-public class review_board {
+public class review_board<review_boardDto> {
 	
 	@Autowired
 	review_boardService service;	
@@ -45,10 +45,17 @@ public String review_boardlist(Model model,HttpSession session) {
 			
 			return "/review_boardDetail";
 	}
+	
+	
 	@RequestMapping(value = "/review_boardwrite", method = RequestMethod.GET)
-	public String review_boardwrite(Model model,String subject,String contents,String score,HttpSession session) {
-		
-			return "/review_boardwrite";
+	public String review_boardwrite(Model model,String subject,String contents) throws Exception{
+			review_boardDTO review_boardDto =new review_boardDTO();
+		review_boardDto.setSubject(subject);
+		review_boardDto.setContents(contents);
+		System.out.println("들어온 값");
+		System.out.println(review_boardDto);
+		service.insertreview(review_boardDto);
+			return "/review_board";
 		
 }
 }

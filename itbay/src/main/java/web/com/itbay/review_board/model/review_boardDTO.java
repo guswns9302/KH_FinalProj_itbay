@@ -15,9 +15,10 @@ public class review_boardDTO {
 	private String img_name;
 	private int price;
 	private String usernickname;
+
+	public review_boardDTO() {
 	
-
-
+	}
 	public String getUsernickname() {
 		return usernickname;
 	}

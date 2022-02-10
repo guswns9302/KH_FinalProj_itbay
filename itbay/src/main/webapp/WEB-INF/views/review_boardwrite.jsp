@@ -25,8 +25,9 @@ ITBAY
 
 <label>내용</label>
 <textarea name="contents"></textarea><br />
+<input type="submit" id="submiBtn"  class="btn btn-outline-primary mr-2" value="작성">
 
-<button type="submit">작성</button>
+
 
 </form>
 
