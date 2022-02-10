@@ -24,15 +24,19 @@
             <option value="">10개씩 정렬</option>
         </select>
     </div>
-	<form action="/purchase_history" method="get">
-    <div>
-	    	<span><img src="" alt="대표이미지"></span>
-	        <span>번호</span>
-	        <span>회원번호</span>
-	        <span>제품번호</span>
-	        <span>구매날짜</span>
-	    
-    </div>
-	</form>
+	<c:forEach var="purchase_history" items="${purchaseList}" varStatus="status">
+			
+			<c:out value="${purchaseList.id}" />
+			
+			<c:out value="${purchaseList.members_id}" />
+			
+			<c:out value="${purchaseList.product_id}" />
+			
+			<c:out value="${purchaseList.purchase_date}" />
+
+
+			<br><br>
+			
+		</c:forEach>
 </body>
 </html>
