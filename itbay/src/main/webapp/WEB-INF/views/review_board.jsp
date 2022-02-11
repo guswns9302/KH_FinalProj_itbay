@@ -48,21 +48,6 @@
 	</c:forEach>
 	</tbody>
 </table>
-
-            	<ul>
-            	<c:if test="${sessionScope.login !=null}">     
-            		
-				<ul>
-				<img src="resources/img/${loginMember.getImg_name()}".png" width="50" height="50">
-				  <input type="submit" name="submit" value="${loginMember.getNickname()}">
-            		<li><a href="/myinfo">회원정보</a></li>
-            		<li><a href="/cart">장바구니</a></li>
-                	<li><a href="/purchase_history">구매내역</a></li>
-                	<li><a href="/reply">채팅문의</a></li>
-            	</ul>
-            	</c:if>
-            	</ul>
-            	
             	
 <c:if test="${sessionScope.login !=null}">
 <a href="/review_boardwrite"><button type="button" id="review_boardwrite">
