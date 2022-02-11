@@ -1,0 +1,138 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+}
+
+.logo {
+    text-align: center;
+}
+
+.write {
+    display: flex;
+    justify-content: center;
+}
+
+table {
+    border-collapse: collapse;
+    width: 800px;
+    height: 600px;
+    margin-bottom: 20px;
+}
+
+textarea {
+    background-color: #fdfdfd;
+    resize:none;
+    border: 1px solid rgb(212, 212, 212);
+    width: 620px;
+    height: 450px;
+    font-family: 맑은고딕;
+}
+
+textarea:focus {
+    outline-style: none;
+    box-shadow: 0 0 1px 1px rgb(181, 181, 236);
+}
+
+td {
+    border: 1px solid rgb(212, 212, 212);
+    padding: 0.3em;
+}
+
+tr:nth-child(2n-1) {
+    height: 60px;
+}
+
+td:nth-child(1) {
+    width: 150px;
+    font-weight: bold;
+    background-color: lavender;
+    text-align: center;
+    color: rgb(85, 84, 84);
+}
+
+td:nth-child(2) {
+    background-color: #f8f8f8;
+}
+
+h2 {
+    margin-top: 10px;
+    margin-bottom: 40px;
+    font-size: 40px;
+    text-align: center;
+    color: rgb(85, 84, 84);
+}
+
+.submit-btn, .cancle-btn {
+    border-radius: 30px;
+    border: 1px solid rgb(212, 212, 212);
+    background-color: lavender;
+    width: 100px;
+    padding: 10px;
+    cursor: pointer;
+    margin: 0 20px 20px;
+}
+
+input[name="board_sub"] {
+    border: 1px solid rgb(212, 212, 212);
+    width: 620px;
+    height: 40px;
+}
+
+input[name="board_sub"]:focus {
+    outline-style: none;
+    box-shadow: 0 0 1px 1px rgb(181, 181, 236);
+}
+
+.submit-btn:focus, .cancle-btn:focus{
+    outline-style: none;
+    box-shadow: 0 0 1px 1px rgb(181, 181, 236);
+}
+
+.submit-btn:hover, .cancle-btn:hover{
+    box-shadow: rgb(235, 220, 250) 0 0px 0px 40px inset;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    font-weight: bold;
+}
+
+.profile {
+    border: 1px solid rgb(212, 212, 212);
+    width: 200px;
+    height: 100%;
+    padding: 1em;
+    margin-left: 40px;
+}
+
+.pro {
+    margin-left: 15px;
+}
+
+.p1, .p2 {
+    text-align: center;
+    margin: 15px;
+    font-size: 25px;
+}
+
+.p2 {
+    margin-bottom: 30px;
+}
+
+ul {
+    margin-left: 30px;
+}
+
+li {
+    margin: 10px;
+}
+
+.change {
+    display: flex;
+    margin-left: 500px;
+}
