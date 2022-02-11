@@ -3,7 +3,11 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+<settings> 
+    <setting name="cacheEnabled" value="false" />
+    <setting name="jdbcTypeForNull" value="NULL" />
+</settings>
   <typeAliases>
-	<typeAlias type="web.com.itbay.review_board.model.review_boardDTO" alias="review_boardlist"/>
+	<typeAlias type="web.com.itbay.review_board.model.review_boardDTO" alias="review_board"/>
   </typeAliases>
 </configuration>

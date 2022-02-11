@@ -14,8 +14,18 @@ public class review_boardDTO {
 	private Date order_date;
 	private String img_name;
 	private int price;
-	
+	private String usernickname;
 
+	public review_boardDTO() {
+	
+	}
+	public String getUsernickname() {
+		return usernickname;
+	}
+
+	public void setUsernickname(String usernickname) {
+		this.usernickname = usernickname;
+	}
 
 	public int getPrice() {
 		return price;

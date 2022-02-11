@@ -1,3 +1,6 @@
+
+
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -19,47 +22,51 @@
 </header>
 <table>
 	<thead>
-		<th>번호</th>
+		<th> 글 번호</th>
 		<th>상품 사진</th>
 		<th>제품번호</th>		
 		<th>제목</th>
 		<th>내용</th>
 		<th>날짜</th>
 		<th>구매한 가격</th>
+		<th>구매자 이름</th>
+		
 		
 	</thead>
 	<tbody>
 	<c:forEach var="data" items="${list}">
 		<tr>
 			<td>${data.id}</td>
-			<td>${data.img_name}</td>
+			<td> <img src="resources/img/${data.img_name}".png width="50" height="50"></td>
 			<td>${data.product_id}</td>
 			<td>${data.subject}</td>
 			<td>${data.contents}</td>
 			<td>${data.create_date}</td>
-			<td>${data.price}</td>
+			<td>${data.price}원</td>
+			<td>${data.usernickname}</td>
 		</tr>
 	</c:forEach>
 	</tbody>
 </table>
 
             	<ul>
-            	<c:if test="${sessionScope.login !=null}">
-           
-   
+            	<c:if test="${sessionScope.login !=null}">     
+            		
 				<ul>
+				<img src="resources/img/${loginMember.getImg_name()}".png" width="50" height="50">
+				  <input type="submit" name="submit" value="${loginMember.getNickname()}">
             		<li><a href="/myinfo">회원정보</a></li>
             		<li><a href="/cart">장바구니</a></li>
                 	<li><a href="/purchase_history">구매내역</a></li>
                 	<li><a href="/reply">채팅문의</a></li>
             	</ul>
             	</c:if>
+            	</ul>
             	
             	
 <c:if test="${sessionScope.login !=null}">
 <a href="/review_boardwrite"><button type="button" id="review_boardwrite">
 후기 작성</button></a>
 </c:if>
-
 </body>
 </html>

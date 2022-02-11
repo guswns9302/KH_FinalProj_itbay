@@ -18,5 +18,8 @@ public class review_boardService {
 		List<review_boardDTO> List = dao.select();
 		return List;
 	}
-
+	public void insertreview(review_boardDTO review_boardDto) throws Exception
+	 {
+	 dao.insertreview(review_boardDto);
+	 }
 }
