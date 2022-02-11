@@ -6,6 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import web.com.itbay.img.model.ImgDTO;
+
 @Repository
 public class ProductDAO {
 
@@ -22,5 +24,13 @@ public class ProductDAO {
 		ProductDTO productDetail = this.session.selectOne("ProductMapper.selectProductDetail", productDto);
 		
 		return productDetail;
+	}
+	
+	public int saveProduct(ProductDTO productDto) {
+		return this.session.insert("ProductMapper.saveProduct", productDto);
+	}
+	
+	public int saveImg(ImgDTO imgDto) {
+		return this.session.insert("ProductMapper.saveImage", imgDto);
 	}
 }

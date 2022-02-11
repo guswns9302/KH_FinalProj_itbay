@@ -12,7 +12,9 @@
 		<c:forEach var="img" items="${imgList}" varStatus="status">
 			<c:out value="${img.img_name}" />
 			<br><br>
+			
 		</c:forEach>
 		${productDto.subject}
+		${productDto.id}
 </body>
 </html>

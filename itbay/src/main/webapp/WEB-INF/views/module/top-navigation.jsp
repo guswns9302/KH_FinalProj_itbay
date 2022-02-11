@@ -25,8 +25,8 @@
 				</li>
 				<li>
 					<form class="d-flex">
-						<input class="form-control me-2" type="text" placeholder="Search">
-						<button class="btn btn-primary" type="button">Search</button>
+						<input class="form-control me-2" type="text" id="searchText" placeholder="Search">
+						<button class="btn btn-primary" type="button" id="searchBtn">Search</button>
 					</form>
 				</li>
 			</ul>

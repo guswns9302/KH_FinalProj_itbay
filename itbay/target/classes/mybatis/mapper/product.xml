@@ -5,7 +5,7 @@
 <mapper namespace="ProductMapper">
 	<select id="selectProduct" parameterType="web.com.itbay.product.model.ProductDTO" resultType="web.com.itbay.product.model.ProductDTO">
 		SELECT A.SUBJECT, A.PRICE, A.SOLD_OUT, A.ID, 
-	   (SELECT B.IMG_NAME FROM IMG B WHERE B.PRODUCT_ID = A.ID AND B.R_IMG = 'Y') 
+	   (SELECT B.IMG_NAME FROM IMG B WHERE B.PRODUCT_ID = A.ID AND B.R_IMG = 'Y' AND ROWNUM = 1)  
 	   	AS IMG_NAME
 		FROM PRODUCT_BOARD A 
 		WHERE 1 = 1 
@@ -16,9 +16,36 @@
 			AND A.SOLD_OUT = #{sold_out}
 		</if>
 	</select>
+	
+	
 	<select id="selectProductDetail" parameterType="web.com.itbay.product.model.ProductDTO" resultType="web.com.itbay.product.model.ProductDTO">
 		SELECT * FROM PRODUCT_BOARD
 			WHERE ID = #{id}
 	</select>
 	
+	
+	  <!-- resultType은 기본 "int" 일때는 따로 표기하지 않음 -->
+	  <insert id="saveProduct" parameterType="web.com.itbay.product.model.ProductDTO"> 
+	  	<selectKey keyProperty="id" resultType="int" order="BEFORE">  
+	  		select PRODUCT_BOARD_ID_SEQ.NEXTVAL from dual 
+	  	</selectKey>
+	    INSERT INTO PRODUCT_BOARD VALUES(
+	    	   ${id}, 
+	    	   #{subject}, #{contents}, 1, SYSDATE,
+	    	   0, ${price}, 'N') 
+	  </insert>
+	  
+	  
+	  <!-- resultType은 기본 "int" 일때는 따로 표기하지 않음 -->
+	  <insert id="saveImage" parameterType="web.com.itbay.img.model.ImgDTO"> 
+	  	<selectKey keyProperty="id" resultType="java.lang.Integer" order="BEFORE">
+	  		select IMG_ID_SEQ.NEXTVAL from dual
+	  	</selectKey>
+	    INSERT INTO IMG VALUES(
+	    	   ${id}, 
+	    	   #{img_name}, '', #{product_id}, #{R_img}) 
+	  </insert>
+	  
+	  
+
 </mapper>

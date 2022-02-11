@@ -35,7 +35,7 @@ public String review_boardlist() {
 			
 			return "/review_boardDtail";
 	}
-	@RequestMapping(value = "/review_boardwrite", method = RequestMethod.GET)
+	@RequestMapping(value = "/review_boardwrite", method = RequestMethod.POST)
 	public String review_boardwrite(String subject,String contents,String score) {
 	int scores=Integer.parseInt(score);
 		review_boardDTO dto =new review_boardDTO(subject,contents,scores);
