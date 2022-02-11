@@ -1,9 +1,6 @@
-package web.com.itbay.history.purchase.controller;
+package web.com.itbay.history.sales.controller;
 
-import java.sql.Date;
 import java.util.List;
-
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,25 +9,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import web.com.itbay.history.purchase.model.PurchaseHistoryDTO;
-import web.com.itbay.history.purchase.model.PurchaseHistoryService;
+import web.com.itbay.history.sales.model.SalesHistoryDTO;
+import web.com.itbay.history.sales.model.SalesHistoryService;
 import web.com.itbay.img.model.ImgService;
 
 @Controller
-public class PurchaseHistoryController {
+public class SalesHistoryController {
 
 	@Autowired
-	PurchaseHistoryService purchaseService;
+	SalesHistoryService salesService;
 	@Autowired
 	ImgService imgService;
 	
-	@RequestMapping(value="/purchase_history", method=RequestMethod.GET)
+	@RequestMapping(value="/sales_history", method=RequestMethod.GET)
 	public String purchaseHistoryList(Model model, @RequestParam(defaultValue="5") int pageofnum) {
 		model.addAttribute("pageofnum", pageofnum);
-		List<PurchaseHistoryDTO> purchaseList = purchaseService.selectPurchaseHistory();
+		List<SalesHistoryDTO> salesList = salesService.selectSalesHistory();
 		
-		model.addAttribute("purchaseList", purchaseList);
+		model.addAttribute("salesList", salesList);
 
-		return "/purchase_history";
+		return "/sales_history";
 	}
 }
