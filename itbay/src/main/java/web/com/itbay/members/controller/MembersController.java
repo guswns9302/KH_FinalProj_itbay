@@ -3,6 +3,7 @@ package web.com.itbay.members.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Set;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -126,7 +127,7 @@ public class MembersController {
 	}
 	
 	@RequestMapping(value = "/myinfo/profileImg", method = RequestMethod.POST)
-	public String profileIMG_upload(MultipartFile file, String mediafile, HttpSession session) {
+	public String profileIMG_upload(Model model,HttpServletRequest request, MultipartFile file, String mediafile, HttpSession session) {
 		String saveDirectory = "C:/dev/jee-2021-06/workspace/KH_FinalProj_itbay/itbay/src/main/webapp/resources/img";
 		UUID uuid = UUID.randomUUID();
 		File saveFile = new File(saveDirectory, uuid.toString() + "_" + file.getOriginalFilename());
@@ -136,7 +137,7 @@ public class MembersController {
 			
 			ImgDTO login_img_dto = new ImgDTO();
 			login_img_dto.setMembers_id(logindata.getId());
-			login_img_dto.setImg_name(file.getOriginalFilename());
+			login_img_dto.setImg_name(uuid.toString() + "_"+file.getOriginalFilename());
 			
 			if(imgservice.updateProfileImg(login_img_dto)) {
 				logindata = service.getlogindata(logindata.getId());
