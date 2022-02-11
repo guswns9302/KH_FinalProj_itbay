@@ -162,7 +162,7 @@ public class MembersController {
 	
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
 	public String join(String nickname, String pw, String email_address, String username, Date birth, String phone, String address) {
-		
+		System.out.println("컨트롤러 실행");
 		MembersDTO membersjoin = new MembersDTO();
 		membersjoin.setNickname(nickname);
 		membersjoin.setPw(pw);
@@ -170,9 +170,10 @@ public class MembersController {
 		membersjoin.setBirth(null);
 		membersjoin.setPhone(phone);
 		membersjoin.setAddress(address);
+		membersjoin.setEmail_address(email_address);
 		
-		MembersService joinservice = new MembersService();
-		boolean result = joinservice.join(membersjoin);
+		System.out.println(membersjoin.getNickname());
+		boolean result = service.join(membersjoin);
 		
 		if(result == true) {
 			System.out.println("회원가입 성공");

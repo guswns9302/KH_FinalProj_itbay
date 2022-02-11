@@ -28,6 +28,6 @@
 	</select>
 	
 	<insert id="JoinMembers" parameterType="web.com.itbay.members.model.MembersDTO" >
-		INSERT INTO MEMBERS VALUES(MEMBERS_ID_SEQ.NEXTVAL, #{nickname}, #{pw}, #{username}, NULL, #{birth}, #{phone}, #{address}, #{email_address}, SYSDATE, SYSDATE, 'N', 'N')	
+		INSERT INTO MEMBERS VALUES(MEMBERS_ID_SEQ.NEXTVAL, #{nickname}, #{pw}, #{username}, NULL, NULL, #{phone}, #{address}, #{email_address}, SYSDATE, SYSDATE, 'N', 'N')	
 	</insert>
 </mapper>

@@ -10,7 +10,7 @@
 	<jsp:include page="/WEB-INF/views/module/default_js_css.jsp" flush="false" />
 </head>
 
-<body onload="regEvent();">
+<body>
 
 <header>
 		<jsp:include page="/WEB-INF/views/module/top-navigation.jsp" flush="false" >
@@ -38,7 +38,7 @@
 					<div class="row mb-3">
 						<label class="col-sm-2 col-form-label" for="pw">비밀번호 확인</label>
 						<div class="col-sm-10">
-							<input class="form-control" type="password" name="pw" value="${accountVO.password}" required>
+							<input class="form-control" type="password" name="pw_check" value="${accountVO.password}" required>
 						</div>
 					</div>
 					<div class="row mb-3">
@@ -63,12 +63,12 @@
 							</label>
 						</div>
 					</div>
-					<div class="row mb-3">
+					<%-- <div class="row mb-3">
 						<label class="col-sm-2 col-form-label" for="birth">생년월일</label>
 						<div class="col-sm-10">
 							<input class="form-control" type="date" name="birth" value="${accountVO.birth}" required>
 						</div>
-					</div>
+					</div> --%>
 					<div class="row mb-3">
 						<label class="col-sm-2 col-form-label" for="phone">전화번호</label>
 						<div class="col-sm-10">
@@ -82,7 +82,7 @@
 						</div>
 					</div>
 					<div class="form-group" style="text-align: center;">
-						<button type="submit" style="text-align: center;" class="btn btn-primary" onclick="joinCheck(this.form);">가입 완료</button>
+						<button type="submit" style="text-align: center;" class="btn btn-primary">가입 완료</button>
 					</div>
 				</form>
 			</div>
