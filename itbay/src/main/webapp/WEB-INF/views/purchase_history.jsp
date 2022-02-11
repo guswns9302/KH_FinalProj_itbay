@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Home</title>
+	<title>Purchase_History</title>
 	<c:url var="head_url" value="/WEB-INF/views/module/default_js_css.jsp"></c:url>
 	<jsp:include page="${head_url }" flush="false" />
 	<meta charset="UTF-8">
@@ -18,10 +18,15 @@
 	</jsp:include>
 </header>
     <div><span>구매내역</span></div>
-    <div><select name="" id="">
-            <option value="" selected>전체보기</option>
-            <option value="">5개씩 정렬</option>
+    <div>
+    	<c:set var="pn" value="${empty param.pageofnum ? pageofnum : param.pageofnum}" />
+	    <select name="pageofnum" onChange="location.href='/purchase_history?pageofnum=' + this.value">
+            <c:forEach var="n" begin="5" end="10" step="5">
+            	<opetion value="${n}" ${pn eq n ? "selected" : ""}>${n}</opetion>
+            </c:forEach>
+            <option value="">전체</option>
             <option value="">10개씩 정렬</option>
+            <option value="">20개씩 정렬</option>
         </select>
     </div>
 	<table>
@@ -32,30 +37,31 @@
 			<th>가격</th>
 			<th>구매 날짜</th>
 		</thead>
+		<c:set var="page" value="${empty param.page ? 1 : param.page}"/>
 		<tbody>
-			<c:forEach var="purchase_history" items="${purchaseList}">
+			<c:forEach var="num" begin="${(page - 1) * pn}" end="${page * pn -1}">
 				<tr>
-					<td>${purchase_history.img_name}</td>
-					<td>${purchase_history.product_id}</td>
-					<td>${purchase_history.subject}</td>
-					<td>${purchase_history.price}</td>
-					<td>${purchase_history.purchase_date}</td>
+					<td> <img src="resources/img/${purchaseList[num].img_name}".png width="50" height="50"></td>
+					<td>${purchaseList[num].product_id}</td>
+					<td>${purchaseList[num].subject}</td>
+					<td>${purchaseList[num].price}</td>
+					<td>${purchaseList[num].purchase_date}</td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
-	<c:set var="page" value="${(param.p==null)?1:param.p}"/>
-	<c:set var="startNum" value="${page-(page-1)%5}"/>
-	
-	<ul class="-List- center">
-	<c:forEach var="n" begin="0" end="4">
-	<li><a class="-test- orange bold" href="?p=${startNum+n}&t=&q=">${startNum+n}</a></li>
-	</c:forEach>
-	</ul>
-	
-	<c:if test="${startNum+5<LastNum}"><a href="?p=${startNum+5}&t=&q=" class btn-next"">다음</a></c:if>
-	<c:if test="${startNum+5>=LastNum}"><span class="btn btn-next" onclick="alert('다음 페이지가 없습니다.')">다음</span></c:if>
-	<c:if test="${startNum>1}"><a href="?p=${startNum-1}&t=&q=" class="btn btn-prev"">이전</a></c:if>
-	<c:if test="${startNum<=1}"><span class="btn btn-prev" onclick="alert('이전페이지가 없습니다')">이전</span></c:if>
+	${purchaseList.size()}
+	<div>
+		<c:forEach var="page" begin="0" end="${purchaseList.size() / pn}" varStatus="loop">
+			<c:if test="${not loop.last}">
+				<span><a href="/purchase_history?page=${page +1}&pageofnum${pn}"/>${page + 1 }</span>
+			</c:if>
+			<c:if test="${loop.last}">
+				<c:if test="${purchase_history.size() mod pn ne 0}">
+					<span><a href="/purchase_history?page=${page +1}&pageofnum${pn}"/>${page + 1 }</span>
+				</c:if>
+			</c:if>
+		</c:forEach>
+	</div>
 </body>
 </html>
