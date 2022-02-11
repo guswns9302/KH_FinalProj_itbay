@@ -157,7 +157,7 @@ public class MembersController {
 	@RequestMapping(value = "/join", method = RequestMethod.GET)
 	public String join(Model model) {
 		
-		return "join";
+		return "/join";
 	}
 	
 	@RequestMapping(value = "/join", method = RequestMethod.POST)

@@ -35,13 +35,10 @@
 				<img src="resources/icon/kakao_login_medium_narrow.png">
 			</a>
 		</div>
+		<div>
+			<a href="/join">회원가입</a>
+		</div>
 	</form>
-	
-	<form action="/join" method="get">
-					<div class="form-floating mt-3 mb-3">
-						<button type="submit" class="btn btn-primary" >회원가입</button>
-					</div>	
-			</form>
 </section>
 
 </body>
