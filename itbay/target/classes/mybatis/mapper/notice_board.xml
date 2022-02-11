@@ -21,7 +21,7 @@
   	INSERT INTO NOTICE_BOARD VALUES(
   		   NOTICE_BOARD_ID_SEQ.NEXTVAL
   		 , #{subject}, #{contents}
-  		 , 1, SYSDATE ,0);
+  		 , 1, SYSDATE ,0)
   </insert>
   <delete id="deletNotice" parameterType="int">
 	DELETE FROM NOTICE_BOARD
