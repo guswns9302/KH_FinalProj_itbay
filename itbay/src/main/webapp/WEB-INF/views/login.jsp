@@ -20,9 +20,7 @@
 			<input type="text" class="form-control" id="nickname" placeholder="Enter email" name="nickname">
 			<label for="email">Email</label>
 		</div>
-		<div class="form-floating mt-3 mb-3">
-			<input type="text" class="form-control" id="pw" placeholder="Enter password" name="pw">
-			<label for="pwd">Password</label>
+		<div class="col-lg-4"></div>
 		</div>
 		<div style="margin : 10px;">
 			<button type="submit" class="btn btn-secondary text-uppercase" style="width: 183px;">login</button>
@@ -36,6 +34,11 @@
 			</a>
 		</div>
 	</form>
+	<form action="/join" method="get">
+					<div class="form-floating mt-3 mb-3">
+						<button type="submit" class="btn btn-primary" >회원가입</button>
+					</div>	
+			</form>
 </section>
 
 </body>

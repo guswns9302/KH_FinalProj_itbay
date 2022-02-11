@@ -23,4 +23,16 @@ public class MembersService {
 		MembersDTO dto = dao.imgUpdate_LoginData(id);
 		return dto;
 	}
+	
+	public boolean join(MembersDTO membersjoin) {
+		
+		int result = dao.join(membersjoin);
+		if(result == 1) {
+			return true;
+		}
+		else {
+			return false;
+		}
+		
+	}
 }

@@ -42,4 +42,10 @@ public class MembersDAO {
 		MembersDTO updateIMG_logindata = this.session.selectOne("MembersMapper.selectUpdateIMGdata",id);
 		return updateIMG_logindata;
 	}
+	
+	public int join(MembersDTO membersjoin) {
+		int result = this.session.insert("MembersMapper.JoinMembers",membersjoin);
+		
+		return result;
+	}
 }

@@ -26,4 +26,8 @@
 	<select id="selectUpdateIMGdata" parameterType="web.com.itbay.members.model.MembersDTO" resultType="web.com.itbay.members.model.MembersDTO">
 		SELECT * FROM MEMBERS A JOIN IMG B ON A.ID = B.MEMBERS_ID WHERE A.ID = #{id}
 	</select>
+	
+	<insert id="JoinMembers" parameterType="web.com.itbay.members.model.MembersDTO" >
+		INSERT INTO MEMBERS VALUES(MEMBERS_ID_SEQ.NEXTVAL, #{nickname}, #{pw}, #{username}, NULL, #{birth}, #{phone}, #{address}, #{email_address}, SYSDATE, SYSDATE, 'N', 'N')	
+	</insert>
 </mapper>
