@@ -23,6 +23,6 @@ public class review_boardDAO {
  
  public void insertreview(review_boardDTO review_boardDto)  throws Exception
  {
-  session.insert("review_boardMapper.insertreview",review_boardDto);
+  session.insert("review_boardMapper.insertReview",review_boardDto);
  }
 }

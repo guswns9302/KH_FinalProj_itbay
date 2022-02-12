@@ -43,10 +43,6 @@ public class review_boardDTO {
 		this.img_name = img_name;
 	}
 	
-	
-	
-	
-	
 	public int getId() {
 		return id;
 	}

@@ -10,19 +10,44 @@ SELECT
        (SELECT C.IMG_NAME FROM IMG C WHERE C.PRODUCT_ID = B.ID AND C.R_IMG = 'Y') 
 	   AS IMG_NAME
      , A.PRODUCT_ID
+     , A.MEMBERS_ID
      , B.SUBJECT
      , B.PRICE
      ,A.contents
-     , A.create_DATE,
+     ,A.create_DATE,
+     A.ORDER_DATE,
 (SELECT D.nickname FROM members D  WHERE a.members_id=d.id AND D.master = 'N') 
 	   AS usernickname
   FROM review_board A 
   LEFT JOIN PRODUCT_BOARD B ON A.PRODUCT_ID = B.ID
 </select>
 
-
-<insert id="insertreview" parameterType="web.com.itbay.review_board.model.review_boardDTO">
-      INSERT INTO review_boarad
-       VALUES(#{SUBJECT},#{CONTENTS})
-       </insert>
+ <insert id="insertReview" parameterType="web.com.itbay.review_board.model.review_boardDTO">
+        <![CDATA[
+            INSERT INTO REVIEW_BOARD
+            (
+	    		ID,
+	    		PRODUCT_ID,
+	    		MEMBERS_ID,
+                SUBJECT,
+                CONTENTS,
+                SCORE,
+                VIEW_CNT,
+                CREATE_DATE,
+                ORDER_DATE
+            )
+            VALUES
+            (
+			    REVIEW_BOARD_ID_SEQ.NEXTVAL,
+			    NULL,
+			    NULL,
+                #{subject},
+                #{contents},
+                0,
+                0,
+                SYSDATE,
+                SYSDATE      	
+            )
+        ]]>
+    </insert>
 </mapper>
