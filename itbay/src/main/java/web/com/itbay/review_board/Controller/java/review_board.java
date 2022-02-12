@@ -48,11 +48,11 @@ public class review_board<review_boardDto> {
 	}
 	
 	  @RequestMapping(value="/review_boardwrite")
-	    public String review_boardwrite() throws Exception {
+	    public String review_boardwrite(HttpSession session) throws Exception {
 	        return "/review_boardwrite";
 	    }
 	  @RequestMapping(value="/review_boardinsert")
-	    public ModelAndView reviewboardInsert(review_boardDTO review_boardDto) throws Exception {
+	    public ModelAndView reviewboardInsert(review_boardDTO review_boardDto,HttpSession session) throws Exception {
 	        ModelAndView review = new ModelAndView("redirect:/review_board");
 	        service.insertreview(review_boardDto);
 	        return review;

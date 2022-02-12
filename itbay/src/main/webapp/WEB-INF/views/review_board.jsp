@@ -28,9 +28,9 @@
 		<th>제품번호</th>		
 		<th>제목</th>
 		<th>내용</th>
-		<th>날짜</th>
-		<th>주문날짜</th>
+		<th>구매한 날짜</th>
 		<th>구매한 가격</th>
+		<th>평점</th>
 		<th>구매자 이름</th>
 		
 		
@@ -43,9 +43,9 @@
 			<td>${data.product_id}</td>
 			<td>${data.subject}</td>
 			<td>${data.contents}</td>
-			<td>${data.create_date}</td>
 			<td>${data.order_date}</td>
 			<td>${data.price}원</td>
+			<td>${data.score}</td>
 			<td>${data.usernickname}</td>
 		</tr>
 	</c:forEach>
