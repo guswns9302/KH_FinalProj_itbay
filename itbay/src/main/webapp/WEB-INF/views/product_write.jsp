@@ -1,7 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
-<%@ page session="false" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +10,15 @@
 	<jsp:include page="${head_url }" flush="false" />
 	<link type="text/css" rel="stylesheet" href="/static/css/write.css">
 	<meta charset="UTF-8">
+	
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("#cancel").click(function(){
+				location.href = "/product";
+			})
+			
+		});
+	</script>
 </head>
 <body>
 <header>
@@ -17,48 +26,50 @@
 		<jsp:param name="login" value="${sessionScope.login }" />
 	</jsp:include>
 </header>
-	<div class="logo">
+<!-- 	<div class="logo">
         <a href="/board">
         	<img src = "/static/icon/logo.jpg" alt="No Image" width = "150" height = "150">
         </a>
-    </div>
- 	<h2>게시글 작성</h2>
- 	<form action="/productSave" method="post" enctype="multipart/form-data">
- 		<div class="write">
-        	<table>
-            	<tr>
-                	<td>제목</td>
-                	<td><input type="text" name="subject" required></td>
-            	</tr>
-            	<tr>
-                	<td>가격</td>
-                	<td><input type="text" name="price" required></td>
-            	</tr>            	
-           	 	<tr>
-               		<td>내용</td>
-               		<td><textarea name="contents"></textarea></td>
-           		</tr>
-           		<tr>
-                	<td>첨부파일</td>
-                	<td>
-                		<input type="file" name="file" multiple="multiple"><%-- 파일 업로드 --%>
-                	</td>
-            	</tr>
-        	</table>
-        	
-        	<div class="profile">
-            <%--	<p class="p1"><%=session.getAttribute("login") %> 님</p>     --%>
-            	<p class="p2">환영합니다.</p>
-            	<ul>
-                	<li><a href="/logout">로그아웃</a></li>
-                	<li><a href="/mypage">마이페이지</a></li>
-            	</ul>
-        	</div>
-    	</div>
-     	<div class="change">
-        	<button type="submit" class="submit-btn">등록</button>
-            <button type="reset" class="cancle-btn">취소</button>
-    	</div>
-    </form>
+    </div> -->
+ 	<br>
+ 	<br>
+ 	<br>
+ 	<div class="container">
+
+	 	<form action="/productSave" method="post" enctype="multipart/form-data">
+			<div class="change">
+				<button type="submit" class="submit-btn btn btn-primary">등록</button>
+				<button type="button" id="cancel" class="cancle-btn btn btn-danger">취소</button>
+			</div>
+		<br>
+	 	  <div class="form-group">
+		    <label for="subject" style="font-weight: bold;">제품명</label>
+		    <input type="text" class="form-control" id="subject" name="subject" placeholder="제품명을 입력하세요." required>
+		  </div>
+		  
+		  <br>
+		  
+	 	  <div class="form-group">
+		    <label for="price" style="font-weight: bold;">가격</label>
+		    <input type="number" class="form-control" id="price" name="price" placeholder="제품 가격을 입력하세요." required>
+		  </div>		  
+	
+		  <br>
+		  
+	 	  <div class="form-group">
+		    <label for="contents" style="font-weight: bold;">제품 상세 설명</label>
+		    <textarea class="form-control" id="contents" name="contents" placeholder="제품상세 설명을 입력하세요." required style="height: 25.25em; resize: none;"></textarea>
+		  </div>		  
+	
+		  <br>
+		  
+	 	  <div class="form-group">
+		    <label for="file" style="font-weight: bold;">이미지 첨부</label>
+		    <input class="form-control" type="file" name="file" id="file" multiple="multiple">
+		  </div>			  
+	    </form> 	
+ 	</div>
+ 	
+
 </body>
 </html>

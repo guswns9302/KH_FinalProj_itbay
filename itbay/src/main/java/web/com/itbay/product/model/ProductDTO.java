@@ -22,6 +22,10 @@ public class ProductDTO {
 	
 	private String img_name;
 
+	private int startIndex;
+	
+	private int endIdex;
+	
 	public String getImg_name() {
 		return img_name;
 	}
@@ -92,6 +96,22 @@ public class ProductDTO {
 
 	public void setSold_out(String sold_out) {
 		this.sold_out = sold_out;
+	}
+
+	public int getStartIndex() {
+		return startIndex;
+	}
+
+	public void setStartIndex(int startIndex) {
+		this.startIndex = startIndex;
+	}
+
+	public int getEndIdex() {
+		return endIdex;
+	}
+
+	public void setEndIdex(int endIdex) {
+		this.endIdex = endIdex;
 	}
 
 	

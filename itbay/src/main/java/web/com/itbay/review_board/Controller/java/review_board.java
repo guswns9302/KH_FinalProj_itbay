@@ -46,7 +46,7 @@ public class review_board<review_boardDto> {
 			return "/review_boardDetail";
 	}
 	
-	@RequestMapping(value = "/review_boardwrite", method = RequestMethod.GET)
+	@RequestMapping(value = "/review_boardwrite", method = RequestMethod.POST)
 	public String review_boardwrite(Model model,String subject,String contents) throws Exception{
 			review_boardDTO review_boardDto =new review_boardDTO();
 		review_boardDto.setSubject(subject);
