@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MileageMapper">
+	<select id="selectAmountMileage" parameterType="int" resultType="web.com.itbay.members.model.MileageDTO">
+		SELECT SUM(MILEAGE_AMOUNT) AS MILEAGE_AMOUNT FROM MILEAGE WHERE MEMBERS_ID = #{members_id}
+	</select>
+</mapper>

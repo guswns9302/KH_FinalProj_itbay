@@ -5,7 +5,7 @@
 
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
 	<div class="container-fluid">
-		<a class="navbar-brand" href="/"><img src="" width="120" height="70"></a>
+		<a class="navbar-brand" href="/"><img src="resources/icon/itbay_logo.png" width="120" height="70"></a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
 			<span class="navbar-toggler-icon"></span>
 		</button>
@@ -36,9 +36,10 @@
 						<c:when test="${param.login }">
 							<img src="resources/img/${loginMember.getImg_name()}" width="50" height="50" >
 							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" href="/account/info" role="button" data-bs-toggle="dropdown">마이페이지</a>
+								<a class="nav-link dropdown-toggle" href="/myinfo" role="button" data-bs-toggle="dropdown">Mypage</a>
 								<ul class="dropdown-menu">
 									<li><a class="dropdown-item" href="/myinfo">Profile</a></li>
+									<li><a class="dropdown-item" href="/mileage">Mileage</a></li>
 									<li><a class="dropdown-item" href="/">Cart</a></li>
 									<li><a class="dropdown-item" href="/purchase_history">Purchase History</a></li>
 								</ul>

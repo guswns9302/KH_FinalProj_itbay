@@ -152,6 +152,10 @@
 						<input type="text" class="form-control" id="address" name="address" value="${loginMember.getAddress() }" readonly>
 						<label for="text">Address</label>
 					</div>
+					<div class="form-floating mt-3 mb-3">
+						<input type="text" class="form-control" id="mileage" name="mileage" value="" readonly>
+						<label for="text">Mileage</label>
+					</div>
 				</section>
 			</div>
 		</div>
