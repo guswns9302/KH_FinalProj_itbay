@@ -1,5 +1,7 @@
 package web.com.itbay.members.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,8 @@ public class MileageController {
 		MileageDTO amount_mileage = service.getAmount_mileage(loginData.getId());
 		model.addAttribute("mileage",amount_mileage);
 		
+		List<MileageDTO> history_mileage = service.getHistory_mileage(loginData.getId());
+		model.addAttribute("history_mileage",history_mileage);
 		return "/mileage";
 	}
 	
@@ -34,11 +38,15 @@ public class MileageController {
 		MembersDTO loginData = (MembersDTO) session.getAttribute("loginMember");
 		model.addAttribute("loginData",loginData);
 		
-		MileageDTO amount_mileage = service.getAmount_mileage(loginData.getId());
-		model.addAttribute("mileage",amount_mileage);
-		
-		System.out.println(mileage_amount);
-		
-		return "redirect:/mileage";
+		MileageDTO charge_mileage = new MileageDTO(loginData.getId(), mileage_amount);
+		boolean result = service.chargeMileage(charge_mileage);
+		if(result) {
+			System.out.println("마일리지 충전 : " + mileage_amount);
+			return "redirect:/mileage";
+		}
+		else {
+			System.out.println("마일리지 충전 실패");
+			return "redirect:/mileage";
+		}
 	}
 }

@@ -108,7 +108,7 @@
 								</c:otherwise>
 							</c:choose>
 						</div>
-				</div>
+					</div>
 				</section>
 			</div>
 			

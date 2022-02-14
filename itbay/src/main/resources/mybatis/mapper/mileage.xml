@@ -6,4 +6,12 @@
 	<select id="selectAmountMileage" parameterType="int" resultType="web.com.itbay.members.model.MileageDTO">
 		SELECT SUM(MILEAGE_AMOUNT) AS MILEAGE_AMOUNT FROM MILEAGE WHERE MEMBERS_ID = #{members_id}
 	</select>
+	
+	<insert id="insertChageMileage" parameterType="web.com.itbay.members.model.MileageDTO">
+		INSERT INTO MILEAGE VALUES(MILEAGE_ID_SEQ.NEXTVAL, #{id}, #{mileage_amount},SYSDATE)
+	</insert>
+	
+	<select id="selectHistoryList" parameterType="int" resultType="web.com.itbay.members.model.MileageDTO">
+		SELECT ROWNUM, A.* FROM MILEAGE A WHERE MEMBERS_ID = #{members_id} AND MILEAGE_AMOUNT > 0 ORDER BY ROWNUM DESC
+	</select>
 </mapper>

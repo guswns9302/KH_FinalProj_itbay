@@ -7,6 +7,13 @@ public class MileageDTO {
 	private int members_id;
 	private int mileage_amount;
 	private Date mileage_date;
+	private int rownum;
+	
+	public MileageDTO() {}
+	public MileageDTO(int id, int mileage_amount) {
+		this.id = id;
+		this.mileage_amount = mileage_amount;
+	}
 	public int getId() {
 		return id;
 	}
@@ -30,6 +37,12 @@ public class MileageDTO {
 	}
 	public void setMileage_date(Date mileage_date) {
 		this.mileage_date = mileage_date;
+	}
+	public int getRownum() {
+		return rownum;
+	}
+	public void setRownum(int rownum) {
+		this.rownum = rownum;
 	}
 	
 	
