@@ -1,6 +1,7 @@
 package web.com.itbay.notice_board.model;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,16 @@ public class Notice_boardService {
 		List<Notice_boardDTO> noticeList = dao.selectNotice();
 		return noticeList;
 	}
+	
+	public List<Notice_boardDTO> selectPage(Map<String, Integer> range) {
+		return dao.selectPage(range);
+	}
 
+	public int countingNotice() {
+		int res = dao.countingNotice();
+		return res;
+	}
+	
 	public Notice_boardDTO getNoticeContents(int id) {
 		Notice_boardDTO dto = dao.selectContents(id);
 		return dto;

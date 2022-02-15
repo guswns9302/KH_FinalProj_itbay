@@ -1,6 +1,8 @@
 package web.com.itbay.notice_board.model;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,16 @@ public class Notice_boardDAO {
 		return List;
 	}
 
+	public int countingNotice() {
+		int res = this.session.selectOne("NoticeMapper.countingNotice");
+		return res;
+	}
+	
+	public List<Notice_boardDTO> selectPage(Map<String, Integer> range) {
+		List<Notice_boardDTO> List = this.session.selectList("NoticeMapper.selectPage", range);
+		return List;
+	}
+	
 	public Notice_boardDTO selectContents(int id) {
 		Notice_boardDTO dto = this.session.selectOne("NoticeMapper.getContents", id);
 		return dto;
@@ -38,5 +50,4 @@ public class Notice_boardDAO {
 		int res = this.session.delete("NoticeMapper.deleteNotice", id);
 		return res == 1 ? true : false;
 	}
-	
 }

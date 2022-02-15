@@ -20,6 +20,17 @@
 	<c:if test="${sessionScope.loginMember.username eq '마스터' }">
 		<button type="button" onclick="location.href='/noticeWrite'">공지 등록</button>
 	</c:if>
+<div>
+	<div>
+		<select onchange="location.href='/notice_board?cnt=' + this.value">
+			<option value="5"  ${pageListCnt eq '5' ? 'selected' : '' }> 5개</option>
+			<option value="10" ${pageListCnt eq '10' ? 'selected' : '' }>10개</option>
+			<option value="20" ${pageListCnt eq '20' ? 'selected' : '' }>20개</option>
+			<option value="30" ${pageListCnt eq '30' ? 'selected' : '' }>30개</option>
+		</select>
+	</div>
+</div>	
+
 <table>
 	<thead>
 		<th>번호</th>
@@ -28,7 +39,7 @@
 		<th>날짜</th>
 	</thead>
 	<tbody>
-	<c:forEach var="data" items="${list}">
+	<c:forEach var="data" items="${datas}">
 		<tr>
 			<td align="center">${data.id}</td>
 			<td align="center"><a href="/noticeContents?noticeId=${data.id}">${data.subject}</a></td>
@@ -44,6 +55,22 @@
 	</c:forEach>
 	</tbody>
 </table>
+	<div>
+		<ul>
+			<c:forEach var="num" items="${pageList.nums}">
+				<c:choose>
+					<c:when test="${pageList.curNum eq num }">
+						<li class="active">
+					</c:when>
+					<c:otherwise>
+						<li>
+					</c:otherwise>
+				</c:choose>
+					<a href="?page=${num}">${num}</a>
+					</li>					
+			</c:forEach>
+		</ul>
+	</div>
 
 </body>
 </html>

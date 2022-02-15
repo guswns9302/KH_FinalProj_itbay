@@ -2,6 +2,9 @@ package web.com.itbay.notice_board.controller;
 
 import java.util.List;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,11 +12,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import web.com.itbay.members.model.MembersDTO;
 import web.com.itbay.notice_board.model.Notice_boardDTO;
 import web.com.itbay.notice_board.model.Notice_boardService;
+import web.com.itbay.notice_board.paging.Pagination;
 
 @Controller
 public class Notice_boardController {
@@ -22,14 +26,45 @@ public class Notice_boardController {
 	Notice_boardService service;
 	
 	@RequestMapping(value="/notice_board", method=RequestMethod.GET)
-	public String notice(Model model) {
+	public String notice(@RequestParam(name="page", defaultValue="1") int page,
+			Model model, HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("notice controller");
-		List<Notice_boardDTO> list = service.getNotice();
-
+//		List<Notice_boardDTO> list = service.getNotice();
+//		model.addAttribute("list", list);
 		List<MembersDTO> admin = service.getMembers();
 		
-		model.addAttribute("list", list);
 		model.addAttribute("admin", admin);
+		
+		//paging 추가
+		String pageListCnt = "5";
+		if(request.getParameter("cnt") != null) {
+			pageListCnt = request.getParameter("cnt");
+		} else {
+			Cookie[] cookies = request.getCookies();
+			for(Cookie cookie: cookies) {
+				if(cookie.getName().equals("pageListCnt")) {
+					pageListCnt = cookie.getValue();
+				}
+			}
+		}
+		System.out.println("cnt : " + pageListCnt);
+		
+		Cookie cookie = new Cookie("pageListCnt", pageListCnt);
+		cookie.setPath(request.getRequestURI());
+		response.addCookie(cookie);
+		
+		int maxCnt = service.countingNotice();
+		Pagination<Notice_boardDTO> paging = new Pagination<Notice_boardDTO>(
+				maxCnt, Integer.parseInt(pageListCnt));
+		try {
+			List<Notice_boardDTO> datas = service.selectPage(paging.getPage(page));
+			System.out.println("size :" + datas.size());
+			model.addAttribute("datas", datas);
+			model.addAttribute("pageList", paging.getPageList());
+			model.addAttribute("pageListCnt", pageListCnt);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		return "/notice_board";
 	}
@@ -83,11 +118,11 @@ public class Notice_boardController {
 		
 		if(res == 1) {
 			System.out.println("저장성공");
-			return "/notice_board";
+			return "redirect:/notice_board";
 		} else {
 			System.out.println("저장실패");
 			//에러메시지 포함해서 보내주기
-			return "redirect:/noticeWrite";
+			return "forward:/noticeWrite";
 		}
 	}
 	
@@ -103,11 +138,16 @@ public class Notice_boardController {
 		
 		if(res) {
 			System.out.println("삭제성공");
-			return "/notice_board";
+			List<Notice_boardDTO> list = service.getNotice();
+			List<MembersDTO> admin = service.getMembers();
+			
+			model.addAttribute("list", list);
+			model.addAttribute("admin", admin);
+			return "redirect:/notice_board";
 		} else {
 			System.out.println("삭제실패");
 			//에러메시지 포함해서 보내주기
-			return "redirect:/noticeContents";
+			return "forward:/noticeContents";
 		}
 	}
 	
