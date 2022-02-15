@@ -5,24 +5,51 @@
 <mapper namespace="review_boardMapper">
 <select id="selectReview" resultType="web.com.itbay.review_board.model.review_boardDTO">
 
-SELECT 
+SELECT
 		A.id,
        (SELECT C.IMG_NAME FROM IMG C WHERE C.PRODUCT_ID = B.ID AND C.R_IMG = 'Y') 
 	   AS IMG_NAME
      , A.PRODUCT_ID
-     , B.SUBJECT
-     , B.PRICE
+     , A.MEMBERS_ID
+     , A.SUBJECT
+     ,A.SCORE
+     ,B.PRICE
      ,A.contents
-     , A.create_DATE,
+     ,A.create_DATE,
+      A.ORDER_DATE,
 (SELECT D.nickname FROM members D  WHERE a.members_id=d.id AND D.master = 'N') 
-	   AS usernickname
+	   AS NAME
   FROM review_board A 
   LEFT JOIN PRODUCT_BOARD B ON A.PRODUCT_ID = B.ID
 </select>
 
+	
+ <insert id="insertReview" parameterType="web.com.itbay.review_board.model.review_boardDTO">
+        <![CDATA[
+            INSERT INTO REVIEW_BOARD 
+            (
+	    		ID,		
+                SUBJECT,
+                CONTENTS,
+                SCORE,           
+                ORDER_DATE
+            )
+            VALUES
+            (
+			    REVIEW_BOARD_ID_SEQ.NEXTVAL,
+                #{subject},
+                #{contents},
+                #{score},
+                SYSDATE
+            )
+        ]]>
+    </insert>
+  <select id="getreviewDetail" resultType="web.com.itbay.review_board.model.review_boardDTO">
+ select * 
+      from review_board 
+           where id = #{id}
+           
 
-<insert id="insertreview" parameterType="web.com.itbay.review_board.model.review_boardDTO">
-      INSERT INTO review_boarad
-       VALUES(#{SUBJECT},#{CONTENTS})
-       </insert>
+</select>
+  
 </mapper>

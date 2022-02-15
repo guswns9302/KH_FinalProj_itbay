@@ -7,7 +7,4 @@
     <setting name="cacheEnabled" value="false" />
     <setting name="jdbcTypeForNull" value="NULL" />
 </settings>
-  <typeAliases>
-	<typeAlias type="web.com.itbay.review_board.model.review_boardDTO" alias="review_board"/>
-  </typeAliases>
 </configuration>
