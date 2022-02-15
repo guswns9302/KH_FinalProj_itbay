@@ -28,7 +28,5 @@ hs_err_pid*
 **/dev/
 
 **/oracle_connection.prop
-**/target/
 **/dev/
-*.target
-/target/
+**/target/
