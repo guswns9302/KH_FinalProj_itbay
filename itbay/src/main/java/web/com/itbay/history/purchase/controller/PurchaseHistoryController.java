@@ -25,12 +25,19 @@ public class PurchaseHistoryController {
 	ImgService imgService;
 	
 	@RequestMapping(value="/purchase_history", method=RequestMethod.GET)
-	public String purchaseHistoryList(Model model, @RequestParam(defaultValue="5") int pageofnum) {
+	public String purchaseHistoryList(Model model, @RequestParam(value="pageofnum", defaultValue="5") int pageofnum) {
 		model.addAttribute("pageofnum", pageofnum);
 		List<PurchaseHistoryDTO> purchaseList = purchaseService.selectPurchaseHistory();
 		
 		model.addAttribute("purchaseList", purchaseList);
 
 		return "/purchase_history";
+	}
+	
+	@RequestMapping(value="/purchase_history_np", method=RequestMethod.GET)
+	public String purchaseHistoryListNp(Model model, HttpSession session) {
+		List<PurchaseHistoryDTO> listNp = purchaseService.selectPurchaseNp();
+		model.addAttribute("listNp", listNp);
+		return "/purchase_history_np";
 	}
 }

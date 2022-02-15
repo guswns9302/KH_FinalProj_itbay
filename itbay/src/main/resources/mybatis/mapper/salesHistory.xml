@@ -6,14 +6,13 @@
 	<select id="selectSalesHistory" parameterType="web.com.itbay.history.sales.model.SalesHistoryDTO" resultType="web.com.itbay.history.sales.model.SalesHistoryDTO">
 		SELECT A.ID
 			 , A.MEMBERS_ID
-		     , (SELECT C.IMG_NAME FROM IMG C WHERE C.PRODUCT_ID = B.ID AND C.R_IMG = 'Y') 
+			 , (SELECT C.IMG_NAME FROM IMG C WHERE C.PRODUCT_ID = B.ID AND C.R_IMG = 'Y')
 			   AS IMG_NAME
-		     , A.PRODUCT_ID
-		     , B.SUBJECT
-		     , B.PRICE
-		     , A.SALES_DATE
-
-  		  FROM SALES_HISTORY A 
-  		  LEFT JOIN PRODUCT_BOARD B ON A.PRODUCT_ID = B.ID
+			 , A.PRODUCT_ID
+			 , B.SUBJECT
+			 , B.PRICE
+			 , A.SALES_DATE
+		  FROM SALES_HISTORY A
+		  LEFT JOIN PRODUCT_BOARD B ON A.PRODUCT_ID = B.ID
 	</select>
 </mapper>

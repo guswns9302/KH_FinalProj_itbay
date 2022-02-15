@@ -14,4 +14,9 @@ public class PurchaseHistoryService {
 		List<PurchaseHistoryDTO> purchaseList = dao.selectPurchaseHistory();
 		return purchaseList;
 	}
+	
+	public List<PurchaseHistoryDTO> selectPurchaseNp(){
+		List<PurchaseHistoryDTO> listNp = dao.selectPurchaseHistory();
+		return listNp;
+	}
 }

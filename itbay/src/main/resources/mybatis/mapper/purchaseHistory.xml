@@ -12,7 +12,6 @@
 		     , B.SUBJECT
 		     , B.PRICE
 		     , A.PURCHASE_DATE
-
   		  FROM PURCHASE_HISTORY A 
   		  LEFT JOIN PRODUCT_BOARD B ON A.PRODUCT_ID = B.ID
 	</select>
