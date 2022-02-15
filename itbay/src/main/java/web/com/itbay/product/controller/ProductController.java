@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -33,8 +34,7 @@ public class ProductController {
 		
 		List<ProductDTO> list = productService.selectProduct(subject, sold_out, page, model);
 
-
-
+			
 		model.addAttribute("list", list);
 		model.addAttribute("subject", subject);
 		model.addAttribute("sold_out", sold_out);
@@ -46,7 +46,6 @@ public class ProductController {
 			model.addAttribute("loginData",loginData);
 		}
 		
-
 		return "/product";
 	}
 	

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CartMapper">
+	
+	  <!-- resultType은 기본 "int" 일때는 따로 표기하지 않음 -->
+	  <insert id="saveCart" parameterType="web.com.itbay.cart.model.CartDTO"> 
+	  	<selectKey keyProperty="id" resultType="int" order="BEFORE">  
+	  		select CART_ID_SEQ.NEXTVAL from dual 
+	  	</selectKey>
+	    INSERT INTO CART VALUES(
+	    	   ${id}, 
+	    	   ${members_id}, ${product_id}, SYSDATE,
+	    	   (SELECT SOLD_OUT FROM PRODUCT_BOARD WHERE ID = ${product_id})   	   
+		) 
+	  </insert>
+
+	  
+
+</mapper>

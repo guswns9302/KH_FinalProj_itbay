@@ -39,7 +39,7 @@
 								<a class="nav-link dropdown-toggle" href="/account/info" role="button" data-bs-toggle="dropdown">마이페이지</a>
 								<ul class="dropdown-menu">
 									<li><a class="dropdown-item" href="/myinfo">Profile</a></li>
-									<li><a class="dropdown-item" href="/">Cart</a></li>
+									<li><a class="dropdown-item" href="/cart">Cart</a></li>
 									<li><a class="dropdown-item" href="/purchase_history">Purchase History</a></li>
 								</ul>
 							</li>
