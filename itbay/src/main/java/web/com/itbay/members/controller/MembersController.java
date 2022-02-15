@@ -2,12 +2,16 @@ package web.com.itbay.members.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
@@ -20,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
+import web.com.itbay.cart.model.CartService;
 import web.com.itbay.img.model.ImgDAO;
 import web.com.itbay.img.model.ImgDTO;
 import web.com.itbay.img.model.ImgService;
@@ -39,14 +44,20 @@ public class MembersController {
 	@Autowired
 	ImgService imgservice;
 	
+	// 마솔 - 비회원 장바구니 기능 추가 시작
+	@Autowired
+	CartService cartService;
+	// 마솔 - 비회원 장바구니 기능 추가 끝
+	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login() {
 		
 		return "/login";
 	}
 	
+	// 마솔 - HttpServletRequest request 추가
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(String nickname,String pw, HttpSession session) {
+	public String login(HttpServletRequest request, HttpServletResponse response, String nickname,String pw, HttpSession session) {
 		MembersDTO inputdata = new MembersDTO(nickname,pw);
 		MembersDTO logindata = new MembersDTO();
 		logindata = service.login(inputdata);
@@ -54,6 +65,29 @@ public class MembersController {
 		if(logindata != null) {
 			session.setAttribute("login", true);
 			session.setAttribute("loginMember", logindata);
+			
+			// 마솔 - 비회원 장바구니 기능 추가 시작
+			Cookie[] cookies = request.getCookies();
+			if(cookies != null) {
+				List<Integer> idList = new ArrayList<Integer>();
+				for(Cookie cookie : cookies) {
+					if(!cookie.getName().equals("JSESSIONID")) {
+						idList.add(Integer.parseInt(cookie.getValue()));
+					}
+					
+				}
+				cartService.addCart(idList, logindata.getId());
+				// 마솔 - 비회원 장바구니 기능 추가 끝
+				for(Cookie cookie : cookies) {
+					if(!cookie.getName().equals("JSESSIONID")) {
+						cookie.setMaxAge(0);
+						response.addCookie(cookie);
+					}
+					
+				}				
+			}
+
+			
 			return "redirect:/";
 		}
 		else {
