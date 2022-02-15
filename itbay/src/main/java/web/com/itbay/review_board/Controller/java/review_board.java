@@ -1,26 +1,22 @@
 package web.com.itbay.review_board.Controller.java;
 import java.util.List;
-import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+
 import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.session.SqlSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.ui.Model;
 
+import web.com.itbay.img.model.ImgDTO;
 import web.com.itbay.img.model.ImgService;
 import web.com.itbay.members.model.MembersDTO;
 import web.com.itbay.notice_board.model.Notice_boardDTO;
+import web.com.itbay.product.model.ProductDTO;
 import web.com.itbay.review_board.model.review_boardDAO;
 import web.com.itbay.review_board.model.review_boardDTO;
 import web.com.itbay.review_board.model.review_boardService;
@@ -41,21 +37,25 @@ public class review_board<review_boardDto> {
 		model.addAttribute("list", list);
 		return "/review_board";
 	}
-	@RequestMapping(value = "/review_boardDetail", method = RequestMethod.GET)
-	public String review_boardDtail() {
-			
-			return "/review_boardDetail";
+	@RequestMapping(value="/review_boardDetail", method = RequestMethod.GET)
+	public String reviewdetail(Model model, String reviewid) {
+		int id = Integer.parseInt(reviewid);	
+		List<ImgDTO> imgList = imgService.selectImg(id);
+		
+		review_boardDTO dto=service.getselectreviewDetail(id);
+		
+		model.addAttribute("imgList", imgList);
+		model.addAttribute("dto",dto);	
+		return "/review_boardDetail";
 	}
-	
 	  @RequestMapping(value="/review_boardwrite")
 	    public String review_boardwrite(HttpSession session) throws Exception {
 	        return "/review_boardwrite";
 	    }
 	  @RequestMapping(value="/review_boardinsert")
-	    public ModelAndView reviewboardInsert(review_boardDTO review_boardDto,HttpSession session) throws Exception {
-	        ModelAndView review = new ModelAndView("redirect:/review_board");
+	    public ModelAndView reviewboardInsert(review_boardDTO review_boardDto,HttpSession session,Model model) throws Exception {
+		  ModelAndView review = new ModelAndView("redirect:/review_board");
 	        service.insertreview(review_boardDto);
 	        return review;
 	    }
-
 }

@@ -42,16 +42,15 @@
 			<td> <img src="resources/img/${data.img_name}".png width="50" height="50"></td>
 			<td>${data.product_id}</td>
 			<td>${data.subject}</td>
-			<td>${data.contents}</td>
+				<td align="center"><a href="/review_boardDetail?reviewid=${data.id}">${data.contents}</a></td>
 			<td>${data.order_date}</td>
 			<td>${data.price}원</td>
 			<td>${data.score}</td>
-			<td>${data.usernickname}</td>
+			<td>${data.name}</td>
 		</tr>
 	</c:forEach>
 	</tbody>
 </table>
-            	
 <c:if test="${sessionScope.login !=null}">
 <a href='<c:url value='/review_boardwrite'/>' role="button">글쓰기</a>
 </c:if>

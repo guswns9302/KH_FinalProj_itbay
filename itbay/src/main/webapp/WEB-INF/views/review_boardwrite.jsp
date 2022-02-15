@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
@@ -19,18 +20,22 @@
 </header>
 ITBAY
    <form action='<c:url value='/review_boardinsert'/>' method="post">
+      <label >작성자 이름</label>
+	 	<input type="text" name="name" value="${loginMember.getNickname() }" readonly>
               <label >제목</label>
             <input type="text" name="subject" placeholder="제목을 작성해주세요.">
+			
+	
             <label >내용</label>
             <textarea  name="contents" rows="10"></textarea>
-            <span class="star">
-  		★★★★★
-  <span>★★★★★</span>
-  <input type="range"  oninput="drawStar(this)" value="1" step="1" min="0" max="10" name="score">
-</span>
-        <button type="submit">등록하기</button>
 
+  <input type="number" name="score"  min="0" max="10">
+
+        <button type="submit">등록하기</button>
+	<td>첨부파일</td>
+                	<td>
+                		<input type="file" name="img_name" multiple="multiple"><%-- 파일 업로드 --%>
+                	</td>
     </form>
-		
 </body>
 </html>

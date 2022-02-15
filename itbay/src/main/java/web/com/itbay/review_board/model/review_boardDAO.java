@@ -6,7 +6,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import web.com.itbay.img.model.ImgDTO;
 import web.com.itbay.notice_board.model.Notice_boardDTO;
+import web.com.itbay.product.model.ProductDTO;
 
 @Repository
 public class review_boardDAO {
@@ -25,4 +27,11 @@ public class review_boardDAO {
  {
   session.insert("review_boardMapper.insertReview",review_boardDto);
  }
+ 
+
+ public review_boardDTO selectreviewDetail(int id) {
+		review_boardDTO dto = this.session.selectOne("review_boardMapper.getreviewDetail",id);
+		
+		return dto;
+	}
 }

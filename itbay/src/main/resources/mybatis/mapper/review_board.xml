@@ -18,19 +18,20 @@ SELECT
      ,A.create_DATE,
       A.ORDER_DATE,
 (SELECT D.nickname FROM members D  WHERE a.members_id=d.id AND D.master = 'N') 
-	   AS usernickname
+	   AS NAME
   FROM review_board A 
   LEFT JOIN PRODUCT_BOARD B ON A.PRODUCT_ID = B.ID
 </select>
 
+	
  <insert id="insertReview" parameterType="web.com.itbay.review_board.model.review_boardDTO">
         <![CDATA[
             INSERT INTO REVIEW_BOARD 
             (
-	    		ID,
+	    		ID,		
                 SUBJECT,
                 CONTENTS,
-                SCORE,
+                SCORE,           
                 ORDER_DATE
             )
             VALUES
@@ -42,6 +43,13 @@ SELECT
                 SYSDATE
             )
         ]]>
-        
     </insert>
+  <select id="getreviewDetail" resultType="web.com.itbay.review_board.model.review_boardDTO">
+ select * 
+      from review_board 
+           where id = #{id}
+           
+
+</select>
+  
 </mapper>

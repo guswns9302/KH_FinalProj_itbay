@@ -20,17 +20,27 @@
 		<jsp:param name="login" value="${sessionScope.login }" />
 	</jsp:include>
 </header>
-<ul>
-            	<c:if test="${sessionScope.login !=null}">     
-            		
-				<ul>
-				<img src="resources/img/${loginMember.getImg_name()}".png" width="50" height="50">
-            		<li><a href="/myinfo">회원정보</a></li>
-            		<li><a href="/cart">장바구니</a></li>
-                	<li><a href="/purchase_history">구매내역</a></li>
-                	<li><a href="/reply">채팅문의</a></li>
-            	</ul>
-            	</c:if>
-            	</ul>
+<body>
+<table>
+	<div>
+		<span>제목:</span>
+		<span name="subject">${dto.subject}</span>
+	</div>
+	<c:forEach var="img" items="${imgList}" varStatus="status">
+			 <img src="resources/img/${img.img_name}".png width="50" height="50">
+			<br><br>
+		</c:forEach>
+	<div>
+		<span>작성자:</span>	
+			<span name="name">${dto.name}</span>
+	</div>
+	<div>
+	<span>내용:</span>
+		<div>${dto.contents}</div>
+	</div>
+	<div>
+		<button type="button" onclick="location.href='/review_board'">목록으로</button>
+	</div>
+</table>
 </body>
 </html>
