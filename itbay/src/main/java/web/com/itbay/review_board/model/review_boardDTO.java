@@ -102,4 +102,10 @@ public class review_boardDTO {
 	public void setOrder_date(Date order_date) {
 		this.order_date = order_date;
 	}
+	public String getMembers_id() {
+		return members_id;
+	}
+	public void setMembers_id(String members_id) {
+		this.members_id = members_id;
+	}
 }

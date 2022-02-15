@@ -55,7 +55,11 @@ public class review_board<review_boardDto> {
 	  @RequestMapping(value="/review_boardinsert")
 	    public ModelAndView reviewboardInsert(review_boardDTO review_boardDto,HttpSession session,Model model) throws Exception {
 		  ModelAndView review = new ModelAndView("redirect:/review_board");
-	        service.insertreview(review_boardDto);
+	      // dto  = new dto   
+		  // session -> 회원정보 가져오면 [ members_id ]
+		  // dto.setMembers_id(session.getid());
+		  
+		  	service.insertreview(review_boardDto);
 	        return review;
 	    }
 }
