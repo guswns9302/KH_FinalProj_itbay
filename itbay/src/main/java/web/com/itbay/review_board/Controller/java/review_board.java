@@ -48,7 +48,7 @@ public class review_board<review_boardDto> {
 		model.addAttribute("dto",dto);	
 		return "/review_boardDetail";
 	}
-<<<<<<< HEAD
+
 	  @RequestMapping(value="/review_boardwrite")
 	    public String review_boardwrite(HttpSession session) throws Exception {
 	        return "/review_boardwrite";
@@ -63,17 +63,4 @@ public class review_board<review_boardDto> {
 		  	service.insertreview(review_boardDto);
 	        return review;
 	    }
-=======
-	
-	@RequestMapping(value = "/review_boardwrite", method = RequestMethod.POST)
-	public String review_boardwrite(Model model,String subject,String contents) throws Exception{
-			review_boardDTO review_boardDto =new review_boardDTO();
-		review_boardDto.setSubject(subject);
-		review_boardDto.setContents(contents);
-		System.out.println("들어온 값");
-		System.out.println(review_boardDto);
-		service.insertreview(review_boardDto);
-			return "/review_board";
-	}
->>>>>>> refs/remotes/origin/마솔_0212
 }

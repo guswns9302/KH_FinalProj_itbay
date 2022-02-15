@@ -4,13 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-
-import web.com.itbay.UploadFileUtils;
-import web.com.itbay.history.purchase.model.PurchaseHistoryDTO;
-import web.com.itbay.img.model.ImgDTO;
-import web.com.itbay.notice_board.model.Notice_boardDTO;
-import web.com.itbay.product.model.ProductDTO;
 
 @Service
 public class review_boardService {
