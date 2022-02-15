@@ -12,6 +12,11 @@ public class Notice_boardDTO {
 	
 	public Notice_boardDTO() {}
 	
+	public Notice_boardDTO(int id, String subject, String contents) {
+		this(subject, contents);
+		this.setId(id);
+	}
+	
 	public Notice_boardDTO(String subject, String contents) {
 		this.setSubject(subject);
 		this.setContents(contents);

@@ -39,14 +39,14 @@
 		<button type="button" onclick="location.href='/notice_board'">목록</button>
 	</div>
 	<div>
-		<c:if test="${sessionScope.loginMember.username eq '마스터' }">
 			<form action="/noticeModify" id="formhidden">
+				<input type="hidden" name="noticeId" value="${dto.id}">
+				<!-- id만 가지고 찾아도 되지 않나? -->
 				<input type="hidden" name="subject" value="${dto.subject}">
 				<input type="hidden" name="contents" value="${dto.contents}">
 			</form>
 			<button type="submit" form="formhidden">수정</button>
 			<button type="button" onclick="location.href='/noticeDelete?noticeId=${dto.id}'">삭제</button>
-		</c:if>
 	</div>
 </table>
 </body>

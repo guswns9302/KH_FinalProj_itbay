@@ -17,9 +17,6 @@
 		<jsp:param name="login" value="${sessionScope.login }" />
 	</jsp:include>
 </header>
-	<c:if test="${sessionScope.loginMember.username eq '마스터' }">
-		<button type="button" onclick="location.href='/noticeWrite'">공지 등록</button>
-	</c:if>
 <div>
 	<div>
 		<select onchange="location.href='/notice_board?cnt=' + this.value">
@@ -42,9 +39,9 @@
 	<c:forEach var="data" items="${datas}">
 		<tr>
 			<td align="center">${data.id}</td>
-			<td align="center"><a href="/noticeContents?noticeId=${data.id}">${data.subject}</a></td>
+			<td align="center"><a href="/noticeContents_user?noticeId=${data.id}">${data.subject}</a></td>
 			<td align="center">
-				<c:forEach var="admin" items="${admin}">
+				<c:forEach var="admin" items="${members}">
 					<c:if test="${data.members_id eq admin.id}">
 						${admin.username}
 					</c:if>

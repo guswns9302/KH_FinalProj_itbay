@@ -42,6 +42,11 @@ public class Notice_boardService {
 		int res = dao.noticeInsert(dto);
 		return res;
 	}
+	
+	public int noticeChange(Notice_boardDTO dto) {
+		int res = dao.noticeUpdate(dto);
+		return res;
+	}
 
 	public boolean noticeDelete(int id) {
 		boolean res = dao.noticeDelete(id);
