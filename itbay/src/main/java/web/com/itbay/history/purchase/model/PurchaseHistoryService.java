@@ -10,13 +10,18 @@ public class PurchaseHistoryService {
 	@Autowired
 	PurchaseHistoryDAO dao;
 	
-	public List<PurchaseHistoryDTO> selectPurchaseHistory(){
-		List<PurchaseHistoryDTO> purchaseList = dao.selectPurchaseHistory();
+//	public PurchaseHistoryDTO getMembers_id(int members_id) {
+//		PurchaseHistoryDTO getMid = dao.selectMembers_id(members_id);
+//		return getMid;
+//	}
+	
+	public List<PurchaseHistoryDTO> selectPurchaseHistory(int members_id){
+		List<PurchaseHistoryDTO> purchaseList = dao.selectPurchaseHistory(members_id);
 		return purchaseList;
 	}
 	
-	public List<PurchaseHistoryDTO> selectPurchaseNp(){
-		List<PurchaseHistoryDTO> listNp = dao.selectPurchaseHistory();
+	public List<PurchaseHistoryDTO> selectPurchaseNp(int members_id){
+		List<PurchaseHistoryDTO> listNp = dao.selectPurchaseHistory(members_id);
 		return listNp;
 	}
 }
