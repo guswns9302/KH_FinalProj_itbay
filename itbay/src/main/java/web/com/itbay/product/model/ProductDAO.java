@@ -20,6 +20,12 @@ public class ProductDAO {
 		return dtoList;
 	}
 	
+	public int selectProductCount(ProductDTO productDto) {
+		int count = this.session.selectOne("ProductMapper.selectProductCount", productDto);
+		
+		return count;
+	}
+	
 	public ProductDTO selectProductDetail(ProductDTO productDto) {
 		ProductDTO productDetail = this.session.selectOne("ProductMapper.selectProductDetail", productDto);
 		
@@ -32,5 +38,15 @@ public class ProductDAO {
 	
 	public int saveImg(ImgDTO imgDto) {
 		return this.session.insert("ProductMapper.saveImage", imgDto);
+	}
+
+	public void productUpdate(ProductDTO productDto) {
+		this.session.update("ProductMapper.updateProduct", productDto);
+		
+	}
+
+	public void productDelete(int id) {
+		this.session.delete("ProductMapper.deleteProduct", id);
+		
 	}
 }

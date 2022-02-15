@@ -11,4 +11,10 @@
 	<update id="updateProfileimg" parameterType="web.com.itbay.img.model.ImgDTO">
 		UPDATE IMG SET IMG_NAME = #{img_name} WHERE MEMBERS_ID = #{members_id}
 	</update>
+	
+	
+	<delete id="deleteImg" parameterType="int">
+		DELETE FROM IMG WHERE PRODUCT_ID = #{id}
+	</delete>
+	
 </mapper>

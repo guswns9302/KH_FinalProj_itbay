@@ -4,9 +4,30 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ProductMapper">
 	<select id="selectProduct" parameterType="web.com.itbay.product.model.ProductDTO" resultType="web.com.itbay.product.model.ProductDTO">
-		SELECT A.SUBJECT, A.PRICE, A.SOLD_OUT, A.ID, 
-	   (SELECT B.IMG_NAME FROM IMG B WHERE B.PRODUCT_ID = A.ID AND B.R_IMG = 'Y' AND ROWNUM = 1)  
-	   	AS IMG_NAME
+		SELECT *
+		FROM
+		    (
+                SELECT T.SUBJECT, T.PRICE, T.SOLD_OUT, T.ID, T.IMG_NAME, ROWNUM AS RNUM
+                FROM (
+                    SELECT A.SUBJECT, A.PRICE, A.SOLD_OUT, A.ID,
+                    (SELECT B.IMG_NAME FROM IMG B WHERE B.PRODUCT_ID = A.ID AND B.R_IMG = 'Y' AND ROWNUM = 1) AS IMG_NAME
+                    FROM PRODUCT_BOARD A 
+                    WHERE 1 = 1 
+					<if test="subject != null and subject != ''">
+						AND A.SUBJECT LIKE '%'||#{subject}||'%'
+					</if>
+					<if test="sold_out != null and sold_out != ''">
+						AND A.SOLD_OUT = #{sold_out}
+					</if>                    
+                    ORDER BY ID DESC
+                ) T
+		    )
+		WHERE RNUM BETWEEN ${startIndex} AND ${endIdex}	    
+	</select>
+	
+	
+	<select id="selectProductCount" parameterType="web.com.itbay.product.model.ProductDTO" resultType="int">
+		SELECT COUNT(*)
 		FROM PRODUCT_BOARD A 
 		WHERE 1 = 1 
 		<if test="subject != null and subject != ''">
@@ -15,7 +36,8 @@
 		<if test="sold_out != null and sold_out != ''">
 			AND A.SOLD_OUT = #{sold_out}
 		</if>
-	</select>
+	</select>	
+	
 	
 	
 	<select id="selectProductDetail" parameterType="web.com.itbay.product.model.ProductDTO" resultType="web.com.itbay.product.model.ProductDTO">
@@ -46,6 +68,18 @@
 	    	   #{img_name}, '', #{product_id}, #{R_img}) 
 	  </insert>
 	  
+	  
+	  <update id="updateProduct" parameterType="web.com.itbay.product.model.ProductDTO">
+	  	UPDATE PRODUCT_BOARD SET
+	  		   SUBJECT = #{subject}
+	  		   , PRICE = #{price}
+	  		   , CONTENTS = #{contents}
+	  	  WHERE ID = #{id}
+	  </update>
+	  
+	  <update id="deleteProduct" parameterType="int">
+	  	DELETE FROM PRODUCT_BOARD WHERE ID = #{id}
+	  </update>
 	  
 
 </mapper>

@@ -30,4 +30,6 @@ public class ImgService {
 			return false;
 		}
 	}
+	
+	
 }

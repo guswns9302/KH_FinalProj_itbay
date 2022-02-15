@@ -22,4 +22,9 @@ public class ImgDAO {
 		int res = this.session.update("ImgMapper.updateProfileimg",login_img_dto);
 		return res;
 	}
+
+	public void deleteImg(int id) {
+		this.session.update("ImgMapper.deleteImg",id);
+		
+	}
 }
