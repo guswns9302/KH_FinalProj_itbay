@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import web.com.itbay.members.model.MembersDTO;
 import web.com.itbay.members.model.MileageDTO;
+import web.com.itbay.members.model.MileagePagingDTO;
 import web.com.itbay.members.model.MileageService;
 
 @Controller
@@ -20,7 +21,7 @@ public class MileageController {
 	MileageService service;
 	
 	@RequestMapping(value = "/mileage", method = RequestMethod.GET)
-	public String mileage(Model model, HttpSession session) {
+	public String mileage(Model model, HttpSession session, String vpage, String numPerPage) {
 		
 		MembersDTO loginData = (MembersDTO) session.getAttribute("loginMember");
 		model.addAttribute("loginData",loginData);
@@ -28,8 +29,34 @@ public class MileageController {
 		MileageDTO amount_mileage = service.getAmount_mileage(loginData.getId());
 		model.addAttribute("mileage",amount_mileage);
 		
-		List<MileageDTO> history_mileage = service.getHistory_mileage(loginData.getId());
+		int total_page = 0;
+		if(numPerPage == null) {
+			numPerPage = "5";
+		}
+		if(vpage == null) {
+			vpage = "1";
+		}
+		int now_page = Integer.parseInt(vpage);
+		MileagePagingDTO pagingdto = service.getTotalPost(loginData.getId());
+		pagingdto.setMembers_id(loginData.getId());
+		pagingdto.setNumPerPage(Integer.parseInt(numPerPage));
+		
+		pagingdto.setQueryNum((now_page-1) * pagingdto.getNumPerPage());
+		
+		if(pagingdto.getTotalPost() % pagingdto.getNumPerPage() == 0) {
+			total_page = pagingdto.getTotalPost() / pagingdto.getNumPerPage();
+		}
+		else {
+			total_page = pagingdto.getTotalPost() / pagingdto.getNumPerPage() + 1; 
+		}
+		
+		List<MileageDTO> history_mileage = service.getHistory_mileage(pagingdto);
+		
+		model.addAttribute("total_page",total_page);
+		model.addAttribute("vpage",vpage);
+		model.addAttribute("numPerPage",pagingdto.getNumPerPage());
 		model.addAttribute("history_mileage",history_mileage);
+		
 		return "/mileage";
 	}
 	

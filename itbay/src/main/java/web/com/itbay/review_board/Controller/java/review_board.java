@@ -50,8 +50,9 @@ public class review_board<review_boardDto> {
 	}
 
 	  @RequestMapping(value="/review_boardwrite")
-	    public String review_boardwrite(HttpSession session) throws Exception {
-	        return "/review_boardwrite";
+	    public String review_boardwrite(HttpSession session, String product_id) throws Exception {
+	       System.out.println(product_id);
+		  return "/review_boardwrite";
 	    }
 	  @RequestMapping(value="/review_boardinsert")
 	    public ModelAndView reviewboardInsert(review_boardDTO review_boardDto,HttpSession session,Model model) throws Exception {

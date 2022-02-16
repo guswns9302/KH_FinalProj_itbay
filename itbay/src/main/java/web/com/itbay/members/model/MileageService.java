@@ -26,8 +26,13 @@ public class MileageService {
 		}
 	}
 
-	public List<MileageDTO> getHistory_mileage(int id) {
-		List<MileageDTO> history_mileage = dao.selectHistoryMileage(id);
+	public List<MileageDTO> getHistory_mileage(MileagePagingDTO pagingdto) {
+		List<MileageDTO> history_mileage = dao.selectHistoryMileage(pagingdto);
 		return history_mileage;
+	}
+
+	public MileagePagingDTO getTotalPost(int id) {
+		MileagePagingDTO result = dao.totalPost(id);
+		return result;
 	}
 }

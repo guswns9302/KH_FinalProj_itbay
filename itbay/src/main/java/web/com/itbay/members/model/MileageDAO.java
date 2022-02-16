@@ -24,10 +24,13 @@ public class MileageDAO {
 		return charging;
 	}
 
-	public List<MileageDTO> selectHistoryMileage(int id) {
-		List<MileageDTO> dataList = this.session.selectList("MileageMapper.selectHistoryList",id);
+	public List<MileageDTO> selectHistoryMileage(MileagePagingDTO pagingdto) {
+		List<MileageDTO> dataList = this.session.selectList("MileageMapper.selectHistoryList",pagingdto);
 		return dataList;
 	}
 
-
+	public MileagePagingDTO totalPost(int id) {
+		MileagePagingDTO result = this.session.selectOne("MileageMapper.selectTotalPost",id);
+		return result;
+	}
 }

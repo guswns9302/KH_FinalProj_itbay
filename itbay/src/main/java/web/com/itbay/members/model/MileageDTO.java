@@ -8,6 +8,7 @@ public class MileageDTO {
 	private int mileage_amount;
 	private Date mileage_date;
 	private int rownum;
+	private int totalPost;
 	
 	public MileageDTO() {}
 	public MileageDTO(int id, int mileage_amount) {
@@ -44,6 +45,10 @@ public class MileageDTO {
 	public void setRownum(int rownum) {
 		this.rownum = rownum;
 	}
-	
-	
+	public int getTotalPost() {
+		return totalPost;
+	}
+	public void setTotalPost(int totalPost) {
+		this.totalPost = totalPost;
+	}
 }

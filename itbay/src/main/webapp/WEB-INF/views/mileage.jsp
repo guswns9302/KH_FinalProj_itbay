@@ -24,27 +24,25 @@
 				<!-- Nav tabs -->
 				<ul class="nav nav-tabs">
 					<li class="nav-item">
-						<a class="nav-link active" data-bs-toggle="tab" href="#home">Charge Mileage</a>
+						<a class="nav-link active" data-bs-toggle="tab" href="#home">Charge History</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" data-bs-toggle="tab" href="#menu1">Charge History</a>
+						<a class="nav-link" data-bs-toggle="tab" href="#menu">Charge Mileage</a>
 					</li>
 				</ul>
 				
 				<!-- Tab panes -->
 				<div class="tab-content">
 					<div class="tab-pane container active" id="home">
-						<form action="/mileage/charge" method="post">
-							<div class="form-floating mb-3 mt-3">
-								<input type="number" class="form-control" name="mileage_amount">
-								<label for="email">Enter the recharge amount</label>
-							</div>
-							<div class="col-sm-6" id="button_modify">
-								<button type="submit" class="btn btn-secondary text-uppercase">마일리지 충전</button>
-							</div>
-						</form>
-					</div>
-					<div class="tab-pane container fade" id="menu1">
+						<div class="clearfix">
+							<span class="float-end" style="margin-top:10px;">
+								<select class="border border-1" name="numPerPage" onchange="location.href='/mileage?numPerPage=' + this.value +'&vpage=1'">
+												<option value="5" ${numPerPage eq '5' ? 'selected' : '' }> 5개씩 보기</option>
+												<option value="10" ${numPerPage eq '10' ? 'selected' : '' }>10개씩 보기</option>
+												<option value="20" ${numPerPage eq '20' ? 'selected' : '' }>20개씩 보기</option>
+								</select>
+							</span>
+						</div>
 						<table class="table table-striped">
 							<thead>
 								<tr>
@@ -63,6 +61,31 @@
 								</c:forEach>
 							</tbody>
 						</table>
+						<ul class="pagination">
+							<li class="page-item"><a class="page-link" href="#">Previous</a></li>
+							<c:forEach var="i" begin="1" end="${total_page }">
+								<c:choose>
+									<c:when test="${i == vpage }">
+										<li class="page-item active"><a class="page-link" href="?numPerPage=${numPerPage }&vpage=${i }">${i }</a></li>
+									</c:when>
+									<c:otherwise>
+										<li class="page-item"><a class="page-link" href="?numPerPage=${numPerPage }&vpage=${i }">${i }</a></li>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+							<li class="page-item"><a class="page-link" href="#">Next</a></li>
+						</ul>	
+					</div>
+					<div class="tab-pane container fade" id="menu">
+						<form action="/mileage/charge" method="post">
+							<div class="form-floating mb-3 mt-3">
+								<input type="number" class="form-control" name="mileage_amount">
+								<label for="email">Enter the recharge amount</label>
+							</div>
+							<div class="col-sm-6" id="button_modify">
+								<button type="submit" class="btn btn-secondary text-uppercase">Recharge</button>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>
