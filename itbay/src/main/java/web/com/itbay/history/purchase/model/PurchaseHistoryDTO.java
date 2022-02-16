@@ -11,7 +11,14 @@ public class PurchaseHistoryDTO {
 	private String subject;
 	private String img_name;
 	private int price;
+	private String review_yn;
 	
+	public String getReview_yn() {
+		return review_yn;
+	}
+	public void setReview_yn(String review_yn) {
+		this.review_yn = review_yn;
+	}
 	public String getSubject() {
 		return subject;
 	}

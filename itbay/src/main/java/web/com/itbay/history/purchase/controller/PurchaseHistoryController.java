@@ -16,6 +16,7 @@ import web.com.itbay.history.purchase.model.PurchaseHistoryDTO;
 import web.com.itbay.history.purchase.model.PurchaseHistoryService;
 import web.com.itbay.img.model.ImgService;
 import web.com.itbay.members.model.MembersDTO;
+import web.com.itbay.review_board.model.review_boardDTO;
 
 @Controller
 public class PurchaseHistoryController {
@@ -45,11 +46,9 @@ public class PurchaseHistoryController {
 		MembersDTO loginData = (MembersDTO) session.getAttribute("loginMember");
 		model.addAttribute("loginData",loginData);
 		
-//		PurchaseHistoryDTO mid = purchaseService.getMembers_id(loginData.getId());
-//		model.addAttribute("members_id",mid);
-		
 		List<PurchaseHistoryDTO> listNp = purchaseService.selectPurchaseNp(loginData.getId());
 		model.addAttribute("listNp", listNp);
+		
 		return "/purchase_history_np";
 	}
 }

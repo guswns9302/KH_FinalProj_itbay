@@ -36,17 +36,17 @@
 		
 	</thead>
 	<tbody>
-	<c:forEach var="data" items="${list}">
+	<c:forEach var="rdata" items="${list}">
 		<tr>
-			<td>${data.id}</td>
-			<td> <img src="resources/img/${data.img_name}".png width="50" height="50"></td>
-			<td>${data.product_id}</td>
-			<td>${data.subject}</td>
-				<td align="center"><a href="/review_boardDetail?reviewid=${data.id}">${data.contents}</a></td>
-			<td>${data.order_date}</td>
-			<td>${data.price}원</td>
-			<td>${data.score}</td>
-			<td>${data.name}</td>
+			<td>${rdata.id}</td>
+			<td> <img src="resources/img/${rdata.img_name}".png width="50" height="50"></td>
+			<td>${rdata.product_id}</td>
+			<td>${rdata.subject}</td>
+				<td align="center"><a href="/review_boardDetail?reviewid=${rdata.id}">${rdata.contents}</a></td>
+			<td>${rdata.order_date}</td>
+			<td>${rdata.price}원</td>
+			<td>${rdata.score}</td>
+			<td>${rdata.name}</td>
 		</tr>
 	</c:forEach>
 	</tbody>
