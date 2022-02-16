@@ -50,7 +50,7 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value="/productDetail", method = RequestMethod.GET)
-	public String productDetail(HttpServletRequest request, Model model, String product_id) {
+	public String productDetail(HttpServletRequest request, Model model, String product_id, HttpSession session) {
 		
 		int id = Integer.parseInt(product_id);
 		
@@ -61,10 +61,11 @@ public class ProductController {
 		
 		model.addAttribute("imgList", imgList);
 		model.addAttribute("productDto", productDto);
+		model.addAttribute("login",session.getAttribute("login"));
 		
-		
-		HttpSession session = request.getSession();
+		session = request.getSession();
 		MembersDTO loginData = (MembersDTO) session.getAttribute("loginMember");
+		
 		
 		if(loginData != null) {
 			model.addAttribute("loginData",loginData);

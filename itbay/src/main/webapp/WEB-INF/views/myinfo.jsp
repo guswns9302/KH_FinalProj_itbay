@@ -71,7 +71,7 @@
 		</jsp:include>
 	</header>
 
-	<div class="container">
+	<div class="container" style="margin-top:-50px;">
 		<div class="row">
 			<div class="col-sm-6">
 			<section class="container p-5 my-5">
@@ -151,10 +151,6 @@
 					<div class="form-floating mt-3 mb-3">
 						<input type="text" class="form-control" id="address" name="address" value="${loginMember.getAddress() }" readonly>
 						<label for="text">Address</label>
-					</div>
-					<div class="form-floating mt-3 mb-3">
-						<input type="text" class="form-control" id="mileage" name="mileage" value="" readonly>
-						<label for="text">Mileage</label>
 					</div>
 				</section>
 			</div>

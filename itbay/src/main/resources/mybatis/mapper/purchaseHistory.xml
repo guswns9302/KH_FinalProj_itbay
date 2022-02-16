@@ -15,4 +15,8 @@
   		  FROM PURCHASE_HISTORY A 
   		  LEFT JOIN PRODUCT_BOARD B ON A.PRODUCT_ID = B.ID
 	</select>
+	
+	<insert id="insertHistory" parameterType="web.com.itbay.history.purchase.model.PurchaseHistoryDTO" >
+		INSERT INTO PURCHASE_HISTORY VALUES(PURCHASE_HISTORY_ID_SEQ.NEXTVAL, #{members_id}, #{product_id}, SYSDATE)	
+	</insert>
 </mapper>

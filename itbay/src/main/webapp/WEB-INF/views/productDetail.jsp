@@ -70,6 +70,7 @@
 			<jsp:param name="login" value="${sessionScope.login }" />
 		</jsp:include>
 	</header>
+
 	
 	
 	
@@ -129,7 +130,14 @@
     	<input type="text" class="form-control masterInput" name="price" id="price" value="${productDto.price}" readonly="readonly">
 	  </div>
 	  <div style="float:right">
-	  	<button type="button" id="buy" class="submit-btn btn btn-primary">구매</button>
+	  	<c:choose>
+	  		<c:when test="${login }">
+			  	<a href="/purchase_product?product_id=${productDto.id}" class="btn btn-secondary text-uppercase">Buy</a>
+	  		</c:when>
+	  		<c:otherwise>
+	  			<a href="/login" class="btn btn-secondary text-uppercase">Buy</a>
+	  		</c:otherwise>
+	  	</c:choose>
 	  	<button type="button" id="gocart" class="submit-btn btn btn-primary">장바구니</button>
 	  </div>
 	  <br>

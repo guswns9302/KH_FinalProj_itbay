@@ -61,8 +61,12 @@
 								</c:forEach>
 							</tbody>
 						</table>
-						<ul class="pagination">
-							<li class="page-item"><a class="page-link" href="#">Previous</a></li>
+						<ul class="pagination" style="justify-content: center;">
+							<c:if test="${vpage > 1 }">
+								<li class="page-item">
+									<a class="page-link" href="?numPerPage=${numPerPage }&vpage=${vpage-1 }">Previous</a>
+								</li>
+							</c:if>
 							<c:forEach var="i" begin="1" end="${total_page }">
 								<c:choose>
 									<c:when test="${i == vpage }">
@@ -73,7 +77,9 @@
 									</c:otherwise>
 								</c:choose>
 							</c:forEach>
-							<li class="page-item"><a class="page-link" href="#">Next</a></li>
+							<c:if test="${vpage < total_page }">
+								<li class="page-item"><a class="page-link" href="?numPerPage=${numPerPage }&vpage=${vpage+1 }">Next</a></li>
+							</c:if>
 						</ul>	
 					</div>
 					<div class="tab-pane container fade" id="menu">

@@ -81,5 +81,13 @@
 	  	DELETE FROM PRODUCT_BOARD WHERE ID = #{id}
 	  </update>
 	  
+	  <select id="selectForPurchase" parameterType="int" resultType="web.com.itbay.history.purchase.model.PurchaseDTO">
+		SELECT * FROM PRODUCT_BOARD A JOIN IMG B ON A.ID = B.PRODUCT_ID WHERE A.ID = #{id} AND B.R_IMG = 'Y'
+	  </select>
+	
+	  <update id="updateSoldOut" parameterType="int">
+	  	UPDATE PRODUCT_BOARD SET SOLD_OUT = 'Y' WHERE ID = #{id}
+	  </update>
+	  
 
 </mapper>
