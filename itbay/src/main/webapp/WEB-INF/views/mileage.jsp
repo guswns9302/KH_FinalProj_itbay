@@ -32,7 +32,6 @@
 				</ul>
 				
 				<!-- Tab panes -->
-				<div class="tab-content">
 					<div class="tab-pane container active" id="home">
 						<div class="clearfix">
 							<span class="float-end" style="margin-top:10px;">
