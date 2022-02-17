@@ -27,7 +27,7 @@
 					<div class="row mb-3">
 						<label class="col-sm-2 col-form-label" for="nickname">아이디</label>
 						<div class="col-sm-10">
-							<input class="form-control" type="text" name="nickname" value="${accountVO.nickname}" required>
+							<input class="form-control" type="email" name="nickname" value="${accountVO.nickname}" required>
 						</div>
 					</div>
 					<div class="row mb-3">
@@ -41,8 +41,8 @@
 						<div class="col-sm-10">
 							<input class="form-control" type="text" id="password2" name="pw_check" value="${accountVO.pw2}" required>
 						</div>
-						<div class="form-group" style="text-align: center;">
-						    <input type="button" onclick="test()" value="확인">
+						<div class="form-group" style="text-align: center; margin :15px;">
+						    <button type="button" onclick="test()" value="확인"class="btn btn-secondary text-uppercase" style="width: 183px;">확인</button>
 						</div>
 					
 					</div>
@@ -69,6 +69,12 @@
 					    }
 					  </script>
 					<div class="row mb-3">
+						<label class="col-sm-2 col-form-label" for="birth">생년월일</label>
+						<div class="col-sm-10">
+							<input class="form-control" type="date" name="birth" required>
+						</div>
+					</div>
+					<div class="row mb-3">
 						<label class="col-sm-2 col-form-label" for="email_address">Email</label>
 						<div class="col-sm-10">
 							<input class="form-control" type="email" name="email_address" value="${accountVO.email}" required>
@@ -80,12 +86,7 @@
 							<input class="form-control" type="text" name="username" value="${accountVO.username}" required>
 						</div>
 					</div>
-					<%-- <div class="row mb-3">
-						<label class="col-sm-2 col-form-label" for="birth">생년월일</label>
-						<div class="col-sm-10">
-							<input class="form-control" type="date" name="birth" value="${accountVO.birth}" required>
-						</div>
-					</div> --%>
+
 					<div class="row mb-3">
 						<label class="col-sm-2 col-form-label" for="phone">전화번호</label>
 						<div class="col-sm-10">
@@ -99,7 +100,7 @@
 						</div>
 					</div>
 					<div class="form-group" style="text-align: center;">
-						<button type="submit" style="text-align: center;" class="btn btn-primary">가입 완료</button>
+						<button type="submit" class="btn btn-secondary text-uppercase" style="width: 183px;">가입 완료</button>
 					</div>
 				</form>
 			</div>

@@ -195,19 +195,25 @@ public class MembersController {
 	}
 	
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
-	public String join(String nickname, String pw, String email_address, String username, Date birth, String phone, String address) {
+	public String join(String nickname, String pw, String email_address, String username, String birth, String phone, String address) {
 		System.out.println("컨트롤러 실행");
 		MembersDTO membersjoin = new MembersDTO();
 		membersjoin.setNickname(nickname);
 		membersjoin.setPw(pw);
 		membersjoin.setUsername(username);
-		membersjoin.setBirth(null);
+		membersjoin.setBirth(birth);
 		membersjoin.setPhone(phone);
 		membersjoin.setAddress(address);
 		membersjoin.setEmail_address(email_address);
 		
 		System.out.println(membersjoin.getNickname());
 		boolean result = service.join(membersjoin);
+		System.out.println("컨트롤러 동작 확인");
+		System.out.println("컨트롤러 - ID : "+nickname);
+		System.out.println("컨트롤러 - PW : "+pw);
+		System.out.println("컨트롤러 - 이름 : "+username);
+		System.out.println("컨트롤러 - 생일 : "+birth);
+		System.out.println("컨트롤러 - Email : "+email_address);
 		
 		if(result == true) {
 			System.out.println("회원가입 성공");

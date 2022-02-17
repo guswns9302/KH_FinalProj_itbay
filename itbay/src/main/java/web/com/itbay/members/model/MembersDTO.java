@@ -8,7 +8,7 @@ public class MembersDTO {
 	private String pw;
 	private String username;
 	private int age;
-	private Date birth;
+	private String birth;
 	private String phone;
 	private String address;
 	private String email_address;
@@ -63,11 +63,11 @@ public class MembersDTO {
 	public void setAge(int age) {
 		this.age = age;
 	}
-	public Date getBirth() {
+	public String getBirth() {
 		return birth;
 	}
-	public void setBirth(Date birth) {
-		this.birth = birth;
+	public void setBirth(String birth) {
+		this.birth = (String) birth;
 	}
 	public String getPhone() {
 		return phone;
