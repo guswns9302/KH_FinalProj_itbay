@@ -18,117 +18,80 @@
 	</jsp:include>
 </header>
 
-  <div class="album py-5 bg-light">
-    <div class="container">
-		추천상품
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        <div class="col">
-          <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="col">
-          <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="col">
-          <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-      </div>
-    </div>
-  </div>
-  
-  <div class="album py-5 bg-light">
-    <div class="container">
-		인기상품
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        <div class="col">
-          <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="col">
-          <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="col">
-          <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-      </div>
-    </div>
-  </div>
+	<div class="album py-5 bg-light">
+    	<div class="container">
+		<h3>최근 등록된 상품</h3>
+			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+				<c:forEach var="product" items="${recomend_list}" varStatus="status">
+				        <div class="col">
+				          <div class="card shadow-sm">
+				            <img class="bd-placeholder-img card-img-top" width="100%" height="225" alt="" src="/resources/img/${product.img_name}">
+				            <div class="card-body">
+				              <h5 class="card-text"><c:out value="${product.subject}" /></h5>
+				              <div class="d-flex justify-content-between align-items-center">
+				              	<table class="table table-striped" style="text-align: center;">
+									<thead>
+										<tr>
+											<th><small class="text-muted"><fmt:formatNumber value="${product.price}" pattern="#,###"/> \</small></th>
+											<th>조회수 : ${product.view_CNT }</th>
+											<th>
+												<c:choose>
+												    <c:when test="${product.sold_out eq 'N'}">
+												        <a class="btn btn-secondary" href="/productDetail?product_id=${product.id}">See Detail</a>
+												    </c:when>
+												    <c:otherwise>
+												         <a class="btn btn-secondary">Sold Out</a>
+												    </c:otherwise>					
+												</c:choose>	
+											</th>
+										</tr>
+									</thead>
+								</table>
+				              </div>
+				            </div>
+				          </div>
+				        </div>
+				</c:forEach>
+			</div>
+		</div>
+	</div> 
+	<div class="album py-5 bg-light">
+    	<div class="container">
+		<h3>조회수 높은 상품</h3>
+			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+				<c:forEach var="product" items="${viewCount_list}" varStatus="status">
+				        <div class="col">
+				          <div class="card shadow-sm">
+				            <img class="bd-placeholder-img card-img-top" width="100%" height="225" alt="" src="/resources/img/${product.img_name}">
+				            <div class="card-body">
+				              <h5 class="card-text"><c:out value="${product.subject}" /></h5>
+				              <div class="d-flex justify-content-between align-items-center">
+				              	<table class="table table-striped" style="text-align: center;">
+									<thead>
+										<tr>
+											<th><small class="text-muted"><fmt:formatNumber value="${product.price}" pattern="#,###"/> \</small></th>
+											<th>조회수 : ${product.view_CNT }</th>
+											<th>
+												<c:choose>
+												    <c:when test="${product.sold_out eq 'N'}">
+												        <a class="btn btn-secondary" href="/productDetail?product_id=${product.id}">See Detail</a>
+												    </c:when>
+												    <c:otherwise>
+												         <a class="btn btn-secondary">Sold Out</a>
+												    </c:otherwise>					
+												</c:choose>	
+											</th>
+										</tr>
+									</thead>
+								</table>
+				              </div>
+				            </div>
+				          </div>
+				        </div>
+				</c:forEach>
+			</div>
+		</div>
+	</div>
 
 
 </body>

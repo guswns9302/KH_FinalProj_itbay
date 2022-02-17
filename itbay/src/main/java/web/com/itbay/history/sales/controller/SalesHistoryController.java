@@ -24,10 +24,15 @@ public class SalesHistoryController {
 	ImgService imgService;
 	
 	@RequestMapping(value="/sales_history", method=RequestMethod.GET)
-	public String salesHistoryList(Model model, @RequestParam(value="pageofnum", defaultValue="5") int pageofnum) {
+	public String salesHistoryList(Model model, @RequestParam(value="pageofnum", defaultValue="5") int pageofnum, String page) {
 		model.addAttribute("pageofnum", pageofnum);
 		List<SalesHistoryDTO> salesList = salesService.selectSalesHistory();
 		model.addAttribute("salesList", salesList);
+		
+		if(page == null) {
+			page = "1";
+		}
+		model.addAttribute("vpage",Integer.parseInt(page));
 		return "/sales_history";
 	}
 	

@@ -70,38 +70,37 @@
 			</select>
 			<br>
 			<br>
-		
-		
-		
-    	
 			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-			
 				<c:forEach var="product" items="${list}" varStatus="status">
-				
 				        <div class="col">
 				          <div class="card shadow-sm">
 				            <img class="bd-placeholder-img card-img-top" width="100%" height="225" alt="" src="/resources/img/${product.img_name}">
 				            <div class="card-body">
-				              <p class="card-text"><a href="/productDetail?product_id=${product.id}"><c:out value="${product.subject}" /></a></p>
+				              <h5 class="card-text"><c:out value="${product.subject}" /></h5>
 				              <div class="d-flex justify-content-between align-items-center">
-				                <div class="btn-group">
-								<c:choose>
-								    <c:when test="${product.sold_out eq 'N'}">
-								        
-								    </c:when>
-								    <c:otherwise>
-								        판매완료
-								    </c:otherwise>
-								</c:choose>		
-				                </div>
-				                <small class="text-muted"><fmt:formatNumber value="${product.price}" pattern="#,###"/> \</small>
+				              	<table class="table table-striped" style="text-align: center;">
+									<thead>
+										<tr>
+											<th><small class="text-muted"><fmt:formatNumber value="${product.price}" pattern="#,###"/> \</small></th>
+											<th>조회수 : ${product.view_CNT }</th>
+											<th>
+												<c:choose>
+												    <c:when test="${product.sold_out eq 'N'}">
+												        <a class="btn btn-secondary" href="/productDetail?product_id=${product.id}">See Detail</a>
+												    </c:when>
+												    <c:otherwise>
+												         <a class="btn btn-secondary">Sold Out</a>
+												    </c:otherwise>					
+												</c:choose>	
+											</th>
+										</tr>
+									</thead>
+								</table>
 				              </div>
 				            </div>
 				          </div>
 				        </div>
-				        
 				</c:forEach>
-				
 			</div>
 	   </div>
 	</div>

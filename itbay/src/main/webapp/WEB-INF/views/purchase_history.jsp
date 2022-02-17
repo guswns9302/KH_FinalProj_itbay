@@ -46,7 +46,15 @@
 		</thead>
 		<c:set var="page" value="${empty param.page ? 1 : param.page}"/>
 		<tbody>
-			<c:forEach var="num" begin="${(page - 1) * pn}" end="${page * pn - 1}">
+			<c:choose>
+				<c:when test="${page * pn -1 > purchaseList.size()-1}">
+					<c:set var="endNum" value="${purchaseList.size()-1 }"/>
+				</c:when>
+				<c:otherwise>
+					<c:set var="endNum" value="${page * pn -1}"/>
+				</c:otherwise>
+			</c:choose>
+			<c:forEach var="num" begin="${(page - 1) * pn}" end="${endNum }">
 				<tr>
 					<td> <img src="resources/img/${purchaseList[num].img_name}" width="50" height="50"></td>
 					<td>${purchaseList[num].product_id}</td>

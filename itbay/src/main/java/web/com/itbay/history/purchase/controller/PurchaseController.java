@@ -1,9 +1,7 @@
 package web.com.itbay.history.purchase.controller;
 
 
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import web.com.itbay.history.purchase.model.PurchaseDTO;
 import web.com.itbay.history.purchase.model.PurchaseHistoryDTO;
 import web.com.itbay.history.purchase.model.PurchaseService;
+import web.com.itbay.history.sales.model.SalesHistoryService;
 import web.com.itbay.members.model.MembersDTO;
 import web.com.itbay.members.model.MembersService;
 import web.com.itbay.members.model.MileageDTO;
@@ -51,10 +50,11 @@ public class PurchaseController {
 		MileageDTO userMileageAmount = mileageService.getAmount_mileage(purchaseMember.getId());
 		if( userMileageAmount.getMileage_amount() > price) {
 			MileageDTO useMileage = new MileageDTO(dto.getMembers_id(), dto.getPrice());
-			boolean result = service.insertPurchaseHistory(dto);
+			boolean result_purchaseHistory = service.insertPurchaseHistory(dto);
+			boolean result_salesHistory = service.insertsalesHistory(dto);
 			boolean result_update = service.updateProductSoldOut(dto.getProduct_id());
 			boolean result_update_mileage = mileageService.chargeMileage(useMileage);
-			if(result && result_update && result_update_mileage) {
+			if(result_purchaseHistory && result_salesHistory && result_update && result_update_mileage) {
 				session.removeAttribute("productInfo");
 				return "<script>alert('구매를 완료되었습니다. 구매내역으로 이동합니다.'); location.href='/purchase_history';</script>";
 			}

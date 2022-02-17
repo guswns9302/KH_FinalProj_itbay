@@ -20,9 +20,13 @@ public class PurchaseDAO {
 		return result;
 	}
 
+	public int insertSalesHistory(PurchaseHistoryDTO dto) {
+		int result = this.session.insert("SalesHistoryMapper.insertSalesHistory",dto);
+		return result;
+	}
+	
 	public int updateProductSoldOut(int product_id) {
 		int result = this.session.update("ProductMapper.updateSoldOut",product_id);
 		return result;
 	}
-	
 }

@@ -89,5 +89,12 @@
 	  	UPDATE PRODUCT_BOARD SET SOLD_OUT = 'Y' WHERE ID = #{id}
 	  </update>
 	  
+	  <select id="selectRecomend" resultType="web.com.itbay.product.model.ProductDTO">
+		SELECT * FROM PRODUCT_BOARD WHERE SOLD_OUT = 'N' ORDER BY VIEW_CNT OFFSET 0 ROWS FETCH FIRST 3 ROWS ONLY
+	  </select>
+	  
+	  <select id="selectViewCount" resultType="web.com.itbay.product.model.ProductDTO">
+		SELECT * FROM PRODUCT_BOARD WHERE SOLD_OUT = 'N' ORDER BY CREATE_DATE OFFSET 0 ROWS FETCH FIRST 3 ROWS ONLY
+	  </select>
 
 </mapper>

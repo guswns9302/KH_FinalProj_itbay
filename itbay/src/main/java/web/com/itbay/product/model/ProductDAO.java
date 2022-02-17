@@ -49,4 +49,14 @@ public class ProductDAO {
 		this.session.delete("ProductMapper.deleteProduct", id);
 		
 	}
+
+	public List<ProductDTO> selectRecomendProduct() {
+		List<ProductDTO> recomend = this.session.selectList("ProductMapper.selectRecomend");
+		return recomend;
+	}
+
+	public List<ProductDTO> selectViewCountProduct() {
+		List<ProductDTO> viewCount = this.session.selectList("ProductMapper.selectViewCount");
+		return viewCount;
+	}
 }

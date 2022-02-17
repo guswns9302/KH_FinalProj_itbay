@@ -7,6 +7,7 @@ import java.util.UUID;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.support.DaoSupport;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
@@ -120,6 +121,16 @@ public class ProductService {
 	public void productDelete(int id) {
 		imgDao.deleteImg(id);
 		productDao.productDelete(id);
+	}
+
+	public List<ProductDTO> selectRecomend() {
+		List<ProductDTO> recomend = productDao.selectRecomendProduct();
+		return recomend;
+	}
+
+	public List<ProductDTO> selectViewCount() {
+		List<ProductDTO> viewCount = productDao.selectViewCountProduct();
+		return viewCount;
 	}
 	
 	

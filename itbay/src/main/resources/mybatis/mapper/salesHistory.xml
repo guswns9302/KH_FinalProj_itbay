@@ -14,5 +14,10 @@
 			 , A.SALES_DATE
 		  FROM SALES_HISTORY A
 		  LEFT JOIN PRODUCT_BOARD B ON A.PRODUCT_ID = B.ID
+		  ORDER BY A.ID DESC
 	</select>
+	
+	<insert id="insertSalesHistory" parameterType="web.com.itbay.history.purchase.model.PurchaseHistoryDTO" >
+		INSERT INTO SALES_HISTORY VALUES(SALES_HISTORY_ID_SEQ.NEXTVAL, #{members_id}, #{product_id}, SYSDATE)	
+	</insert>
 </mapper>

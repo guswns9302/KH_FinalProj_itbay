@@ -23,6 +23,16 @@ public class PurchaseService {
 		}
 	}
 
+	public boolean insertsalesHistory(PurchaseHistoryDTO dto) {
+		int result = dao.insertSalesHistory(dto);
+		if(result == 1) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
 	public boolean updateProductSoldOut(int product_id) {
 		int result = dao.updateProductSoldOut(product_id);
 		if(result == 1) {
@@ -32,5 +42,6 @@ public class PurchaseService {
 			return false;
 		}
 	}
+
 	
 }
