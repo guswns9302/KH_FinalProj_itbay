@@ -15,15 +15,17 @@ public class review_boardDTO {
 	private int price;
 	private String usernickname;
 	private String name;
-
-	
 	
 
+
 	
-	public review_boardDTO(String subject, String contents,String name) {
+	public review_boardDTO(String subject,int product_id,int score, String contents,String name,String img_name) {
 		this.setSubject(subject);
+		this.setProduct_id(product_id);
 		this.setContents(contents);
 		this.setName(name);
+		this.setScore(score);
+		this.setImg_name(img_name);
 	}
 	public String getName() {
 		return name;

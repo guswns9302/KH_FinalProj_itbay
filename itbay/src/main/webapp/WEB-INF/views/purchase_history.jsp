@@ -57,6 +57,8 @@
 			<c:forEach var="num" begin="${(page - 1) * pn}" end="${page * pn - 1}">
 				<tr>
 					<td> <img src="resources/img/${purchaseList[num].img_name}".png width="50" height="50"></td>
+				
+					<td> <a href="/review_boardwrite?etc=${purchaseList[num].product_id}">후기 쓰기로 이동</button></td>
 					<td>${purchaseList[num].product_id}</td>
 					<td>${purchaseList[num].subject}</td>
 					<td>${purchaseList[num].price}</td>
