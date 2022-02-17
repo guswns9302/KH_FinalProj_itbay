@@ -5,15 +5,22 @@
 <mapper namespace="PurchaseHistoryMapper">
 	<select id="selectPurchaseHistory" parameterType="web.com.itbay.history.purchase.model.PurchaseHistoryDTO" resultType="web.com.itbay.history.purchase.model.PurchaseHistoryDTO">
 		SELECT A.ID
-			 , A.MEMBERS_ID
-		     , (SELECT C.IMG_NAME FROM IMG C WHERE C.PRODUCT_ID = B.ID AND C.R_IMG = 'Y') 
-			   AS IMG_NAME
-		     , A.PRODUCT_ID
-		     , B.SUBJECT
-		     , B.PRICE
+    		 , (SELECT D.ID FROM MEMBERS D WHERE D.ID = A.MEMBERS_ID AND D.MASTER='N') AS MEMBERS_ID
+     		 , (SELECT C.IMG_NAME FROM IMG C WHERE C.PRODUCT_ID = B.ID AND C.R_IMG = 'Y') AS IMG_NAME
+  		     , A.PRODUCT_ID
+ 		     , B.SUBJECT
+ 		     , B.PRICE
 		     , A.PURCHASE_DATE
+  		     , CASE WHEN A.PRODUCT_ID IN (SELECT A.PRODUCT_ID
+                          		            FROM PURCHASE_HISTORY A 
+                           		            LEFT JOIN PRODUCT_BOARD B ON A.PRODUCT_ID = B.ID
+                          			       WHERE A.PRODUCT_ID NOT IN (SELECT DISTINCT PRODUCT_ID FROM REVIEW_BOARD)
+                               		     )
+            		THEN '후기 없음'
+          		    ELSE '후기 있음' END AS REVIEW_YN
   		  FROM PURCHASE_HISTORY A 
   		  LEFT JOIN PRODUCT_BOARD B ON A.PRODUCT_ID = B.ID
+  		 WHERE A.MEMBERS_ID = #{members_id}
 	</select>
 	
 	<insert id="insertHistory" parameterType="web.com.itbay.history.purchase.model.PurchaseHistoryDTO" >

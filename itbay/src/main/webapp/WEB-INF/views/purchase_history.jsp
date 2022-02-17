@@ -19,6 +19,9 @@
         	background-color:whitesmoke;
             font-size:16px;
         }
+        #review{
+        	background-color:lightgray;
+        }
     </style>
 </head>
 <body>
@@ -32,6 +35,8 @@
 		<thead>
 			<tr>
                 <td>구매내역</td>
+                <td></td>
+                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -50,6 +55,8 @@
                 <th>제품명</th>		
                 <th>가격</th>
                 <th>구매날짜</th>
+                <th>후기</th>
+                <td></td>
             </tr>
 		</thead>
 		<c:set var="page" value="${empty param.page ? 1 : param.page}"/>
@@ -59,8 +66,15 @@
 					<td> <img src="resources/img/${purchaseList[num].img_name}".png width="50" height="50"></td>
 					<td>${purchaseList[num].product_id}</td>
 					<td>${purchaseList[num].subject}</td>
-					<td>${purchaseList[num].price}</td>
+					<td>${purchaseList[num].price}원</td>
 					<td>${purchaseList[num].purchase_date}</td>
+					<td>${purchaseList[num].review_yn}</td>
+					<td>
+						<br>
+						<c:if test="${purchaseList[num].review_yn == '후기 없음'}">
+							<a href="/review_boardWrite?${purchaseList.product_id}" id="review">후기 작성</a>
+						</c:if>
+					</td>
 				</tr>
 			</c:forEach>
 		</tbody>

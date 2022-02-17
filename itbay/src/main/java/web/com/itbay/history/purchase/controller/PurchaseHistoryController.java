@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import web.com.itbay.history.purchase.model.PurchaseHistoryDTO;
 import web.com.itbay.history.purchase.model.PurchaseHistoryService;
 import web.com.itbay.img.model.ImgService;
+import web.com.itbay.members.model.MembersDTO;
+import web.com.itbay.review_board.model.review_boardDTO;
 
 @Controller
 public class PurchaseHistoryController {
@@ -25,9 +27,13 @@ public class PurchaseHistoryController {
 	ImgService imgService;
 	
 	@RequestMapping(value="/purchase_history", method=RequestMethod.GET)
-	public String purchaseHistoryList(Model model, @RequestParam(value="pageofnum", defaultValue="5") int pageofnum) {
+	public String purchaseHistoryList(Model model, HttpSession session,@RequestParam(value="pageofnum", defaultValue="5") int pageofnum) {
+		
+		MembersDTO loginData = (MembersDTO) session.getAttribute("loginMember");
+		model.addAttribute("loginData",loginData);
+		
 		model.addAttribute("pageofnum", pageofnum);
-		List<PurchaseHistoryDTO> purchaseList = purchaseService.selectPurchaseHistory();
+		List<PurchaseHistoryDTO> purchaseList = purchaseService.selectPurchaseHistory(loginData.getId());
 		
 		model.addAttribute("purchaseList", purchaseList);
 
@@ -36,8 +42,13 @@ public class PurchaseHistoryController {
 	
 	@RequestMapping(value="/purchase_history_np", method=RequestMethod.GET)
 	public String purchaseHistoryListNp(Model model, HttpSession session) {
-		List<PurchaseHistoryDTO> listNp = purchaseService.selectPurchaseNp();
+		
+		MembersDTO loginData = (MembersDTO) session.getAttribute("loginMember");
+		model.addAttribute("loginData",loginData);
+		
+		List<PurchaseHistoryDTO> listNp = purchaseService.selectPurchaseNp(loginData.getId());
 		model.addAttribute("listNp", listNp);
+		
 		return "/purchase_history_np";
 	}
 }
