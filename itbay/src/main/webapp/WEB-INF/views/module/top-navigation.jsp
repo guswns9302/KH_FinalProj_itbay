@@ -34,7 +34,14 @@
 				<ul class="navbar-nav">
 					<c:choose>
 						<c:when test="${param.login }">
-							<img src="resources/img/${loginMember.getImg_name()}" width="50" height="50" >
+							<c:choose>
+								<c:when test="${loginMember.getSocial_login() eq 'Y'.charAt(0) }">
+									<img src="${loginMember_img}" width="50" height="50" >
+								</c:when>
+								<c:otherwise>
+									<img src="resources/img/${loginMember.getImg_name()}" width="50" height="50" >
+								</c:otherwise>
+							</c:choose>
 							<li class="nav-item dropdown">
 								<a class="nav-link dropdown-toggle" href="/myinfo" role="button" data-bs-toggle="dropdown">Mypage</a>
 								<ul class="dropdown-menu">

@@ -131,8 +131,11 @@
 	  </div>
 	  <div style="float:right">
 	  	<c:choose>
-	  		<c:when test="${login }">
+	  		<c:when test="${login && productDto.sold_out eq 'N'}">
 			  	<a href="/purchase_product?product_id=${productDto.id}" class="btn btn-secondary text-uppercase">Buy</a>
+	  		</c:when>
+	  		<c:when test="${login && productDto.sold_out eq 'Y' }">
+				<a href="/product" class="btn btn-secondary text-uppercase">Sold Out</a>
 	  		</c:when>
 	  		<c:otherwise>
 	  			<a href="/login" class="btn btn-secondary text-uppercase">Buy</a>

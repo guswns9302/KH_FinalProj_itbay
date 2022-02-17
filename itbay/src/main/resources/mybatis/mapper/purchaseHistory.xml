@@ -20,7 +20,8 @@
           		    ELSE '후기 있음' END AS REVIEW_YN
   		  FROM PURCHASE_HISTORY A 
   		  LEFT JOIN PRODUCT_BOARD B ON A.PRODUCT_ID = B.ID
-  		 WHERE A.MEMBERS_ID = #{members_id}
+  		 WHERE A.MEMBERS_ID = #{members_id} 
+  		 ORDER BY A.ID DESC
 	</select>
 	
 	<insert id="insertHistory" parameterType="web.com.itbay.history.purchase.model.PurchaseHistoryDTO" >
