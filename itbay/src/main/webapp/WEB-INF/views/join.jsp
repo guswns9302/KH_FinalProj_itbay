@@ -26,24 +26,24 @@
 				<form action="/join" method="post">
 					<div class="row mb-3">
 						<label class="col-sm-2 col-form-label" for="nickname">아이디</label>
-						<div class="col-sm-10">
+						<div class="col-sm-8">
 							<input class="form-control" type="email" name="nickname" value="${accountVO.nickname}" required>
 						</div>
+						<button type="button" onclick="" value="중복 확인"class="btn btn-secondary text-uppercase" style="width: 183px;">중복 확인</button>
 					</div>
 					<div class="row mb-3">
 						<label class="col-sm-2 col-form-label" for="pw">비밀번호</label>
-						<div class="col-sm-10">
+						<div class="col-sm-8">
 							<input class="form-control" type="text" id="password1" name="pw" value="${accountVO.pw1}" required>
 						</div>
 					</div>
 					<div class="row mb-3">
 						<label class="col-sm-2 col-form-label" for="pw">비밀번호 확인</label>
-						<div class="col-sm-10">
+						<div class="col-sm-8">
 							<input class="form-control" type="text" id="password2" name="pw_check" value="${accountVO.pw2}" required>
 						</div>
-						<div class="form-group" style="text-align: center; margin :15px;">
 						    <button type="button" onclick="test()" value="확인"class="btn btn-secondary text-uppercase" style="width: 183px;">확인</button>
-						</div>
+						
 					
 					</div>
 					    <script type="text/javascript">

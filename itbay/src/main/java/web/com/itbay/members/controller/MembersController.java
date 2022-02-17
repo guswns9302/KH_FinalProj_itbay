@@ -2,6 +2,7 @@ package web.com.itbay.members.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -195,33 +196,40 @@ public class MembersController {
 	}
 	
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
-	public String join(String nickname, String pw, String email_address, String username, String birth, String phone, String address) {
-		System.out.println("컨트롤러 실행");
-		MembersDTO membersjoin = new MembersDTO();
-		membersjoin.setNickname(nickname);
-		membersjoin.setPw(pw);
-		membersjoin.setUsername(username);
-		membersjoin.setBirth(birth);
-		membersjoin.setPhone(phone);
-		membersjoin.setAddress(address);
-		membersjoin.setEmail_address(email_address);
+	public String join(String nickname, String pw, String email_address, String username, java.sql.Date birth, String phone, String address, HttpServletResponse res) throws IOException {
 		
-		System.out.println(membersjoin.getNickname());
-		boolean result = service.join(membersjoin);
-		System.out.println("컨트롤러 동작 확인");
-		System.out.println("컨트롤러 - ID : "+nickname);
-		System.out.println("컨트롤러 - PW : "+pw);
-		System.out.println("컨트롤러 - 이름 : "+username);
-		System.out.println("컨트롤러 - 생일 : "+birth);
-		System.out.println("컨트롤러 - Email : "+email_address);
+		boolean chkresult = service.idCheck(nickname);
 		
-		if(result == true) {
-			System.out.println("회원가입 성공");
-		}
-		else
-		{
-			System.out.println("회원가입 실패");
+		if(chkresult == true) {
+			System.out.println("중복");
+			// 자바에서 제이에스피로 문자열을 전송하는 방법
+			res.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = res.getWriter();
+			out.println("<script>alert('ID 중복'); history.go(-1);</script>");
+			out.flush();
+		}else{
+			System.out.println("중복아님");
+			
+			MembersDTO membersjoin = new MembersDTO();
+			membersjoin.setNickname(nickname);
+			membersjoin.setPw(pw);
+			membersjoin.setUsername(username);
+			membersjoin.setBirth(birth);
+			membersjoin.setPhone(phone);
+			membersjoin.setAddress(address);
+			membersjoin.setEmail_address(email_address);
+			
+			boolean result = service.join(membersjoin);
+			
+			if(result == true) {
+				System.out.println("회원가입 성공");
+			}
+			else{
+				System.out.println("회원가입 실패");
+			}
+			
 		}
 		return "redirect:/";
+
 	}
 }

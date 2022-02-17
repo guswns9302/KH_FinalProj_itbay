@@ -35,4 +35,17 @@ public class MembersService {
 		}
 		
 	}
+	
+	// 서비스 로직 
+	public boolean idCheck(String nickname) {
+		
+		// idCheck 가 데이터베이스와 연결해주는 마이바티스 문법
+		int result = dao.idCheck(nickname);
+		if(result >= 1) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 }

@@ -48,4 +48,11 @@ public class MembersDAO {
 		
 		return result;
 	}
+	public int idCheck(String nickname) {
+		int result = this.session.selectOne("MembersMapper.idCheck",nickname);
+		
+		return result;
+	}
+	
+	
 }
