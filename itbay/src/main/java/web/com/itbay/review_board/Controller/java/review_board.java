@@ -50,10 +50,7 @@ public class review_board<review_boardDto> {
 		return "/review_boardDetail";
 	}
 
-	  @RequestMapping(value="/review_boardwrite")
-	    public String review_boardwrite(HttpSession session, String product_id) throws Exception {
-	       System.out.println(product_id);
-		  return "/review_boardwrite";
+	  @RequestMapping(value="/review_boardWrite")
 	    public String review_boardwrite(Model model,HttpSession session,String etc) throws Exception {
 		  int ids =Integer.parseInt(etc);
 	      System.out.print(ids); 
