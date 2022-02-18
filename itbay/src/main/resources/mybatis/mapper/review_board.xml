@@ -96,21 +96,18 @@ SELECT
 	  		   , SCORE = #{score}
 	  	  WHERE ID = #{id}
 	  </update>
- <select id="selectcomment" resultType="web.com.itbay.review_board.model.commentDTO">
-select A.id,B.id as comments_id,B.members_id,C.nickname, B.contents,B.create_date
-from review_board A
-JOIN reply B
-on A.id=B.review_id
-join members C
-on B.members_id = C.id
-  WHERE A.ID = #{id}
-</select>
+	<select id="selectcomment" resultType="web.com.itbay.review_board.model.commentDTO">
+		select A.id,B.id as comments_id,B.members_id,C.nickname, B.contents,B.create_date
+		from review_board A
+		JOIN reply B
+		on A.id=B.review_id
+		join members C
+		on B.members_id = C.id
+		WHERE A.ID = #{id}
+	</select>
 	
- <insert id="insertcomment" parameterType="web.com.itbay.review_board.model.commentDTO">
- INSERT INTO REPLY
-  (ID,REVIEW_ID,MEMBERS_ID,CONTENTS,CREATE_DATE)
-values
-(REPLY_ID_SEQ.NEXTVAL,#{review_id},#{members_id},${contents},
-SYSDATE)
- </insert>
+	<insert id="insertcomment" parameterType="web.com.itbay.review_board.model.commentDTO">
+		INSERT INTO REPLY(ID, REVIEW_ID, MEMBERS_ID, rgrpl, CONTENTS, CREATE_DATE)
+		     VALUES(REPLY_ID_SEQ.NEXTVAL, #{review_id}, #{members_id}, 0, #{contents}, SYSDATE)
+	</insert>
 </mapper>

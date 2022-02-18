@@ -12,13 +12,11 @@
 	<meta charset="UTF-8">
 </head>
 <body>
-<header>
-	<jsp:include page="/WEB-INF/views/module/top-navigation.jsp" flush="false" >
-		<jsp:param name="login" value="${sessionScope.login }" />
-	</jsp:include>
-</header>
-<body>
-<table>
+	<header>
+		<jsp:include page="/WEB-INF/views/module/top-navigation.jsp" flush="false" >
+			<jsp:param name="login" value="${sessionScope.login }" />
+		</jsp:include>
+	</header>
 	<div>
 		<span>제목:</span>
 		<span name="subject">${dto.subject}</span>
@@ -29,35 +27,36 @@
 	</div>
 	<div>
 		<span>사진: -> ${dto.img_name}</span>
-		<img src="resources/img/${dto.img_name}".png width="50" height="50">
+		<img src="resources/img/${dto.img_name}" width="50" height="50">
 	</div>
 	<div>
 		<span>후기 평점:</span>
 		<span  name="score">${dto.score}</span>
 	</div>
+	<div>
 		<span>작성자:</span>	
-			<span name="name">${dto.name}</span>
+		<span name="name">${dto.name}</span>
 	</div>
 	<div>
-	<span>내용:</span>
+		<span>내용:</span>
 		<span name="contents">${dto.contents}</span>
 	</div>
 	
 	<form action="/review_comment" method="post">
-	<c:choose>
-	<c:when test="${empty sessionScope.loginMember.id}">
-	<textarea name="contents" disabled></textarea>
-	<input type="hidden" name="review_id" value="${dto.id}" disabled>	
-	<input type="hidden" name="members_id">
-	<button type="button">댓글 작성</button>
-	</c:when>
-	<c:otherwise>
-	<textarea name="contents"></textarea>
-	<input type="hidden" name="review_id" value="${dto.id}">	
-	<input type="hidden" name="members_id" value="${dto.members_id}">
-	<button type="submit">댓글 작성</button>
-	</c:otherwise>
-	</c:choose>
+		<c:choose>
+			<c:when test="${empty sessionScope.loginMember.id}">
+				<textarea name="contents" disabled></textarea>
+				<input type="hidden" name="review_id" value="${dto.id}" disabled>
+				<input type="hidden" name="members_id" disabled>
+				<button type="button">댓글 작성</button>
+			</c:when>
+			<c:otherwise>
+				<textarea name="contents"></textarea>
+				<input type="hidden" name="review_id" value="${dto.id}">	
+				<input type="hidden" name="members_id" value="${sessionScope.loginMember.id}">
+				<button type="submit">댓글 작성</button>
+			</c:otherwise>
+		</c:choose>
 	</form>
 	
 	<c:forEach var="comment" items="${comments}">
@@ -76,6 +75,5 @@
 		<button type="button" onclick="location.href='/review_board'">목록으로</button>
 	</div>
 	</div>
-</table>
 </body>
 </html>

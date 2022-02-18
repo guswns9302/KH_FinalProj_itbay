@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import web.com.itbay.history.purchase.model.PurchaseHistoryService;
 import web.com.itbay.img.model.ImgService;
@@ -45,6 +46,7 @@ public class review_board<review_boardDto> {
 		review_boardDTO dto=service.getselectreviewDetail(id);
 		model.addAttribute("dto",dto);
 		model.addAttribute("comments",comments);
+	
 		return "/review_boardDetail";
 	}
 
@@ -161,7 +163,7 @@ public class review_board<review_boardDto> {
 		  	System.out.println(request.getParameter("review_id"));
 			System.out.println(request.getParameter("members_id"));
 		  	System.out.println(request.getParameter("contents"));
-		  return"redirect:/review_boardDetail?review_id="+review_id;
+		  return"redirect:/review_boardDetail?reviewid="+review_id;
 
 	  }
 }
