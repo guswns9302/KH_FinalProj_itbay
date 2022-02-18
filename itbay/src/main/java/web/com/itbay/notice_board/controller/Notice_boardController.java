@@ -28,10 +28,6 @@ public class Notice_boardController {
 	@RequestMapping(value="/notice_board", method=RequestMethod.GET)
 	public String notice(@RequestParam(name="page", defaultValue="1") int page,
 			Model model, HttpServletRequest request, HttpServletResponse response) {
-<<<<<<< HEAD
-=======
-		System.out.println("notice controller");
->>>>>>> refs/remotes/origin/장현규_2016
 		List<MembersDTO> members = service.getMembers();
 		model.addAttribute("members", members);
 		
@@ -77,20 +73,7 @@ public class Notice_boardController {
 		int id = Integer.parseInt(noticeId);
 				
 		Notice_boardDTO dto = service.getNoticeContents(id);
-<<<<<<< HEAD
-		List<MembersDTO> admin = service.getMembers();
-=======
-//		List<MembersDTO> admin = service.getMembers();
-		
->>>>>>> refs/remotes/origin/장현규_2016
 		model.addAttribute("dto", dto);
-<<<<<<< HEAD
-		model.addAttribute("admin", admin);
-
-=======
-//		model.addAttribute("admin", admin);
-		
->>>>>>> refs/remotes/origin/장현규_2016
 		return "/noticeContents_user";
 	}
 	
@@ -148,7 +131,7 @@ public class Notice_boardController {
 	}
 	
 	@RequestMapping(value="/noticeModify", method=RequestMethod.GET)
-	public String noticeModify(Model model, HttpSession session, String subject, String contents) {
+	public String noticeModify(Model model, HttpSession session, String noticeId, String subject, String contents) {
 		//id만 가지고 찾아도 되지 않나?
 		//1. dto에 id까지 넣어서 dto 보내기->db 안들어감
 		//2. id로 db 들어가서 dto 찾아오기
@@ -205,23 +188,9 @@ public class Notice_boardController {
 	@RequestMapping(value="/noticeDelete", method=RequestMethod.GET)
 	public String noticeDelete(Model model, String noticeId) {
 		int id = Integer.parseInt(noticeId);
-<<<<<<< HEAD
-=======
-		System.out.println("delete id :" + id);
->>>>>>> refs/remotes/origin/장현규_2016
 		boolean res = service.noticeDelete(id);
-<<<<<<< HEAD
-=======
-		System.out.println("delete res :" + res);
-		
->>>>>>> refs/remotes/origin/장현규_2016
 		if(res) {
 			System.out.println("삭제성공");
-//			List<Notice_boardDTO> list = service.getNotice();
-//			List<MembersDTO> admin = service.getMembers();
-//			
-//			model.addAttribute("list", list);
-//			model.addAttribute("admin", admin);
 			return "redirect:/notice_board";
 		} else {
 			System.out.println("삭제실패");
