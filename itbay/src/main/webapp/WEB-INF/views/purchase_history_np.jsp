@@ -11,11 +11,6 @@
 	<c:url var="head_url" value="/WEB-INF/views/module/default_js_css.jsp"></c:url>
 	<jsp:include page="${head_url }" flush="false" />
 	<meta charset="UTF-8">
-	<style>
-        table{
-            text-align: center;
-        }
-    </style>
 </head>
 <body>
 	<header>
@@ -24,11 +19,10 @@
 		</jsp:include>
 	</header>
 	<section class="container p-5 my-5">
-		<table class="table table-striped table-hover">
+		<table class="table table-striped table-hover  align-middle" style="text-align: center;">
 			<thead>
 				<tr>
 	                <td>구매내역</td>
-	                <td></td>
 	                <td></td>
 	                <td></td>
 	                <td></td>
@@ -45,23 +39,20 @@
 	                <th>제품명</th>		
 	                <th>가격</th>
 	                <th>구매날짜</th>
-	                <th>후기</th>
 	                <td></td>
 	            </tr>
 			</thead>
 			<tbody>
 				<c:forEach var="list" items="${listNp}">
 					<tr>
-						<td><img src="resources/img/${list.img_name}".png width="50" height="50"></td>
+						<td><img src="resources/img/${list.img_name}" width="50" height="50"></td>
 						<td>${list.product_id}</td>
 						<td>${list.subject}</td>
 						<td>${list.price}원</td>
 						<td>${list.purchase_date}</td>
-						<td>${list.review_yn}</td>
 						<td>
-							<br>
 							<c:if test="${list.review_yn == '후기 없음'}">
-								<a href="/review_boardWrite?${list.product_id}" id="review">후기 작성</a>
+								<a href="/review_boardWrite?${list.product_id}" id="review" class="btn btn-secondary text-uppercase">Write Review</a>
 							</c:if>
 						</td>
 								
