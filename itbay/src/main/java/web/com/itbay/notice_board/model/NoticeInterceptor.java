@@ -52,19 +52,8 @@ public class NoticeInterceptor implements HandlerInterceptor {
 			System.out.println("url 5 :"+requestUrl);
 //		response.sendRedirect("/notice_board");
 			return true;
-		}
-		
+		}	
 	}
-//		if(dto.getUsername().equals("마스터")) {
-//			response.sendRedirect("/notice_board_admin");
-//			return true;
-//		} else if (session.getAttribute("loginMember") == null){
-//			response.sendRedirect("/notice_board");
-//			return false;
-//		} else {
-//			response.sendRedirect("/notice_board");
-//			return false;
-//		}
 
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,

@@ -28,6 +28,10 @@ public class Notice_boardController {
 	@RequestMapping(value="/notice_board", method=RequestMethod.GET)
 	public String notice(@RequestParam(name="page", defaultValue="1") int page,
 			Model model, HttpServletRequest request, HttpServletResponse response) {
+<<<<<<< HEAD
+=======
+		System.out.println("notice controller");
+>>>>>>> refs/remotes/origin/장현규_2016
 		List<MembersDTO> members = service.getMembers();
 		model.addAttribute("members", members);
 		
@@ -49,13 +53,14 @@ public class Notice_boardController {
 		cookie.setPath(request.getRequestURI());
 		response.addCookie(cookie);
 		
-		int maxCnt = service.countingNotice();
+		int maxCnt = service.countingNotice();//전체 게시글 수
 		Pagination<Notice_boardDTO> paging = new Pagination<Notice_boardDTO>(
 				maxCnt, Integer.parseInt(pageListCnt));
 		try {
 			List<Notice_boardDTO> datas = service.selectPage(paging.getPage(page));
 			System.out.println("size :" + datas.size());
 			model.addAttribute("datas", datas);
+			System.out.println("curPage at Control :" + paging.getCurPage());
 			model.addAttribute("pageList", paging.getPageList());
 			model.addAttribute("pageListCnt", pageListCnt);
 		} catch (Exception e) {
@@ -72,10 +77,20 @@ public class Notice_boardController {
 		int id = Integer.parseInt(noticeId);
 				
 		Notice_boardDTO dto = service.getNoticeContents(id);
+<<<<<<< HEAD
 		List<MembersDTO> admin = service.getMembers();
+=======
+//		List<MembersDTO> admin = service.getMembers();
+		
+>>>>>>> refs/remotes/origin/장현규_2016
 		model.addAttribute("dto", dto);
+<<<<<<< HEAD
 		model.addAttribute("admin", admin);
 
+=======
+//		model.addAttribute("admin", admin);
+		
+>>>>>>> refs/remotes/origin/장현규_2016
 		return "/noticeContents_user";
 	}
 	
@@ -83,8 +98,6 @@ public class Notice_boardController {
 	public String noticeAdmin(@RequestParam(name="page", defaultValue="1") int page,
 			Model model, HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("noticeAdmin controller");
-//		List<Notice_boardDTO> list = service.getNotice();
-//		model.addAttribute("list", list);
 		List<MembersDTO> members = service.getMembers();
 		model.addAttribute("members", members);
 		
@@ -111,6 +124,7 @@ public class Notice_boardController {
 			List<Notice_boardDTO> datas = service.selectPage(paging.getPage(page));
 			model.addAttribute("datas", datas);
 			model.addAttribute("pageList", paging.getPageList());
+			System.out.println("pageList :" + paging.getPageList().getNums().size());
 			model.addAttribute("pageListCnt", pageListCnt);
 			model.addAttribute("vpage",page);
 			model.addAttribute("total_page", paging);
@@ -191,14 +205,23 @@ public class Notice_boardController {
 	@RequestMapping(value="/noticeDelete", method=RequestMethod.GET)
 	public String noticeDelete(Model model, String noticeId) {
 		int id = Integer.parseInt(noticeId);
+<<<<<<< HEAD
+=======
+		System.out.println("delete id :" + id);
+>>>>>>> refs/remotes/origin/장현규_2016
 		boolean res = service.noticeDelete(id);
+<<<<<<< HEAD
+=======
+		System.out.println("delete res :" + res);
+		
+>>>>>>> refs/remotes/origin/장현규_2016
 		if(res) {
 			System.out.println("삭제성공");
-			List<Notice_boardDTO> list = service.getNotice();
-			List<MembersDTO> admin = service.getMembers();
-			
-			model.addAttribute("list", list);
-			model.addAttribute("admin", admin);
+//			List<Notice_boardDTO> list = service.getNotice();
+//			List<MembersDTO> admin = service.getMembers();
+//			
+//			model.addAttribute("list", list);
+//			model.addAttribute("admin", admin);
 			return "redirect:/notice_board";
 		} else {
 			System.out.println("삭제실패");

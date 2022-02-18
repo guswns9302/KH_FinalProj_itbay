@@ -28,6 +28,9 @@
 		<div>
 			<button type="submit">수정</button>	
 		</div>
+		<div>
+			<button type="button" onclick="location.href='./notice_board'">취소</button>	
+		</div>
 	</form>
 	
 </header>
