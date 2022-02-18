@@ -47,7 +47,7 @@
 								<ul class="dropdown-menu">
 									<li><a class="dropdown-item" href="/myinfo">Profile</a></li>
 									<li><a class="dropdown-item" href="/mileage">Mileage</a></li>
-									<li><a class="dropdown-item" href="/">Cart</a></li>
+									<li><a class="dropdown-item" href="/cart?members_id=${loginMember.getId()}">Cart</a></li>
 									<li><a class="dropdown-item" href="/purchase_history">Purchase History</a></li>
 								</ul>
 							</li>

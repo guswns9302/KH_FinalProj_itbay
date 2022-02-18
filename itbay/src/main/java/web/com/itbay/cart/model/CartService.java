@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 
 @Service
 public class CartService {
@@ -20,7 +21,19 @@ public class CartService {
 			dto.setProduct_id(board_id);
 			cartDao.addCart(dto);
 		}
+	}
+	
+	public List<CartDTO> selectCart(int members_id){
 		
+		return cartDao.selectCart(members_id);
+	}
+	
+	public void deleteCart(int id) {
+		cartDao.deleteCart(id);
+	}
+
+	public List<CartDTO> selectCookieProductBoard(List<Integer> idList) {
+		return cartDao.selectCookieProductBoard(idList);
 		
 	}
 

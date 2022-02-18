@@ -35,6 +35,9 @@ public class ProductService {
 		productDto.setSubject(subject);
 		productDto.setSold_out(sold_out);
 		
+		// 같은조회조건의 총 갯수를 가져온다.
+		// 가져오는 이유는 총갯수를 가지고 페이지에 뿌려질 페이징번호를 계산해야하기 때문
+		// EX) 총50개의 총갯수라면 한페이지당 10건씩 뿌려진다고 가정을 하고 50/10 = 5 <- 이게 jsp에 보여줄 총 페이지 갯수 
 		int count = productDao.selectProductCount(productDto);
 		
 		PagingUtil paging = new PagingUtil(count, page);

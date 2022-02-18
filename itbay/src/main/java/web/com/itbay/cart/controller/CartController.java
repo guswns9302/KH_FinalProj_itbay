@@ -1,5 +1,6 @@
 package web.com.itbay.cart.controller;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,9 +14,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.CookieGenerator;
 
+import web.com.itbay.cart.model.CartDTO;
 import web.com.itbay.cart.model.CartService;
 import web.com.itbay.members.model.MembersDTO;
 
@@ -47,7 +50,46 @@ public class CartController {
 	}
 	
 	@RequestMapping(value="/cart", method = RequestMethod.GET)
-	public String cart(Model model) {
+	public String cart(HttpServletRequest request, Model model, @RequestParam(defaultValue = "0") int members_id) {
+		
+		HttpSession session = request.getSession();
+		MembersDTO loginData = (MembersDTO) session.getAttribute("loginMember");
+		
+		if(loginData != null) {			
+			List<CartDTO> list = cartService.selectCart(members_id);
+			model.addAttribute("list", list);
+			
+		} else {
+			
+			// 마솔 - 비회원 장바구니 기능 추가 시작
+			Cookie[] cookies = request.getCookies();
+			if(cookies != null) {
+				List<Integer> idList = new ArrayList<Integer>();
+				for(Cookie cookie : cookies) {
+					if(!cookie.getName().equals("JSESSIONID")) {
+						idList.add(Integer.parseInt(cookie.getValue()));
+					}
+				}
+				List<CartDTO> list = cartService.selectCookieProductBoard(idList);
+				model.addAttribute("list", list);
+			}
+
+		}
+		
+		
+		
+		
 		return "/cart";
+	}
+	
+	@RequestMapping(value="/deleteCart", method = RequestMethod.GET)
+	public void deleteCart(HttpServletResponse response, int id, int members_id) throws Exception{
+		cartService.deleteCart(id);
+		
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		 
+		out.println("<script>alert('삭제되었습니다.'); location.href='/cart?members_id="+members_id+"';</script>");	
+		
 	}
 }
