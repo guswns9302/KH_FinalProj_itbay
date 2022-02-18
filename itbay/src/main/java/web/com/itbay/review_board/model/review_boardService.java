@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import web.com.itbay.product.model.ProductDTO;
+
 @Service
 public class review_boardService {
 
@@ -24,12 +26,61 @@ public review_boardDTO getselectreviewDetail(int id) {
 		return dto;
 		
 	}
-public void insertreview(review_boardDTO review_boardDto) throws Exception
+public void insertreview(NewreviewDTO NewreviewDTO) throws Exception
 	 {
-	 dao.insertreview(review_boardDto);
+	 dao.insertreview(NewreviewDTO);
 	 }
+
+public review_boardDTO  getreviewinsert(int ids) {
 	
+	review_boardDTO dto= dao.reviewinsert(ids);
 	
+	return dto;
 	
+}
+
+public ProductDTO getproductdata(int ids) {
+	ProductDTO dto= dao.productdata(ids);
+	return dto;
+}
+public boolean deletereview(int idss) {
+	System.out.println("서비스에서 삭제");
+	System.out.println(idss);
+	boolean res = dao.deletereview(idss);
+	return res;
+}
+
+public void reviewupdate(review_boardDTO review_boardDto) {
+	
+	dao.reviewupdate(review_boardDto);
+}
+public void updatereview(NewreviewDTO NewreviewDTO) throws Exception
+{
+dao.updatereview(NewreviewDTO);
+}
+public List<commentDTO> getComment(int id)
+{
+	List<commentDTO> datas=dao.selectcomment(id);
+	return datas;
+}
+
+public boolean insertcomment(int review_id, int members_id, String contents) {
+	commentDTO data=new commentDTO();
+	data.setReview_id(review_id);
+	data.setMembers_id(members_id);
+	data.setContents(contents);
+	System.out.println("서비스에서 출력:");
+	System.out.println(review_id);
+	System.out.println(members_id);
+	System.out.println(contents);
+	
+	int result = dao.insertcomment(data);
+	if(result==1) {
+		return true;
+	}
+	return false;
+}
+
 
 }
+

@@ -63,7 +63,7 @@
 						<td>${purchaseList[num].purchase_date}</td>
 						<td>
 							<c:if test="${purchaseList[num].review_yn == '후기 없음'}">
-								<a href="/review_boardWrite?${purchaseList[num].product_id}" id="review" class="btn btn-secondary text-uppercase">Write Review</a>
+								<a href="/review_boardWrite?etc=${purchaseList[num].product_id}" id="review" class="btn btn-secondary text-uppercase">Write Review</a>
 							</c:if>
 						</td>
 					</tr>

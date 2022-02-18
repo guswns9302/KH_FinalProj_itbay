@@ -7,8 +7,8 @@
 
 SELECT
 		A.id,
-       (SELECT C.IMG_NAME FROM IMG C WHERE C.PRODUCT_ID = B.ID AND C.R_IMG = 'Y') 
-	   AS IMG_NAME
+	       (SELECT C.IMG_NAME FROM IMG C WHERE C.PRODUCT_ID = B.ID AND C.R_IMG = 'Y') 
+		   AS IMG_NAME
      , A.PRODUCT_ID
      , A.MEMBERS_ID
      , A.SUBJECT
@@ -23,12 +23,28 @@ SELECT
   LEFT JOIN PRODUCT_BOARD B ON A.PRODUCT_ID = B.ID
 </select>
 
+<select id="reviewinsert" resultType="web.com.itbay.review_board.model.review_boardDTO">
+	SELECT A.ID
+			 , (SELECT D.ID FROM MEMBERS D WHERE D.ID = A.MEMBERS_ID AND D.MASTER='N')
+                AS MEMBERS_ID
+		     , (SELECT C.IMG_NAME FROM IMG C WHERE C.PRODUCT_ID = B.ID AND C.R_IMG = 'Y') 
+			   AS IMG_NAME
+		     , A.PRODUCT_ID
+		     , B.SUBJECT
+		     , B.PRICE
+		     , A.PURCHASE_DATE
+  		  FROM PURCHASE_HISTORY A 
+  		  LEFT JOIN PRODUCT_BOARD B ON A.PRODUCT_ID = B.ID
+  		  WHERE A.MEMBERS_ID = #{members_id}
+</select>
 	
  <insert id="insertReview" parameterType="web.com.itbay.review_board.model.review_boardDTO">
         <![CDATA[
             INSERT INTO REVIEW_BOARD 
             (
-	    		ID,		
+	    		ID,
+	    		PRODUCT_ID,
+	    		MEMBERS_ID,
                 SUBJECT,
                 CONTENTS,
                 SCORE,           
@@ -37,6 +53,8 @@ SELECT
             VALUES
             (
 			    REVIEW_BOARD_ID_SEQ.NEXTVAL,
+			    #{product_id},
+			    #{members_id},
                 #{subject},
                 #{contents},
                 #{score},
@@ -45,11 +63,51 @@ SELECT
         ]]>
     </insert>
   <select id="getreviewDetail" resultType="web.com.itbay.review_board.model.review_boardDTO">
- select * 
-      from review_board 
-           where id = #{id}
-           
-
+  select
+  (SELECT C.IMG_NAME FROM IMG C WHERE C.PRODUCT_ID = A.product_ID AND C.R_IMG = 'Y') 
+	   AS IMG_NAME
+  	  ,A.ID
+ 	 ,A.PRODUCT_ID
+ 	,A.SUBJECT
+ 	,A.CONTENTS
+ 	,A.SCORE
+ 	,(SELECT B.nickname FROM members B  WHERE A.members_id=B.id AND B.master = 'N') 
+	   AS NAME
+      from review_board A
+        where id = #{id}
 </select>
-  
+
+  <select id="productdata" resultType="web.com.itbay.product.model.ProductDTO">
+	  select *
+	   from product_board 
+	  where id = #{id}
+	</select>
+	
+	
+	 <delete id="deletereview" parameterType="int">
+	  	DELETE	FROM REVIEW_BOARD
+	  		  	WHERE ID = #{id}
+	  </delete>
+	  
+	   <update id="updatereview" parameterType="web.com.itbay.review_board.model.review_boardDTO">
+	  	UPDATE REVIEW_BOARD SET
+	  		   SUBJECT = #{subject}
+	  		   , CONTENTS = #{contents}
+	  		   , SCORE = #{score}
+	  	  WHERE ID = #{id}
+	  </update>
+	<select id="selectcomment" resultType="web.com.itbay.review_board.model.commentDTO">
+		select A.id,B.id as comments_id,B.members_id,C.nickname, B.contents,B.create_date
+		from review_board A
+		JOIN reply B
+		on A.id=B.review_id
+		join members C
+		on B.members_id = C.id
+		WHERE A.ID = #{id}
+	</select>
+	
+	<insert id="insertcomment" parameterType="web.com.itbay.review_board.model.commentDTO">
+		INSERT INTO REPLY(ID, REVIEW_ID, MEMBERS_ID, rgrpl, CONTENTS, CREATE_DATE)
+		     VALUES(REPLY_ID_SEQ.NEXTVAL, #{review_id}, #{members_id}, 0, #{contents}, SYSDATE)
+	</insert>
 </mapper>
