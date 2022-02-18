@@ -3,19 +3,55 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="CartMapper">
-	
-	  <!-- resultType은 기본 "int" 일때는 따로 표기하지 않음 -->
-	  <insert id="saveCart" parameterType="web.com.itbay.cart.model.CartDTO"> 
-	  	<selectKey keyProperty="id" resultType="int" order="BEFORE">  
-	  		select CART_ID_SEQ.NEXTVAL from dual 
-	  	</selectKey>
-	    INSERT INTO CART VALUES(
-	    	   ${id}, 
-	    	   ${members_id}, ${product_id}, SYSDATE,
-	    	   (SELECT SOLD_OUT FROM PRODUCT_BOARD WHERE ID = ${product_id})   	   
-		) 
-	  </insert>
 
-	  
+	<!-- resultType은 기본 "int" 일때는 따로 표기하지 않음 -->
+	<insert id="saveCart"
+		parameterType="web.com.itbay.cart.model.CartDTO">
+		<selectKey keyProperty="id" resultType="int" order="BEFORE">
+			select CART_ID_SEQ.NEXTVAL from dual
+		</selectKey>
+		INSERT INTO CART VALUES(
+		${id},
+		${members_id}, ${product_id}, SYSDATE,
+		(SELECT SOLD_OUT FROM PRODUCT_BOARD WHERE ID = ${product_id})
+		)
+	</insert>
+
+	<select id="selectCart" parameterType="int"
+		resultType="web.com.itbay.cart.model.CartDTO">
+		SELECT B.ID AS product_id
+		, B.SUBJECT
+		, B.PRICE
+		, A.ID
+		, A.ADD_DATE
+		, A.MEMBERS_ID
+		, B.SOLD_OUT as order_status
+		, (SELECT C.IMG_NAME FROM IMG C WHERE C.PRODUCT_ID = B.ID AND C.R_IMG =
+		'Y' AND ROWNUM = 1) AS IMG_NAME
+		FROM CART A, PRODUCT_BOARD B
+		WHERE A.PRODUCT_ID = B.ID
+		AND A.MEMBERS_ID = #{members_id}
+	</select>
+
+	<delete id="deleteCart" parameterType="int">
+		DELETE FROM CART WHERE ID = #{id}
+	</delete>
+	
+	
+	<select id="selectCookieProductBoard" parameterType="java.util.List" resultType="web.com.itbay.cart.model.CartDTO">
+		SELECT A.ID AS product_id
+		, A.SUBJECT
+		, A.PRICE
+		, A.SOLD_OUT as order_status
+		, (SELECT C.IMG_NAME FROM IMG C WHERE C.PRODUCT_ID = A.ID AND C.R_IMG =
+		'Y' AND ROWNUM = 1) AS IMG_NAME 
+		FROM PRODUCT_BOARD A
+		WHERE ID IN 
+		<foreach collection="list" index="index" item="idList" open="(" close=")" separator=",">
+			#{idList}
+		</foreach>
+		
+	</select>
+
 
 </mapper>

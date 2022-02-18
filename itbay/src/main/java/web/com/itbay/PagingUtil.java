@@ -91,6 +91,7 @@ public class PagingUtil {
 	}
 
 	public int getFirstPageNo() {
+		// ( 현재페이지번호 -1 ) / 보여중 페이징 갯수 * 보여중 페이징 갯수 + 1 
 		this.firstPageNo = ((getCurPageNo() - 1) / getPageSize() * getPageSize() + 1);
 		return this.firstPageNo;
 	}
@@ -123,14 +124,19 @@ public class PagingUtil {
 
 	public String mkPageing() {
 		
+		// 이전페이지 존재 여부 확인
 		int numPageGroup = (int) Math.ceil((double) curPageNo / pageSize);
+		// 다음페이지 존재 여부 확인
 		int pageGroupCnt = totalCnt / (rowCnt * pageSize) + (totalCnt % (rowCnt * pageSize) == 0 ? 0 : 1);
 		
 		String html = "<ul class='pagination' style='justify-content: center;'>";
 		
+		// 총 갯수가 0개 이상일때 
 		if(totalCnt > 0) {
 			
+			// 이전페이지 존재할 경우 
 			if(numPageGroup > 1) {
+				// 이전페이지로 가는 계산식
 				html += "<li class='page-item'><a class='page-link' href='javascript:void(0);' onclick='go_page(\""+(((numPageGroup-2)*pageSize)+1)+"\")'>이전</a></li>";
 			}
 			
