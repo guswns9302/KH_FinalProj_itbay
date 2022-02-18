@@ -17,21 +17,37 @@
 		<jsp:param name="login" value="${sessionScope.login }" />
 	</jsp:include>
 </header>
-<table>
-	<div>
-		<span>제 목:</span>
-		<span name="subject">${dto.subject}</span>
-	</div>
-	<div>
-		<span>작성자:</span>
-		<span name="contents">${dto.username}</span>
-	</div>
-	<div>
-		<div>${dto.contents}</div>
-	</div>
-	<div>
-		<button type="button" onclick="location.href='/notice_board'">목록</button>
-	</div>
-</table>
+	<section class="container p-5 my-5">
+		<div class="clearfix">
+			<button type="button" class="btn btn-secondary text-uppercase float-end" style="width: 183px;" onclick="location.href='/notice_board'">목록</button>
+		</div>
+		<div class="row" style="margin-bottom: -20px;">
+			<div class="col">
+				<div class="form-floating mb-3 mt-3">
+					<input type="text" class="form-control"  id="writer" name="writer" value="${dto.username}" readonly>
+					<label for="writer">Writer</label>
+				</div>
+			</div>
+			<div class="col">
+				<div class="form-floating mb-3 mt-3">
+					<input type="text" class="form-control"  id="date" name="date" value="${dto.create_date} " readonly>
+					<label for="date">Date</label>
+				</div>
+			</div>
+			<div class="col">
+				<div class="form-floating mb-3 mt-3">
+					<input type="text" class="form-control"  id="count" name="count" value="${dto.view_CNT}" readonly>
+					<label for="count">Count</label>
+				</div>
+			</div>
+		</div>
+		<div class="form-floating mb-3 mt-3">
+			<input type="text" class="form-control"  id="subject" name="subject" value="${dto.subject}" readonly>
+			<label for="subject">Subject</label>
+		</div>
+		<div>
+			<textarea class="form-control" rows="10" name="contents" readonly>${dto.contents}</textarea>
+		</div>
+	</section>
 </body>
 </html>

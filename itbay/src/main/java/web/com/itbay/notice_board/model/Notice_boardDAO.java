@@ -1,13 +1,10 @@
 package web.com.itbay.notice_board.model;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import web.com.itbay.members.model.MembersDTO;
 
 @Repository
@@ -15,11 +12,6 @@ public class Notice_boardDAO {
 
 	@Autowired
 	SqlSession session;
-	
-//	public List<Notice_boardDTO> selectNotice(){
-//		List<Notice_boardDTO> List = this.session.selectList("NoticeMapper.getNotice");
-//		return List;
-//	}
 
 	public int countingNotice() {
 		int res = this.session.selectOne("NoticeMapper.countingNotice");
@@ -52,9 +44,7 @@ public class Notice_boardDAO {
 	}
 
 	public boolean noticeDelete(int id) {
-		System.out.println("delete DAO");
 		int res = this.session.delete("NoticeMapper.deleteNotice", id);
-		System.out.println("res of deleteDAO:" + res);
 		return res == 1 ? true : false;
 	}
 }

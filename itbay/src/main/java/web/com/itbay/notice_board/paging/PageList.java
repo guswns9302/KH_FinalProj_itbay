@@ -15,8 +15,6 @@ public class PageList {
 		this.curNum = curPage;
 		this.maxNum = maxPage;
 		int startPage = (this.curNum/pageListCnt) * 10 + 1;
-		System.out.println("starPage :" + startPage);
-		System.out.println("maxPage :" + maxPage);
 		
 		for(int i = 0; i < 10; i++) {
 			if(startPage+i <= maxPage) {
@@ -25,7 +23,6 @@ public class PageList {
 				break;
 			}
 		}
-		System.out.println("maxNum :" + maxNum);
 	}
 	
 	public List<Integer> getNums() { //현재 페이지 목록 반환

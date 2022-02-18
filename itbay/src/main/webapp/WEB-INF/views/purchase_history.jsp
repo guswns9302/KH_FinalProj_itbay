@@ -18,23 +18,16 @@
 		</jsp:include>
 	</header>
    <section class="container p-5 my-5">
+	   	<c:set var="pn" value="${empty param.pageofnum ? pageofnum : param.pageofnum}" />
+		<span class="float-end">
+			<select name="pageofnum" onChange="location.href='/purchase_history' + this.value" class="btn btn-secondary text-uppercase">
+				<option value="_np">전체 보기</option>
+		        <option value="?pageofnum=5" ${pn eq 5 ? "selected" : ""}>5개 씩 보기</option>
+		      	<option value="?pageofnum=10" ${pn eq 10 ? "selected" : ""}>10개 씩 보기</option> 
+			</select>
+		</span>
 		<table class="table table-striped table-hover align-middle" style="text-align: center;">
 			<thead>
-				<tr>
-	                <td>구매내역</td>
-	                <td></td>
-	                <td></td>
-	                <td></td>
-	                <td></td>
-	                <td>
-	                	<c:set var="pn" value="${empty param.pageofnum ? pageofnum : param.pageofnum}" />
-		    			<select name="pageofnum" onChange="location.href='/purchase_history' + this.value">
-	         				<option value="_np">전체 보기</option>
-	         		        <option value="?pageofnum=5" ${pn eq 5 ? "selected" : ""}>5개 씩 보기</option>
-	        		        <option value="?pageofnum=10" ${pn eq 10 ? "selected" : ""}>10개 씩 보기</option> 
-	     			    </select>
-	        		</td>
-	            </tr>
 	            <tr>
 	                <th>상품사진</th>
 	                <th>제품번호</th>

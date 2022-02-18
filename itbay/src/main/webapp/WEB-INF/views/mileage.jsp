@@ -32,10 +32,11 @@
 				</ul>
 				
 				<!-- Tab panes -->
+				<div class="tab-content">
 					<div class="tab-pane container active" id="home">
 						<div class="clearfix">
 							<span class="float-end" style="margin-top:10px;">
-								<select class="border border-1" name="numPerPage" onchange="location.href='/mileage?numPerPage=' + this.value +'&vpage=1'">
+								<select name="numPerPage" onchange="location.href='/mileage?numPerPage=' + this.value +'&vpage=1'" class="btn btn-secondary text-uppercase">
 												<option value="5" ${numPerPage eq '5' ? 'selected' : '' }> 5개씩 보기</option>
 												<option value="10" ${numPerPage eq '10' ? 'selected' : '' }>10개씩 보기</option>
 												<option value="20" ${numPerPage eq '20' ? 'selected' : '' }>20개씩 보기</option>

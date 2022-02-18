@@ -16,22 +16,32 @@
 	<jsp:include page="/WEB-INF/views/module/top-navigation.jsp" flush="false" >
 		<jsp:param name="login" value="${sessionScope.login }" />
 	</jsp:include>
-	
-	<form action="./noticeSave" method="post">
-		<div>
-			<button type="submit">저장</button>	
-		</div>
-		<div>
-			<button type="button" onclick="location.href='./notice_board'">취소</button>	
-		</div>
-		<div>
-			<input type="text" name="subject" placeholder="공지 제목">
-		</div>
-		<div>
-			<textarea name="contents" placeholder="공지 내용"></textarea>
-		</div>
-	</form>
-	
+	<section class="container p-5 my-5" style="text-align:center;">
+		<form action="./noticeSave" method="post">
+		 	<h1 class="h3 mb-3 fw-normal">Create Notice</h1>
+			<div class="form-floating mb-3 mt-3">
+				<input type="text" class="form-control" placeholder="Enter Subject" name="subject">
+				<label for="subject">subject</label>
+			</div>
+			<div>
+				<textarea class="form-control" rows="10" placeholder="Enter Contents" name="contents"></textarea>
+			</div>
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="float-end" style="margin : 10px;">
+							<button type="submit" class="btn btn-secondary text-uppercase" style="width: 183px;">Submit</button>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="float-start" style="margin : 10px;">
+							<button type="button" class="btn btn-secondary text-uppercase" style="width: 183px;" onclick="location.href='./notice_board'">Cancel</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</section>
 </header>
 </body>
 </html>

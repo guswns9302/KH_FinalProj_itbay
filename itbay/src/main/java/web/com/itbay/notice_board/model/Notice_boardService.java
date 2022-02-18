@@ -14,11 +14,6 @@ public class Notice_boardService {
 	@Autowired
 	Notice_boardDAO dao;
 
-//	public List<Notice_boardDTO> getNotice() {
-//		List<Notice_boardDTO> noticeList = dao.selectNotice();
-//		return noticeList;
-//	}
-	
 	public List<Notice_boardDTO> selectPage(Map<String, Integer> range) {
 		return dao.selectPage(range);
 	}
@@ -49,7 +44,6 @@ public class Notice_boardService {
 	}
 
 	public boolean noticeDelete(int id) {
-		System.out.println("delete service");
 		boolean res = dao.noticeDelete(id);
 		return res;
 	}

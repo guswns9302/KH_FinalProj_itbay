@@ -50,16 +50,13 @@ public class Pagination<T> {
 		}
 		Map<String, Integer> range = new HashMap<String, Integer>();
 		range.put("start", startList);
-		System.out.println("Start :"+ startList);
 		range.put("end", endList);
-		System.out.println("end :"+ endList);
 		range.put("listCnt", pageListCnt);
 		
 		return range;
 	}
 
 	public PageList getPageList() {
-		System.out.println("curPage :" + this.curPage);
 //		pageList = new PageList();
 //		pageList.setCurNum(curPage);
 		pageList = new PageList(this.curPage, this.maxPage, this.pageListCnt);
