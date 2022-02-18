@@ -44,6 +44,13 @@
   		 , 1, SYSDATE ,0)
   </insert>
   
+  <update id="updateNotice" parameterType="web.com.itbay.notice_board.model.Notice_boardDTO">
+    UPDATE NOTICE_BOARD SET
+    	   SUBJECT = #{subject}
+    	 , CONTENTS = #{contents}
+  	 WHERE ID = #{id}
+  </update>
+  
   <delete id="deletNotice" parameterType="int">
 	DELETE FROM NOTICE_BOARD
 	 WHERE ID = #{id}

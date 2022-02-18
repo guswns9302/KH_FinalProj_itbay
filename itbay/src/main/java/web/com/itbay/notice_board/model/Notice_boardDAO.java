@@ -45,6 +45,11 @@ public class Notice_boardDAO {
 		int res = this.session.insert("NoticeMapper.insertNotice", dto);
 		return res;
 	}
+	
+	public int noticeUpdate(Notice_boardDTO dto) {
+		int res = this.session.update("NoticeMapper.updateNotice", dto);
+		return res;
+	}
 
 	public boolean noticeDelete(int id) {
 		int res = this.session.delete("NoticeMapper.deleteNotice", id);

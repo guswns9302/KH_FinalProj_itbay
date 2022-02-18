@@ -16,20 +16,28 @@
 	<jsp:include page="/WEB-INF/views/module/top-navigation.jsp" flush="false" >
 		<jsp:param name="login" value="${sessionScope.login }" />
 	</jsp:include>
-	
-	<form action="./noticeChange" method="post">
-		<input type="hidden" name="noticeId" value="${dto.id}">
-		<div>
-			<input type="text" name="subject" value="${dto.subject}">
-		</div>
-		<div>
-			<textarea name="contents" >${dto.contents}</textarea>
-		</div>
-		<div>
-			<button type="submit">수정</button>	
-		</div>
-	</form>
-	
 </header>
+<table>
+	<div>
+		<span>제 목:</span>
+		<span name="subject">${dto.subject}</span>
+	</div>
+	<div>
+		<span>작성자:</span>
+		<span name="contents">
+			<c:forEach var="admin" items="${admin}">
+					<c:if test="${dto.members_id eq admin.id}">
+						${admin.username}
+					</c:if>
+			</c:forEach>
+		</span>
+	</div>
+	<div>
+		<div>${dto.contents}</div>
+	</div>
+	<div>
+		<button type="button" onclick="location.href='/notice_board'">목록</button>
+	</div>
+</table>
 </body>
 </html>
