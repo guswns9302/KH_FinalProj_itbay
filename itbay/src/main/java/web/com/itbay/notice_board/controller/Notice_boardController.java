@@ -29,8 +29,6 @@ public class Notice_boardController {
 	public String notice(@RequestParam(name="page", defaultValue="1") int page,
 			Model model, HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("notice controller");
-//		List<Notice_boardDTO> list = service.getNotice();
-//		model.addAttribute("list", list);
 		List<MembersDTO> members = service.getMembers();
 		model.addAttribute("members", members);
 		
@@ -52,13 +50,14 @@ public class Notice_boardController {
 		cookie.setPath(request.getRequestURI());
 		response.addCookie(cookie);
 		
-		int maxCnt = service.countingNotice();
+		int maxCnt = service.countingNotice();//전체 게시글 수
 		Pagination<Notice_boardDTO> paging = new Pagination<Notice_boardDTO>(
 				maxCnt, Integer.parseInt(pageListCnt));
 		try {
 			List<Notice_boardDTO> datas = service.selectPage(paging.getPage(page));
 			System.out.println("size :" + datas.size());
 			model.addAttribute("datas", datas);
+			System.out.println("curPage at Control :" + paging.getCurPage());
 			model.addAttribute("pageList", paging.getPageList());
 			model.addAttribute("pageListCnt", pageListCnt);
 		} catch (Exception e) {
@@ -75,10 +74,10 @@ public class Notice_boardController {
 		int id = Integer.parseInt(noticeId);
 				
 		Notice_boardDTO dto = service.getNoticeContents(id);
-		List<MembersDTO> admin = service.getMembers();
+//		List<MembersDTO> admin = service.getMembers();
 		
 		model.addAttribute("dto", dto);
-		model.addAttribute("admin", admin);
+//		model.addAttribute("admin", admin);
 		
 		return "/noticeContents_user";
 	}
@@ -87,8 +86,6 @@ public class Notice_boardController {
 	public String noticeAdmin(@RequestParam(name="page", defaultValue="1") int page,
 			Model model, HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("noticeAdmin controller");
-//		List<Notice_boardDTO> list = service.getNotice();
-//		model.addAttribute("list", list);
 		List<MembersDTO> members = service.getMembers();
 		model.addAttribute("members", members);
 		
@@ -118,6 +115,7 @@ public class Notice_boardController {
 			System.out.println("size :" + datas.size());
 			model.addAttribute("datas", datas);
 			model.addAttribute("pageList", paging.getPageList());
+			System.out.println("pageList :" + paging.getPageList().getNums().size());
 			model.addAttribute("pageListCnt", pageListCnt);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -220,16 +218,17 @@ public class Notice_boardController {
 		//@RequestParam(noticeId) int noticeId -> 형변환 없이 바로 사용 가능
 		System.out.println("noticeDelete controller");
 		int id = Integer.parseInt(noticeId);
-		
+		System.out.println("delete id :" + id);
 		boolean res = service.noticeDelete(id);
+		System.out.println("delete res :" + res);
 		
 		if(res) {
 			System.out.println("삭제성공");
-			List<Notice_boardDTO> list = service.getNotice();
-			List<MembersDTO> admin = service.getMembers();
-			
-			model.addAttribute("list", list);
-			model.addAttribute("admin", admin);
+//			List<Notice_boardDTO> list = service.getNotice();
+//			List<MembersDTO> admin = service.getMembers();
+//			
+//			model.addAttribute("list", list);
+//			model.addAttribute("admin", admin);
 			return "redirect:/notice_board";
 		} else {
 			System.out.println("삭제실패");

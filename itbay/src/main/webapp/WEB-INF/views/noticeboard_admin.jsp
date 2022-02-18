@@ -43,13 +43,7 @@
 		<tr>
 			<td align="center">${data.id}</td>
 			<td align="center"><a href="/noticeContents_admin?noticeId=${data.id}">${data.subject}</a></td>
-			<td align="center">
-				<c:forEach var="admin" items="${members}">
-					<c:if test="${data.members_id eq admin.id}">
-						${admin.username}
-					</c:if>
-				</c:forEach>
-			</td>
+			<td align="center">	${data.username}</td>
 			<td align="center"><fmt:formatDate value="${data.create_date}" pattern="yyyy년 MM월 dd일"/></td>
 		</tr>
 	</c:forEach>
@@ -57,6 +51,7 @@
 </table>
 	<div>
 		<ul>
+			<li><a href="?page='1'">처음</a></li>
 			<c:forEach var="num" items="${pageList.nums}">
 				<c:choose>
 					<c:when test="${pageList.curNum eq num }">
@@ -69,6 +64,7 @@
 					<a href="?page=${num}">${num}</a>
 					</li>					
 			</c:forEach>
+			<li><a href="?page=${pageList.maxNum}">마지막</a></li>
 		</ul>
 	</div>
 

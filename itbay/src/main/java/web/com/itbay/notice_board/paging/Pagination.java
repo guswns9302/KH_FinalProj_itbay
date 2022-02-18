@@ -5,10 +5,10 @@ import java.util.List;
 import java.util.Map;
 
 public class Pagination<T> {
-	private int listCnt;	// 한 페이지에 출력될 게시물 수
-	private int maxCnt;
-	private int maxPage;	// 한 화면에 출력될 페이지 수(아래 바)
-	private int curPage;	// 현재 페이지 번호.
+	private int pageListCnt;	// 한 페이지에 출력될 게시물 수
+	private int maxCnt;			// 전체 게시물 수
+	private int maxPage;		// 전체 페이지 수
+	private int curPage;		// 현재 페이지 번호.
 	private List<T> dataList;
 	private PageList pageList;
 	
@@ -22,44 +22,17 @@ public class Pagination<T> {
 	*/
 	
 	public Pagination(int maxCnt, int pageListCnt) {
-		this.listCnt = pageListCnt;
+		this.pageListCnt = pageListCnt;
 		this.maxCnt = maxCnt;
-		this.maxPage = this.maxCnt / this.listCnt;
 		if(this.maxCnt != 0) {
-			this.maxPage = this.maxCnt / this.listCnt;
-			if(this.maxCnt % this.listCnt > 0) {
+			this.maxPage = this.maxCnt / this.pageListCnt;
+			if(this.maxCnt % this.pageListCnt > 0) {
 				this.maxPage+=1;
 			}
 		}else { 
 			this.maxPage = 1;
 		}
 		this.curPage = 1;
-	}
-
-	public Pagination(List<T> dataList, int listCnt) {
-		this.listCnt = listCnt;
-		this.dataList = dataList;
-		if(dataList.size() != 0) {
-			this.maxPage = dataList.size() / this.listCnt;
-			if(dataList.size() % this.listCnt > 0) {
-				this.maxPage++;
-			}
-		} else {
-			this.maxPage = 0;
-		}
-		this.curPage = 1;
-	}
-
-	public int getListCnt() {
-		return listCnt;
-	}
-
-	public int getMaxPage() {
-		return maxPage;
-	}
-
-	public int getCurPage() {
-		return curPage;
 	}
 
 	public Map<String, Integer> getPage(int page) throws Exception{
@@ -70,29 +43,58 @@ public class Pagination<T> {
 			throw new Exception("최대 페이지를 초과했습니다..");
 		}
 		this.curPage = page;
-		int startPage = (this.curPage - 1) * this.listCnt + 1;
-		int endPage = this.curPage*listCnt;
-		if(endPage > this.maxCnt) {
-			endPage = this.maxCnt;
+		int startList = (this.curPage - 1) * this.pageListCnt + 1;
+		int endList = this.curPage*pageListCnt;
+		if(endList > this.maxCnt) {
+			endList = this.maxCnt;
 		}
 		Map<String, Integer> range = new HashMap<String, Integer>();
-		range.put("start", startPage);
-		System.out.println("Start :"+startPage);
-		range.put("end", endPage);
-		System.out.println("end :"+endPage);
-		range.put("listCnt", listCnt);
-		System.out.println("end :"+listCnt);
+		range.put("start", startList);
+		System.out.println("Start :"+ startList);
+		range.put("end", endList);
+		System.out.println("end :"+ endList);
+		range.put("listCnt", pageListCnt);
 		
 		return range;
 	}
+
+	public PageList getPageList() {
+		System.out.println("curPage :" + this.curPage);
+//		pageList = new PageList();
+//		pageList.setCurNum(curPage);
+		pageList = new PageList(this.curPage, this.maxPage, this.pageListCnt);
+		return pageList;
+	}
+	
+	public Pagination(List<T> dataList, int pageListCnt) {
+		this.pageListCnt = pageListCnt;
+		this.dataList = dataList;
+		if(dataList.size() != 0) {
+			this.maxPage = dataList.size() / this.pageListCnt;
+			if(dataList.size() % this.pageListCnt > 0) {
+				this.maxPage++;
+			}
+		} else {
+			this.maxPage = 0;
+		}
+		this.curPage = 1;
+	}
+
+	public int getPageListCnt() {
+		return pageListCnt;
+	}
+
+	public int getMaxPage() {
+		return maxPage;
+	}
+
+	public int getCurPage() {
+		return curPage;
+	}
+
 	
 	public List<T> getDataList() {
 		return dataList;
 	}
 
-	public PageList getPageList() {
-		pageList = new PageList(this.maxPage);
-		pageList.setCurNum(this.curPage);
-		return pageList;
-	}
 }

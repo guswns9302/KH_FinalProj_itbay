@@ -24,13 +24,7 @@
 	</div>
 	<div>
 		<span>작성자:</span>
-		<span name="contents">
-			<c:forEach var="admin" items="${admin}">
-					<c:if test="${dto.members_id eq admin.id}">
-						${admin.username}
-					</c:if>
-			</c:forEach>
-		</span>
+		<span name="contents">${dto.username}</span>
 	</div>
 	<div>
 		<div>${dto.contents}</div>

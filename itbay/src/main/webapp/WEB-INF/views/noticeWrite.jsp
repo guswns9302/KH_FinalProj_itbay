@@ -22,7 +22,7 @@
 			<button type="submit">저장</button>	
 		</div>
 		<div>
-			<button onclick="location.href='/notice_board'">취소</button>	
+			<button type="button" onclick="location.href='./notice_board'">취소</button>	
 		</div>
 		<div>
 			<input type="text" name="subject" placeholder="공지 제목">

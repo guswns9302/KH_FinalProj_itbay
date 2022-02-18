@@ -3,9 +3,9 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="NoticeMapper">
-  <select id="getNotice" resultType="web.com.itbay.notice_board.model.Notice_boardDTO">
+  <!--select id="getNotice" resultType="web.com.itbay.notice_board.model.Notice_boardDTO">
     select * from notice_board order by id desc
-  </select>
+  </select-->
   
   <select id="countingNotice" resultType="_int">
     select count(*) from notice_board
@@ -14,6 +14,9 @@
   <select id="selectPage" parameterType="map" resultType="web.com.itbay.notice_board.model.Notice_boardDTO">
 	
 	 <![CDATA[
+	 
+	 select D.*, E.username
+	   from (
      select C.*
        from (
   	 select rownum as rnum, B.*
@@ -22,15 +25,20 @@
   	   from notice_board
    	  order by id desc ) B
   	  where rownum <= #{end} ) C
-  	  where C.rnum >= #{start} 
+  	  where C.rnum >= #{start} ) D join members E
+  	     on D.members_id = E.id
+  	  
   	]]>
 
   </select>
   
   <select id="getContents" resultType="web.com.itbay.notice_board.model.Notice_boardDTO">
-    select * 
+    select A.*, B.username
+      from (
+    select *
       from notice_board
-     where id = #{id}
+     where id = #{id} ) A join members B
+        on A.members_id = B.id 
   </select>
 
   <select id="getMembers" resultType="web.com.itbay.members.model.MembersDTO">
@@ -51,7 +59,7 @@
   	 WHERE ID = #{id}
   </update>
   
-  <delete id="deletNotice" parameterType="int">
+  <delete id="deleteNotice" parameterType="int">
 	DELETE FROM NOTICE_BOARD
 	 WHERE ID = #{id}
   </delete>

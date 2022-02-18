@@ -9,6 +9,7 @@ public class Notice_boardDTO {
 	private String members_id;
 	private Date create_date;
 	private int view_CNT;
+	private String username;
 	
 	public Notice_boardDTO() {}
 	
@@ -21,7 +22,7 @@ public class Notice_boardDTO {
 		this.setSubject(subject);
 		this.setContents(contents);
 	}
-	
+
 	public int getId() {
 		return id;
 	}
@@ -58,6 +59,10 @@ public class Notice_boardDTO {
 	public void setView_CNT(int view_CNT) {
 		this.view_CNT = view_CNT;
 	}
-	
-	
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
 }

@@ -6,12 +6,26 @@ import java.util.List;
 public class PageList {
 	private List<Integer> nums;	//번호만 들어가는 배열
 	private int curNum;			//현재 페이지 번호 저장. 나중에 활용
+	private int maxNum;			//max페이지 필요.
 	
-	public PageList(int maxPage) {
+	public PageList() {}
+	
+	public PageList(int curPage, int maxPage, int pageListCnt) {
 		this.nums = new ArrayList<Integer>();
-		for(int i = 1; i <= maxPage; i++) {
-			nums.add(i);
+		this.curNum = curPage;
+		this.maxNum = maxPage;
+		int startPage = (this.curNum/pageListCnt) * 10 + 1;
+		System.out.println("starPage :" + startPage);
+		System.out.println("maxPage :" + maxPage);
+		
+		for(int i = 0; i < 10; i++) {
+			if(startPage+i <= maxPage) {
+				nums.add(startPage + i);
+			} else {
+				break;
+			}
 		}
+		System.out.println("maxNum :" + maxNum);
 	}
 	
 	public List<Integer> getNums() { //현재 페이지 목록 반환
@@ -29,4 +43,13 @@ public class PageList {
 	public void setCurNum(int curNum) {
 		this.curNum = curNum;
 	}
+
+	public int getMaxNum() {
+		return maxNum;
+	}
+
+	public void setMaxNum(int maxNum) {
+		this.maxNum = maxNum;
+	}
+	
 }
