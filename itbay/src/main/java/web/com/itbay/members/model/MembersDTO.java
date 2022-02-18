@@ -67,7 +67,7 @@ public class MembersDTO {
 		return birth;
 	}
 	public void setBirth(Date birth) {
-		this.birth = birth;
+		this.birth = (Date) birth;
 	}
 	public String getPhone() {
 		return phone;

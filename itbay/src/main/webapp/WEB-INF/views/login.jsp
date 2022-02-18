@@ -25,6 +25,9 @@
 			<label for="pwd">Password</label>
 		</div>
 		<div style="margin : 10px;">
+			<a href="/join"><button type="button" class="btn btn-secondary text-uppercase" style="width: 183px;">회원가입</button>	</a>
+		</div>
+		<div style="margin : 10px;">
 			<button type="submit" class="btn btn-secondary text-uppercase" style="width: 183px;">login</button>
 		</div>
 		<div>
@@ -34,9 +37,6 @@
 				response_type=code">
 				<img src="resources/icon/kakao_login_medium_narrow.png">
 			</a>
-		</div>
-		<div>
-			<a href="/join">회원가입</a>
 		</div>
 	</form>
 </section>
