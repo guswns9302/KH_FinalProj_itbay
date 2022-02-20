@@ -30,5 +30,10 @@ public class CartDAO {
 	public List<CartDTO> selectCookieProductBoard(List<Integer> idList) {
 		return this.session.selectList("CartMapper.selectCookieProductBoard", idList);
 	}
+	
+	public int selectMemberCart(CartDTO cartDto) {
+		return this.session.selectOne("CartMapper.countMemberCart", cartDto);
+		
+	}
 
 }

@@ -31,6 +31,7 @@
 		FROM CART A, PRODUCT_BOARD B
 		WHERE A.PRODUCT_ID = B.ID
 		AND A.MEMBERS_ID = #{members_id}
+		ORDER BY ADD_DATE DESC
 	</select>
 
 	<delete id="deleteCart" parameterType="int">
@@ -53,5 +54,10 @@
 		
 	</select>
 
+	<select id="countMemberCart" parameterType="web.com.itbay.cart.model.CartDTO" resultType="int"> 
+		SELECT COUNT(*) FROM CART
+		 WHERE PRODUCT_ID = #{product_id}
+		   AND MEMBERS_ID = #{members_id}
+	</select>
 
 </mapper>

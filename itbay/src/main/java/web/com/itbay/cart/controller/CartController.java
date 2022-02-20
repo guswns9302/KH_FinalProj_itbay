@@ -3,6 +3,7 @@ package web.com.itbay.cart.controller;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -70,6 +71,8 @@ public class CartController {
 						idList.add(Integer.parseInt(cookie.getValue()));
 					}
 				}
+				
+				
 				List<CartDTO> list = cartService.selectCookieProductBoard(idList);
 				model.addAttribute("list", list);
 			}

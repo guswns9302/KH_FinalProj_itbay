@@ -28,7 +28,9 @@ public class CartService {
 		return cartDao.selectCart(members_id);
 	}
 	
+	@Transactional
 	public void deleteCart(int id) {
+
 		cartDao.deleteCart(id);
 	}
 

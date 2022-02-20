@@ -57,19 +57,12 @@ public class ProductController {
 		
 		
 		List<ImgDTO> imgList = imgService.selectImg(id);
-		ProductDTO productDto = productService.selectProductDetail(id);
+		ProductDTO productDto = productService.selectProductDetail(id, request, model, session);
 		
 		model.addAttribute("imgList", imgList);
 		model.addAttribute("productDto", productDto);
 		model.addAttribute("login",session.getAttribute("login"));
 		
-		session = request.getSession();
-		MembersDTO loginData = (MembersDTO) session.getAttribute("loginMember");
-		
-		
-		if(loginData != null) {
-			model.addAttribute("loginData",loginData);
-		}		
 		
 		return "/productDetail";
 	}
