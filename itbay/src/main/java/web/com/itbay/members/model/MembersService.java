@@ -33,7 +33,6 @@ public class MembersService {
 		else {
 			return false;
 		}
-		
 	}
 	
 	// 서비스 로직 
@@ -47,5 +46,14 @@ public class MembersService {
 		else {
 			return false;
 		}
+	}
+	
+	public String findId(MembersDTO findIdcheck) {
+		String result = dao.findId(findIdcheck);
+		return result;				
+	}
+	public String findPw(MembersDTO findPwcheck) {
+		String result = dao.findPw(findPwcheck);
+		return result;
 	}
 }

@@ -4,10 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="MembersMapper">
 	<select id="selectLogin" parameterType="web.com.itbay.members.model.MembersDTO" resultType="web.com.itbay.members.model.MembersDTO">
-		SELECT * 
-		FROM MEMBERS
-		A LEFT OUTER JOIN IMG B ON A.ID = B.MEMBERS_ID
-		WHERE NICKNAME = #{nickname} AND PW = #{pw}
+		SELECT * FROM MEMBERS A JOIN IMG B ON A.ID = B.MEMBERS_ID WHERE NICKNAME = #{nickname} AND PW = #{pw}
 	</select>
 	
 	<select id="selectKakaoLogin" parameterType="web.com.itbay.members.model.MembersDTO" resultType="web.com.itbay.members.model.MembersDTO">
@@ -38,14 +35,6 @@
 		select COUNT(*)
 		from MEMBERS
 		where NICKNAME = #{nickname}
-	</select>
-	
-	<select id="findId" parameterType="web.com.itbay.members.model.MembersDTO" resultType="String">
-		select nickname from MEMBERS WHERE username = #{username} and phone = #{phone}
-	</select>
-	
-	<select id="findPw" parameterType="web.com.itbay.members.model.MembersDTO" resultType="String">
-		select pw from MEMBERS WHERE username = #{username} and phone = #{phone} and nickname = #{nickname}
 	</select>
 	
 </mapper>
