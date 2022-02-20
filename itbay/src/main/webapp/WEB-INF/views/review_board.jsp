@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>후기 게시판</title>
+	<title>후기게시판</title>
 	<c:url var="head_url" value="/WEB-INF/views/module/default_js_css.jsp"></c:url>
 	<jsp:include page="${head_url }" flush="false" />
 	<meta charset="UTF-8">
