@@ -21,8 +21,18 @@
 		<jsp:param name="login" value="${sessionScope.login }" />
 	</jsp:include>
 </header>
+	<section class="container p-5 my-5">
 <table>
 	<thead>
+	                <td>
+	                	<c:set var="pn" value="${empty param.pageofnum ? pageofnum : param.pageofnum}" />
+		    			<select name="pageofnum" onChange="location.href='/review_board' + this.value">
+	        
+					        <option value="?pageofnum=5" ${pn eq 5 ? "selected" : ""}>5개 씩 보기</option>
+					        <option value="?pageofnum=10" ${pn eq 10 ? "selected" : ""}>10개 씩 보기</option> 
+	        			</select>
+	        		</td>
+	
 		<th> 글 번호</th>
 		<th>상품 사진</th>
 		<th>제품번호</th>		
@@ -35,21 +45,70 @@
 		
 		
 	</thead>
+	<c:set var="page" value="${empty param.page ? 1 : param.page}"/>
 	<tbody>
-	<c:forEach var="data" items="${list}">
+	<c:choose>
+					<c:when test="${page * pn -1 > list.size()-1}">
+						<c:set var="endNum" value="${list.size()-1 }"/>
+					</c:when>
+					<c:otherwise>
+						<c:set var="endNum" value="${page * pn -1}"/>
+					</c:otherwise>
+				</c:choose>
+				<c:forEach var="num" begin="${(page - 1) * pn}" end="${endNum }">
 		<tr>
-			<td>${data.id}</td>
-			<td> <img src="resources/img/${data.img_name}" width="50" height="50"></td>
-			<td>${data.product_id}</td>
-			<td>${data.subject}</td>
-				<td align="center"><a href="/review_boardDetail?reviewid=${data.id}">${data.contents}</a></td>
-			<td>${data.order_date}</td>
-			<td>${data.price}원</td>
-			<td>${data.score}</td>
-			<td>${data.name}</td>
+			<td>${list[num].id}</td>
+			<td> <img src="resources/img/${list[num].img_name}" width="50" height="50"></td>
+			<td>${list[num].product_id}</td>
+			<td>${list[num].subject}</td>
+			<td align="center"><a href="/review_boardDetail?reviewid=${list[num].id}">${list[num].contents}</a></td>
+			<td>${list[num].order_date}</td>
+			<td>${list[num].price}원</td>
+			<td>${list[num].score}</td>
+			<td>${list[num].name}</td>
 		</tr>
 	</c:forEach>
 	</tbody>
 </table>
+<ul class="pagination" style="justify-content: center;">
+			<c:if test="${vpage > 1 }">
+				<li class="page-item">
+					<a class="page-link" href="/review_board?page=${vpage-1}&pageofnum=${pn}">Previous</a>
+				</li>						
+			</c:if>
+			<c:forEach var="page" begin="0" end="${list.size() / pn}" varStatus="loop">
+				<c:choose>
+					<c:when test="${not loop.last}">
+						<c:choose>
+							<c:when test="${(page+1) == vpage }">
+								<li class="page-item active"><a class="page-link" href="/review_board?page=${page + 1}&pageofnum=${pn}">${page + 1}</a></li>
+							</c:when>
+							<c:otherwise>
+								<li class="page-item"><a class="page-link" href="/review_board?page=${page + 1}&pageofnum=${pn}">${page + 1}</a></li>
+							</c:otherwise>
+						</c:choose>
+					</c:when>
+					<c:when test="${loop.last}">
+						<c:if test="${list.size() mod pn ne 0}">
+							<c:choose>
+								<c:when test="${(page+1) == vpage }">
+									<li class="page-item active"><a class="page-link" href="/review_board?page=${page + 1}&pageofnum=${pn}">${page + 1}</a></li>
+								</c:when>
+								<c:otherwise>
+									<li class="page-item"><a class="page-link" href="/review_board?page=${page + 1}&pageofnum=${pn}">${page + 1}</a></li>
+								</c:otherwise>
+							</c:choose>
+						</c:if>
+					</c:when>
+				</c:choose>
+			</c:forEach>
+			<c:if test="${vpage < list.size() / pn }">
+				<li class="page-item">
+					<a class="page-link" href="/review_board?page=${vpage+1}&pageofnum=${pn}">Next</a>
+				</li>						
+			</c:if>
+		</ul>
+	</section>
+
 </body>
 </html>
