@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import web.com.itbay.history.purchase.model.PurchaseDTO;
 import web.com.itbay.history.purchase.model.PurchaseHistoryDTO;
 import web.com.itbay.history.purchase.model.PurchaseService;
-import web.com.itbay.history.sales.model.SalesHistoryService;
 import web.com.itbay.members.model.MembersDTO;
 import web.com.itbay.members.model.MembersService;
 import web.com.itbay.members.model.MileageDTO;

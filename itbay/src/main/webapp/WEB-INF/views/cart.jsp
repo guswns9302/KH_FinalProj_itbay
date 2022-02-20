@@ -106,8 +106,14 @@
 				<td>
 					<button onclick="deleteCart(${cart.id}, ${cart.members_id})">삭제</button>
 					<br>
-					<br>
-					<button>구매</button>
+					<c:choose>
+				  		<c:when test="${cart.order_status eq 'N'}">
+						  	<a href="/purchase_product?product_id=${cart.product_id}" class="btn btn-secondary text-uppercase">Buy</a>
+				  		</c:when>
+				  		<c:otherwise>
+				  			<a class="btn btn-secondary text-uppercase">Sold Out</a>
+				  		</c:otherwise>
+				  	</c:choose>
 				</td>
 			</tr>
 						

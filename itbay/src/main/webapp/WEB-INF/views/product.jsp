@@ -76,23 +76,23 @@
 				          <div class="card shadow-sm">
 				            <img class="bd-placeholder-img card-img-top" width="100%" height="225" alt="" src="/resources/img/${product.img_name}">
 				            <div class="card-body">
-				              <h5 class="card-text"><c:out value="${product.subject}" /></h5>
+				              <div class="clearfix">
+					              <h5 class="card-text float-start"><c:out value="${product.subject}" /></h5>
+					              <c:choose>
+								    <c:when test="${product.sold_out eq 'Y'}">
+								        <h5 class="card-text float-end text-muted">Sold Out</h5>
+								    </c:when>
+								  </c:choose>	
+							  </div>
 				              <div class="d-flex justify-content-between align-items-center">
 				              	<table class="table table-striped" style="text-align: center;">
 									<thead>
 										<tr>
-											<th><small class="text-muted"><fmt:formatNumber value="${product.price}" pattern="#,###"/> \</small></th>
-											<th>조회수 : ${product.view_CNT }</th>
 											<th>
-												<c:choose>
-												    <c:when test="${product.sold_out eq 'N'}">
-												        <a class="btn btn-secondary" href="/productDetail?product_id=${product.id}">See Detail</a>
-												    </c:when>
-												    <c:otherwise>
-												         <a class="btn btn-secondary">Sold Out</a>
-												    </c:otherwise>					
-												</c:choose>	
+												<small class="text-muted"><fmt:formatNumber value="${product.price}" pattern="#,###"/> \</small>
 											</th>
+											<th>조회수 : ${product.view_CNT }</th>
+											<th><a class="btn btn-secondary" href="/productDetail?product_id=${product.id}">See Detail</a></th>
 										</tr>
 									</thead>
 								</table>
