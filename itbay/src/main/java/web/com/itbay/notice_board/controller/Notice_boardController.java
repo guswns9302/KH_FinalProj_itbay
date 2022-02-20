@@ -54,22 +54,17 @@ public class Notice_boardController {
 				maxCnt, Integer.parseInt(pageListCnt));
 		try {
 			List<Notice_boardDTO> datas = service.selectPage(paging.getPage(page));
-			System.out.println("size :" + datas.size());
 			model.addAttribute("datas", datas);
-			System.out.println("curPage at Control :" + paging.getCurPage());
 			model.addAttribute("pageList", paging.getPageList());
 			model.addAttribute("pageListCnt", pageListCnt);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("before return at Controller");
 		return "/noticeboard_user";
 	}
 	
 	@RequestMapping(value="/noticeContents_user", method=RequestMethod.GET)
 	public String noticeContents(Model model, String noticeId) {
-		//@RequestParam(noticeId) int noticeId -> 형변환 없이 바로 사용 가능
-		System.out.println("noticeContents controller");
 		int id = Integer.parseInt(noticeId);
 				
 		Notice_boardDTO dto = service.getNoticeContents(id);
@@ -107,7 +102,6 @@ public class Notice_boardController {
 			List<Notice_boardDTO> datas = service.selectPage(paging.getPage(page));
 			model.addAttribute("datas", datas);
 			model.addAttribute("pageList", paging.getPageList());
-			System.out.println("pageList :" + paging.getPageList().getNums().size());
 			model.addAttribute("pageListCnt", pageListCnt);
 			model.addAttribute("vpage",page);
 			model.addAttribute("total_page", paging);
@@ -132,9 +126,6 @@ public class Notice_boardController {
 	
 	@RequestMapping(value="/noticeModify", method=RequestMethod.GET)
 	public String noticeModify(Model model, HttpSession session, String noticeId, String subject, String contents) {
-		//id만 가지고 찾아도 되지 않나?
-		//1. dto에 id까지 넣어서 dto 보내기->db 안들어감
-		//2. id로 db 들어가서 dto 찾아오기
 		int id = Integer.parseInt(noticeId);
 		Notice_boardDTO dto = new Notice_boardDTO(id, subject, contents);
 		model.addAttribute("dto", dto);
@@ -149,14 +140,11 @@ public class Notice_boardController {
 	@RequestMapping(value="/noticeSave", method=RequestMethod.POST)
 	public String noticeSave(Model model, HttpSession session, String subject, String contents) {
 		Notice_boardDTO dto = new Notice_boardDTO(subject, contents);
-		//아래 부분을 업데이트로. 업데이트 하려면 알아야 할 필수 정보. dto.id
 		int res = service.noticeSave(dto);
 		
 		if(res == 1) {
-			System.out.println("저장성공");
 			return "redirect:/notice_board";
 		} else {
-			System.out.println("저장실패");
 			return "forward:/noticeWrite";
 		}
 	}
@@ -164,11 +152,6 @@ public class Notice_boardController {
 	@RequestMapping(value="/noticeChange", method=RequestMethod.POST)
 	public String noticeChange(Model model, HttpSession session, 
 			String noticeId, String subject, String contents) {
-		System.out.println("noticeChange controller");
-		System.out.println("noticeId : " + noticeId);
-		System.out.println("subject : " + subject);
-		System.out.println("contents : " + contents);
-		
 		int id = Integer.parseInt(noticeId);
 		
 		Notice_boardDTO dto = new Notice_boardDTO(id, subject, contents);
@@ -176,10 +159,8 @@ public class Notice_boardController {
 		int res = service.noticeChange(dto);
 		
 		if(res == 1) {
-			System.out.println("수정성공");
 			return "redirect:/notice_board";
 		} else {
-			System.out.println("수정실패");
 			//에러메시지 포함해서 보내주기
 			return "forward:/noticeModify";
 		}
@@ -190,10 +171,8 @@ public class Notice_boardController {
 		int id = Integer.parseInt(noticeId);
 		boolean res = service.noticeDelete(id);
 		if(res) {
-			System.out.println("삭제성공");
 			return "redirect:/notice_board";
 		} else {
-			System.out.println("삭제실패");
 			return "forward:/noticeContents_admin";
 		}
 	}

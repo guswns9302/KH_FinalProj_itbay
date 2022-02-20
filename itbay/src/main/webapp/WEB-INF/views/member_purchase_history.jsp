@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>공지사항</title>
+	<title>구매내역</title>
 	<c:url var="head_url" value="/WEB-INF/views/module/default_js_css.jsp"></c:url>
 	<jsp:include page="${head_url }" flush="false" />
 	<meta charset="UTF-8">
@@ -17,53 +17,28 @@
 		<jsp:param name="login" value="${sessionScope.login }" />
 	</jsp:include>
 </header>
+<div></div>
 <div>
 	<div>
-		<select onchange="location.href='/notice_board?cnt=' + this.value">
+		<select onchange="location.href='/member_purchase_history?cnt=' + this.value">
 			<option value="5"  ${pageListCnt eq '5' ? 'selected' : '' }> 5개</option>
 			<option value="10" ${pageListCnt eq '10' ? 'selected' : '' }>10개</option>
 			<option value="20" ${pageListCnt eq '20' ? 'selected' : '' }>20개</option>
 			<option value="30" ${pageListCnt eq '30' ? 'selected' : '' }>30개</option>
 		</select>
 	</div>
-</div>	
-
+</div>
 <table>
-	<thead>
-		<th>번호</th>
-		<th>제목</th>
-		<th>작성자</th>
-		<th>날짜</th>
-	</thead>
-	<tbody>
-	<c:forEach var="data" items="${datas}">
+	<c:forEach var="history" items="${histories}">
 		<tr>
-			<td align="center">${data.id}</td>
-			<td align="center"><a href="/noticeContents_user?noticeId=${data.id}">${data.subject}</a></td>
-			<td align="center">	${data.username}</td>
-			<td align="center"><fmt:formatDate value="${data.create_date}" pattern="yyyy년 MM월 dd일"/></td>
+			<td><img src="resources/img/${history.img_name }" width="50" height="50"></td>
+			<td>${history.product_id }</td>
+			<td>${history.subject }</td>
+			<td>${history.price }</td>
+			<td>${history.purchase_date }</td>
 		</tr>
 	</c:forEach>
-	</tbody>
 </table>
-<div>
-	<ul>
-		<li><a href="?page=1">처음</a></li>
-			<c:forEach var="num" items="${pageList.nums}">
-				<c:choose>
-					<c:when test="${pageList.curNum eq num }">
-						<li class="active">
-					</c:when>
-					<c:otherwise>
-						<li>
-					</c:otherwise>
-				</c:choose>
-					<a href="?page=${num}">${num}</a>
-					</li>					
-			</c:forEach>
-		<li><a href="?page=${pageList.maxNum}">마지막</a></li>
-	</ul>
-</div>
 
 </body>
 </html>

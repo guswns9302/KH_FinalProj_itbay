@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MemberListMapper">
+  <select id="countingMember" resultType="_int">
+    select count(*) from members
+  </select>
+  
+  <select id="selectMember" parameterType="map" resultType="web.com.itbay.members.model.MembersDTO">
+	
+	 <![CDATA[
+	 
+
+     select C.*
+       from (
+  	 select rownum as rnum, B.*
+  	   from (
+  	 select *
+  	   from members
+   	  order by id desc ) B
+  	  where rownum <= #{end} ) C
+  	  where C.rnum >= #{start} 
+  	  
+  	]]>
+
+  </select>
+  
+  <select id="countingHistories" resultType="_int">
+    select count(*) from purchase_history
+  </select>
+
+  <select id="selectHistories" parameterType="map" resultType="web.com.itbay.history.purchase.model.PurchaseHistoryDTO">
+	
+	 <![CDATA[
+	 
+	 select D.*, E.subject, E.price
+	   from (
+     select C.*
+       from (
+  	 select rownum as rnum, B.*
+  	   from (
+  	 select *
+  	   from purchase_history
+  	  where members_id = #{membersId}
+   	  order by id desc ) B
+  	  where rownum <= #{end} ) C
+  	  where C.rnum >= #{start} ) D join product_board E
+  	     on D.product_id = E.id
+  	  
+  	]]>
+
+  </select>
+</mapper>
