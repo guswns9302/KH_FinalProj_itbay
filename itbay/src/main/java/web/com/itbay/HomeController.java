@@ -29,4 +29,9 @@ public class HomeController {
 		
 		return "home";
 	}
+	
+	@RequestMapping(value = "/chatting", method = RequestMethod.GET)
+	public String chat(Model model) {
+		return "/chatting";
+	}
 }

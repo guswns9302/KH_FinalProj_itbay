@@ -11,13 +11,11 @@
 	<jsp:include page="${head_url }" flush="false" />
 	<meta charset="UTF-8">
 </head>
-<body >
 <header>
 	<jsp:include page="/WEB-INF/views/module/top-navigation.jsp" flush="false" >
 		<jsp:param name="login" value="${sessionScope.login }" />
 	</jsp:include>
 </header>
-
 	<div class="album py-5 bg-light">
     	<div class="container">
 		<h3>최근 등록된 상품</h3>
@@ -92,7 +90,5 @@
 			</div>
 		</div>
 	</div>
-
-
 </body>
 </html>
