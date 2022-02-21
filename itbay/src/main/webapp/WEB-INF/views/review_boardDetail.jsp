@@ -17,63 +17,83 @@
 			<jsp:param name="login" value="${sessionScope.login }" />
 		</jsp:include>
 	</header>
-	<div>
-		<span>제목:</span>
-		<span name="subject">${dto.subject}</span>
-	</div>
-	<div>
-		<span>제품번호:</span>
-		<span name="product_id">${dto.product_id}</span>
-	</div>
-	<div>
-		<span>사진: -> ${dto.img_name}</span>
-		<img src="resources/img/${dto.img_name}" width="50" height="50">
-	</div>
-	<div>
-		<span>후기 평점:</span>
-		<span  name="score">${dto.score}</span>
-	</div>
-	<div>
-		<span>작성자:</span>	
-		<span name="name">${dto.name}</span>
-	</div>
-	<div>
-		<span>내용:</span>
-		<span name="contents">${dto.contents}</span>
-	</div>
 	
-	<form action="/review_comment" method="post">
-		<c:choose>
-			<c:when test="${empty sessionScope.loginMember.id}">
-				<textarea name="contents" disabled></textarea>
-				<input type="hidden" name="review_id" value="${dto.id}" disabled>
-				<input type="hidden" name="members_id" disabled>
-				<button type="button">댓글 작성</button>
-			</c:when>
-			<c:otherwise>
-				<textarea name="contents"></textarea>
-				<input type="hidden" name="review_id" value="${dto.id}">	
-				<input type="hidden" name="members_id" value="${sessionScope.loginMember.id}">
-				<button type="submit">댓글 작성</button>
-			</c:otherwise>
-		</c:choose>
-	</form>
-	
-	<c:forEach var="comment" items="${comments}">
-	<div>
-	<span>${comment.nickname}</span>
-	<span>${comment.contents}</span>
-	<span>${comment.create_date}</span>
-	</div>
-	</c:forEach>
-	<div>
-	<c:if test="${sessionScope.loginMember.nickname eq 'master' }">
-		<button type="button" onclick="location.href='/Rereview?reviewid=${dto.id}'">수정</button>
-		<button type="button" onclick="location.href='/review_boardDelete?reviewid=${dto.id}'">삭제</button>
-		</c:if>
-	<div>
-		<button type="button" onclick="location.href='/review_board'">목록으로</button>
-	</div>
+	<div class="container" style="margin-top:-50px;">
+		<div class="row">
+			<div class="col-sm-6">
+				<section class="container p-5 my-5">
+					<div class="card">
+						<div style="text-align:center;">
+							<img src="resources/img/${dto.img_name}" class="img-thumbnail" alt="Cinque Terre" width="350" height="350">
+						</div>
+					</div>
+				</section>
+			</div>
+			
+			<div class="col-sm-6">
+				<section class="container p-5 my-5">
+					<div class="clearfix">
+						<c:if test="${sessionScope.loginMember.nickname eq dto.name }">
+							<button type="button" class="btn btn-secondary text-uppercase float-start" style="width: 100px; margin-right: 10px;" onclick="location.href='/Rereview?reviewid=${dto.id}'">수정</button>
+							<button type="button" class="btn btn-secondary text-uppercase float-start" style="width: 100px;" onclick="location.href='/review_boardDelete?reviewid=${dto.id}'">삭제</button>
+						</c:if>
+						<button type="button" class="btn btn-secondary text-uppercase float-end" style="width: 100px;" onclick="location.href='/review_board'">목록</button>
+					</div>
+					<div class="row" style="margin-bottom: -20px;">
+						<div class="col">
+							<div class="form-floating mb-3 mt-3">
+								<input type="text" class="form-control"  id="writer" name="writer" value="${dto.name}" readonly>
+								<label for="writer">Writer</label>
+							</div>
+						</div>
+						<div class="col">
+							<div class="form-floating mb-3 mt-3">
+								<input type="text" class="form-control"  id="date" name="date" value="" readonly>
+								<label for="date">Date</label>
+							</div>
+						</div>
+						<div class="col">
+							<div class="form-floating mb-3 mt-3">
+								<input type="text" class="form-control"  id="count" name="count" value="${dto.score}" readonly>
+								<label for="count">Count</label>
+							</div>
+						</div>
+					</div>
+					<div class="form-floating mb-3 mt-3">
+						<input type="text" class="form-control"  id="subject" name="subject" value="${dto.subject}" readonly>
+						<label for="subject">Subject</label>
+					</div>
+					<div>
+						<textarea class="form-control" rows="10" name="contents" readonly>${dto.contents}</textarea>
+					</div>
+					
+					
+					<div class="rounded border border-dark" style="margin-top: 10px;">
+						<c:forEach var="comment" items="${comments}">
+								<div class="form-floating mb-3 mt-3" style="padding-right: 10px; padding-left: 10px;">
+									<input type="text" class="form-control"  id="subject" name="subject" value="${comment.contents}" readonly>
+									<label for="subject">${comment.nickname} / ${comment.create_date}</label>
+								</div>
+						</c:forEach>
+					</div>
+					<form action="/review_comment" method="post">
+						<c:choose>
+							<c:when test="${empty sessionScope.loginMember.id}">
+							</c:when>
+							<c:otherwise>
+								<div class="form-floating mb-3 mt-3">
+									<input type="text" class="form-control"  name="contents">
+									<label for="contents">contents</label>
+								</div>
+								<input type="hidden" name="review_id" value="${dto.id}">	
+								<input type="hidden" name="members_id" value="${sessionScope.loginMember.id}">
+								<button type="submit" class="btn btn-secondary text-uppercase float-start" style="width: 100px;">댓글 작성</button>
+							</c:otherwise>
+						</c:choose>
+					</form>
+				</section>
+			</div>
+		</div>
 	</div>
 </body>
 </html>

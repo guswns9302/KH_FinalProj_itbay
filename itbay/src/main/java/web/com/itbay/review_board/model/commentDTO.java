@@ -15,52 +15,29 @@ public int getMemberid() {
 	return memberid;
 }
 
-
-
-
-
 public void setMemberid(int memberid) {
 	this.memberid = memberid;
 }
-
-
-
-
 
 public String getContents() {
 	return contents;
 }
 
-
-
-
-
 public int getMembers_id() {
 	return members_id;
 }
-
-
-
-
 
 public void setMembers_id(int members_id) {
 	this.members_id = members_id;
 }
 
-
-
-
-
 public void setContents(String contents) {
 	this.contents = contents;
 }
 
-
-
 public int getId() {
 	return id;
 }
-
 
 public String getNickname() {
 	return nickname;

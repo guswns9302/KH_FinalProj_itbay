@@ -44,8 +44,6 @@ public ProductDTO getproductdata(int ids) {
 	return dto;
 }
 public boolean deletereview(int idss) {
-	System.out.println("서비스에서 삭제");
-	System.out.println(idss);
 	boolean res = dao.deletereview(idss);
 	return res;
 }
@@ -69,10 +67,6 @@ public boolean insertcomment(int review_id, int members_id, String contents) {
 	data.setReview_id(review_id);
 	data.setMembers_id(members_id);
 	data.setContents(contents);
-	System.out.println("서비스에서 출력:");
-	System.out.println(review_id);
-	System.out.println(members_id);
-	System.out.println(contents);
 	
 	int result = dao.insertcomment(data);
 	if(result==1) {

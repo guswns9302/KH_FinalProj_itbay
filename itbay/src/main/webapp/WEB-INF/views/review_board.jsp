@@ -14,6 +14,11 @@
 	<c:url var="head_url" value="/WEB-INF/views/module/default_js_css.jsp"></c:url>
 	<jsp:include page="${head_url }" flush="false" />
 	<meta charset="UTF-8">
+	<style type="text/css">
+		a:link { color: black; text-decoration: none;}
+		a:visited { color: black; text-decoration: none;}
+		a:hover { color: navy; text-decoration: none;}
+	</style>
 </head>
 <body>
 <header>
@@ -22,54 +27,48 @@
 	</jsp:include>
 </header>
 	<section class="container p-5 my-5">
-<table>
-	<thead>
-	                <td>
-	                	<c:set var="pn" value="${empty param.pageofnum ? pageofnum : param.pageofnum}" />
-		    			<select name="pageofnum" onChange="location.href='/review_board' + this.value">
-	        
-					        <option value="?pageofnum=5" ${pn eq 5 ? "selected" : ""}>5개 씩 보기</option>
-					        <option value="?pageofnum=10" ${pn eq 10 ? "selected" : ""}>10개 씩 보기</option> 
-	        			</select>
-	        		</td>
-	
-		<th> 글 번호</th>
-		<th>상품 사진</th>
-		<th>제품번호</th>		
-		<th>제목</th>
-		<th>내용</th>
-		<th>후기 작성 날짜</th>
-		<th>구매한 가격</th>
-		<th>평점</th>
-		<th>구매자 이름</th>
-		
-		
-	</thead>
-	<c:set var="page" value="${empty param.page ? 1 : param.page}"/>
-	<tbody>
-	<c:choose>
-					<c:when test="${page * pn -1 > list.size()-1}">
-						<c:set var="endNum" value="${list.size()-1 }"/>
-					</c:when>
-					<c:otherwise>
-						<c:set var="endNum" value="${page * pn -1}"/>
-					</c:otherwise>
-				</c:choose>
+    <c:set var="pn" value="${empty param.pageofnum ? pageofnum : param.pageofnum}" />
+	<span class="float-end">
+		<select name="pageofnum" onChange="location.href='/review_board' + this.value">
+			<option value="?pageofnum=5" ${pn eq 5 ? "selected" : ""}>5개 씩 보기</option>
+			<option value="?pageofnum=10" ${pn eq 10 ? "selected" : ""}>10개 씩 보기</option> 
+	 	</select>
+	 </span>
+	<table class="table table-striped table-hover align-middle" style="text-align: center;">
+		<thead>
+			<tr>
+				<th>Img</th>
+				<th colspan="2">Subject</th>
+				<th>Buyer</th>
+				<th>Price</th>
+				<th>Score</th>
+				<th>Date</th>
+			</tr>	
+		</thead>
+		<c:set var="page" value="${empty param.page ? 1 : param.page}"/>
+		<tbody>
+			<c:choose>
+				<c:when test="${page * pn -1 > list.size()-1}">
+					<c:set var="endNum" value="${list.size()-1 }"/>
+				</c:when>
+				<c:otherwise>
+					<c:set var="endNum" value="${page * pn -1}"/>
+				</c:otherwise>
+			</c:choose>
+			<c:if test="${endNum > 0 }">
 				<c:forEach var="num" begin="${(page - 1) * pn}" end="${endNum }">
-		<tr>
-			<td>${list[num].id}</td>
-			<td> <img src="resources/img/${list[num].img_name}" width="50" height="50"></td>
-			<td>${list[num].product_id}</td>
-			<td>${list[num].subject}</td>
-			<td align="center"><a href="/review_boardDetail?reviewid=${list[num].id}">${list[num].contents}</a></td>
-			<td>${list[num].order_date}</td>
-			<td>${list[num].price}원</td>
-			<td>${list[num].score}</td>
-			<td>${list[num].name}</td>
-		</tr>
-	</c:forEach>
-	</tbody>
-</table>
+					<tr>
+						<td><img src="resources/img/${list[num].img_name}" width="50" height="50"></td>
+						<td colspan="2"><a href="/review_boardDetail?reviewid=${list[num].id}">${list[num].subject}</a></td>
+						<td>${list[num].name}</td>
+						<td>${list[num].price}원</td>
+						<td>${list[num].score}</td>
+						<td>${list[num].order_date}</td>
+					</tr>
+				</c:forEach>
+			</c:if>
+		</tbody>
+	</table>
 <ul class="pagination" style="justify-content: center;">
 			<c:if test="${vpage > 1 }">
 				<li class="page-item">

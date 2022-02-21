@@ -47,20 +47,22 @@
 						<c:set var="endNum" value="${page * pn -1}"/>
 					</c:otherwise>
 				</c:choose>
-				<c:forEach var="num" begin="${(page - 1) * pn}" end="${endNum }">
-					<tr>
-						<td> <img src="resources/img/${purchaseList[num].img_name}" width="50" height="50"></td>
-						<td>${purchaseList[num].product_id}</td>
-						<td>${purchaseList[num].subject}</td>
-						<td>${purchaseList[num].price}원</td>
-						<td>${purchaseList[num].purchase_date}</td>
-						<td>
-							<c:if test="${purchaseList[num].review_yn == '후기 없음'}">
-								<a href="/review_boardWrite?etc=${purchaseList[num].product_id}" id="review" class="btn btn-secondary text-uppercase">Write Review</a>
-							</c:if>
-						</td>
-					</tr>
-				</c:forEach>
+				<c:if test="${endNum > 0 }">
+					<c:forEach var="num" begin="${(page - 1) * pn}" end="${endNum }">
+						<tr>
+							<td> <img src="resources/img/${purchaseList[num].img_name}" width="50" height="50"></td>
+							<td>${purchaseList[num].product_id}</td>
+							<td>${purchaseList[num].subject}</td>
+							<td>${purchaseList[num].price}원</td>
+							<td>${purchaseList[num].purchase_date}</td>
+							<td>
+								<c:if test="${purchaseList[num].review_yn == '후기 없음'}">
+									<a href="/review_boardWrite?etc=${purchaseList[num].product_id}" id="review" class="btn btn-secondary text-uppercase">Write Review</a>
+								</c:if>
+							</td>
+						</tr>
+					</c:forEach>
+				</c:if>
 			</tbody>
 		</table>
 		<ul class="pagination" style="justify-content: center;">
