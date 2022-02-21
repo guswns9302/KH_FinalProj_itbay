@@ -26,11 +26,9 @@
 		</div>
 		<div style="margin : 10px;">
 			<a href="/join"><button type="button" class="btn btn-secondary text-uppercase" style="width: 183px;">회원가입</button>	</a>
-			<button type="submit" class="btn btn-secondary text-uppercase" style="width: 183px;">login</button>
 		</div>
 		<div style="margin : 10px;">
-			<a href="/findid"><button type="button" class="btn btn-secondary text-uppercase" style="width: 183px;">ID찾기</button>	</a>
-			<a href="/findpw"><button type="button" class="btn btn-secondary text-uppercase" style="width: 183px;">PW찾기</button>	</a>
+			<button type="submit" class="btn btn-secondary text-uppercase" style="width: 183px;">login</button>
 		</div>
 		<div>
 			<a href="https://kauth.kakao.com/oauth/authorize?

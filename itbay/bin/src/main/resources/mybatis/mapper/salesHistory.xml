@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SalesHistoryMapper">
+	<select id="selectSalesHistory" parameterType="web.com.itbay.history.sales.model.SalesHistoryDTO" resultType="web.com.itbay.history.sales.model.SalesHistoryDTO">
+		SELECT A.ID
+			 , B.MEMBERS_ID
+			 , (SELECT C.IMG_NAME FROM IMG C WHERE C.PRODUCT_ID = B.ID AND C.R_IMG = 'Y')
+			   AS IMG_NAME
+			 , A.PRODUCT_ID
+			 , B.SUBJECT
+			 , B.PRICE
+			 , A.SALES_DATE
+		  FROM SALES_HISTORY A
+		  LEFT JOIN PRODUCT_BOARD B ON A.PRODUCT_ID = B.ID
+		  ORDER BY A.ID DESC
+	</select>
+	
+	<insert id="insertSalesHistory" parameterType="web.com.itbay.history.purchase.model.PurchaseHistoryDTO" >
+		INSERT INTO SALES_HISTORY VALUES(SALES_HISTORY_ID_SEQ.NEXTVAL, #{members_id}, #{product_id}, SYSDATE)	
+	</insert>
+</mapper>

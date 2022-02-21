@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ProductMapper">
+	<select id="selectProduct" parameterType="web.com.itbay.product.model.ProductDTO" resultType="web.com.itbay.product.model.ProductDTO">
+		SELECT *
+		FROM
+		    (
+                SELECT T.SUBJECT, T.PRICE, T.SOLD_OUT, T.ID, T.IMG_NAME, ROWNUM AS RNUM
+                FROM (
+                    SELECT A.SUBJECT, A.PRICE, A.SOLD_OUT, A.ID,
+                    (SELECT B.IMG_NAME FROM IMG B WHERE B.PRODUCT_ID = A.ID AND B.R_IMG = 'Y' AND ROWNUM = 1) AS IMG_NAME
+                    FROM PRODUCT_BOARD A 
+                    WHERE 1 = 1 
+					<if test="subject != null and subject != ''">
+						AND A.SUBJECT LIKE '%'||#{subject}||'%'
+					</if>
+					<if test="sold_out != null and sold_out != ''">
+						AND A.SOLD_OUT = #{sold_out}
+					</if>                    
+                    ORDER BY ID DESC
+                ) T
+		    )
+		WHERE RNUM BETWEEN ${startIndex} AND ${endIdex}	    
+	</select>
+	
+	
+	<select id="selectProductCount" parameterType="web.com.itbay.product.model.ProductDTO" resultType="int">
+		SELECT COUNT(*)
+		FROM PRODUCT_BOARD A 
+		WHERE 1 = 1 
+		<if test="subject != null and subject != ''">
+			AND A.SUBJECT LIKE '%'||#{subject}||'%'
+		</if>
+		<if test="sold_out != null and sold_out != ''">
+			AND A.SOLD_OUT = #{sold_out}
+		</if>
+	</select>	
+	
+	
+	
+	<select id="selectProductDetail" parameterType="web.com.itbay.product.model.ProductDTO" resultType="web.com.itbay.product.model.ProductDTO">
+		SELECT * FROM PRODUCT_BOARD
+			WHERE ID = #{id}
+	</select>
+	
+	
+	  <!-- resultType은 기본 "int" 일때는 따로 표기하지 않음 -->
+	  <insert id="saveProduct" parameterType="web.com.itbay.product.model.ProductDTO"> 
+	  	<selectKey keyProperty="id" resultType="int" order="BEFORE">  
+	  		select PRODUCT_BOARD_ID_SEQ.NEXTVAL from dual 
+	  	</selectKey>
+	    INSERT INTO PRODUCT_BOARD VALUES(
+	    	   ${id}, 
+	    	   #{subject}, #{contents}, 1, SYSDATE,
+	    	   0, ${price}, 'N') 
+	  </insert>
+	  
+	  
+	  <!-- resultType은 기본 "int" 일때는 따로 표기하지 않음 -->
+	  <insert id="saveImage" parameterType="web.com.itbay.img.model.ImgDTO"> 
+	  	<selectKey keyProperty="id" resultType="java.lang.Integer" order="BEFORE">
+	  		select IMG_ID_SEQ.NEXTVAL from dual
+	  	</selectKey>
+	    INSERT INTO IMG VALUES(
+	    	   ${id}, 
+	    	   #{img_name}, '', #{product_id}, #{R_img}) 
+	  </insert>
+	  
+	  
+	  <update id="updateProduct" parameterType="web.com.itbay.product.model.ProductDTO">
+	  	UPDATE PRODUCT_BOARD SET
+	  		   SUBJECT = #{subject}
+	  		   , PRICE = #{price}
+	  		   , CONTENTS = #{contents}
+	  	  WHERE ID = #{id}
+	  </update>
+	  
+	  <update id="deleteProduct" parameterType="int">
+	  	DELETE FROM PRODUCT_BOARD WHERE ID = #{id}
+	  </update>
+	  
+	  <select id="selectForPurchase" parameterType="int" resultType="web.com.itbay.history.purchase.model.PurchaseDTO">
+		SELECT * FROM PRODUCT_BOARD A JOIN IMG B ON A.ID = B.PRODUCT_ID WHERE A.ID = #{id} AND B.R_IMG = 'Y'
+	  </select>
+	
+	  <update id="updateSoldOut" parameterType="int">
+	  	UPDATE PRODUCT_BOARD SET SOLD_OUT = 'Y' WHERE ID = #{id}
+	  </update>
+	  
+	  <select id="selectRecomend" resultType="web.com.itbay.product.model.ProductDTO">
+		SELECT * FROM PRODUCT_BOARD WHERE SOLD_OUT = 'N' ORDER BY VIEW_CNT OFFSET 0 ROWS FETCH FIRST 3 ROWS ONLY
+	  </select>
+	  
+	  <select id="selectViewCount" resultType="web.com.itbay.product.model.ProductDTO">
+		SELECT * FROM PRODUCT_BOARD WHERE SOLD_OUT = 'N' ORDER BY CREATE_DATE OFFSET 0 ROWS FETCH FIRST 3 ROWS ONLY
+	  </select>
+
+</mapper>

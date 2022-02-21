@@ -39,9 +39,16 @@
 								<c:when test="${loginMember.getSocial_login() eq 'Y'.charAt(0) }">
 									<img src="${loginMember_img}" width="50" height="50" >
 								</c:when>
-								<c:otherwise>
-									<img src="resources/img/${loginMember.getImg_name()}" width="50" height="50" >
-								</c:otherwise>
+								<c:when test ="${loginMember.getSocial_login() eq 'N'.charAt(0) }">
+									<c:choose>
+										<c:when test="${empty loginMember.getImg_name()}">
+											<img src="resources/img/Basic.jpg" width="50" height="50" >
+										</c:when>
+										<c:otherwise>
+											<img src="resources/img/${loginMember.getImg_name()}" width="50" height="50" >
+										</c:otherwise>
+									</c:choose>
+								</c:when>
 							</c:choose>
 							
 							<c:choose>

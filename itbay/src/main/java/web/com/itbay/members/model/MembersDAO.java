@@ -54,5 +54,15 @@ public class MembersDAO {
 		return result;
 	}
 	
+	public String findId(MembersDTO findIdcheck) {
+		String result = this.session.selectOne("MembersMapper.findId",findIdcheck);
+		
+		return result;
+	}
 	
+	public String findPw(MembersDTO findPwcheck) {
+		String result = this.session.selectOne("MembersMapper.findPw",findPwcheck);
+		
+		return result;
+	}
 }

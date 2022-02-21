@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ImgMapper">
+	<select id="selectImg" parameterType="web.com.itbay.img.model.ImgDTO" resultType="web.com.itbay.img.model.ImgDTO">
+		SELECT * FROM IMG 
+		WHERE PRODUCT_ID = ${product_id} 
+	</select>
+	
+	<update id="updateProfileimg" parameterType="web.com.itbay.img.model.ImgDTO">
+		UPDATE IMG SET IMG_NAME = #{img_name} WHERE MEMBERS_ID = #{members_id}
+	</update>
+	
+	
+	<delete id="deleteImg" parameterType="int">
+		DELETE FROM IMG WHERE PRODUCT_ID = #{id}
+	</delete>
+	
+</mapper>
