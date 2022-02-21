@@ -43,15 +43,34 @@
 									<img src="resources/img/${loginMember.getImg_name()}" width="50" height="50" >
 								</c:otherwise>
 							</c:choose>
-							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" href="/myinfo" role="button" data-bs-toggle="dropdown">Mypage</a>
-								<ul class="dropdown-menu">
-									<li><a class="dropdown-item" href="/myinfo">Profile</a></li>
-									<li><a class="dropdown-item" href="/mileage">Mileage</a></li>
-									<li><a class="dropdown-item" href="/cart?members_id=${loginMember.getId()}">Cart</a></li>
-									<li><a class="dropdown-item" href="/purchase_history">Purchase History</a></li>
-								</ul>
-							</li>
+							
+							<c:choose>
+								<c:when test="${loginMember.getUsername() eq '마스터' }">
+								
+									<li class="nav-item dropdown">
+										<a class="nav-link dropdown-toggle" href="/myinfo" role="button" data-bs-toggle="dropdown">Admin</a>
+										<ul class="dropdown-menu">
+											<li><a class="dropdown-item" href="/member_list">Member List</a></li>
+											<li><a class="dropdown-item" href="/sales_history">Sales History</a></li>
+										</ul>
+									</li>
+								
+								</c:when>
+								<c:otherwise>
+		
+									<li class="nav-item dropdown">
+										<a class="nav-link dropdown-toggle" href="/myinfo" role="button" data-bs-toggle="dropdown">Mypage</a>
+										<ul class="dropdown-menu">
+											<li><a class="dropdown-item" href="/myinfo">Profile</a></li>
+											<li><a class="dropdown-item" href="/mileage">Mileage</a></li>
+											<li><a class="dropdown-item" href="/cart?members_id=${loginMember.getId()}">Cart</a></li>
+											<li><a class="dropdown-item" href="/purchase_history">Purchase History</a></li>
+										</ul>
+									</li>
+		
+								</c:otherwise>
+							</c:choose>
+							
 							<li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
 						</c:when>
 						<c:otherwise>

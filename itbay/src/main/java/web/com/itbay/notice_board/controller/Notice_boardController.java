@@ -135,10 +135,8 @@ public class Notice_boardController {
 		int res = service.noticeSave(dto);
 		
 		if(res == 1) {
-			System.out.println("저장성공");
 			return "redirect:/notice_board";
 		} else {
-			System.out.println("저장실패");
 			return "forward:/noticeWrite";
 		}
 	}
@@ -153,7 +151,6 @@ public class Notice_boardController {
 		int res = service.noticeChange(dto);
 		
 		if(res == 1) {
-			System.out.println("수정성공");
 			return "redirect:/notice_board";
 		} else {
 			System.out.println("수정실패");
@@ -166,10 +163,8 @@ public class Notice_boardController {
 		int id = Integer.parseInt(noticeId);
 		boolean res = service.noticeDelete(id);
 		if(res) {
-			System.out.println("삭제성공");
 			return "redirect:/notice_board";
 		} else {
-			System.out.println("삭제실패");
 			return "forward:/noticeContents_admin";
 		}
 	}
