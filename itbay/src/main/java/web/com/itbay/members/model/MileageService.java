@@ -5,11 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import web.com.itbay.cart.model.CartDAO;
+
 @Service
 public class MileageService {
 
 	@Autowired
 	MileageDAO dao;
+	
 	
 	public MileageDTO getAmount_mileage(int id) {
 		MileageDTO getMileage = dao.selectAmount_mileage(id);

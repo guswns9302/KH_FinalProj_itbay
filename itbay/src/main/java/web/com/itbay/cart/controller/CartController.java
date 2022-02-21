@@ -2,7 +2,9 @@ package web.com.itbay.cart.controller;
 
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.Cookie;
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -58,6 +61,17 @@ public class CartController {
 		
 		if(loginData != null) {			
 			List<CartDTO> list = cartService.selectCart(members_id);
+			
+			List<HashMap> allPur = new ArrayList<HashMap>();
+			for(CartDTO cart : list) {
+				if(cart.getOrder_status().equals("N")) {
+					HashMap<String, Object> map = new HashMap<String, Object>();
+					map.put("id", cart.getProduct_id());
+					map.put("price", cart.getPrice());
+					allPur.add(map);					
+				}
+			}
+			model.addAttribute("allPur", allPur);
 			model.addAttribute("list", list);
 			
 		} else {
@@ -95,4 +109,18 @@ public class CartController {
 		out.println("<script>alert('삭제되었습니다.'); location.href='/cart?members_id="+members_id+"';</script>");	
 		
 	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value="/cart/all/pur", method = RequestMethod.POST)
+	public void cartAllPur(@RequestParam(value = "param") List<Map<String, Object>> param) {
+		
+		for(Map<String, Object> ob : param) {
+			System.out.println(ob.get("id"));
+			System.out.println(ob.get("price"));
+		}
+
+		
+	}
+	
 }

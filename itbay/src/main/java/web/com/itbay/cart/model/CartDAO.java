@@ -6,6 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import web.com.itbay.history.purchase.model.PurchaseHistoryDTO;
+
 @Repository
 public class CartDAO {
 
@@ -34,6 +36,10 @@ public class CartDAO {
 	public int selectMemberCart(CartDTO cartDto) {
 		return this.session.selectOne("CartMapper.countMemberCart", cartDto);
 		
+	}
+
+	public void deleteCartPur(PurchaseHistoryDTO dto) {
+		this.session.selectOne("CartMapper.deletePur", dto);
 	}
 
 }

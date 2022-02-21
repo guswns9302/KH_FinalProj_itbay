@@ -68,7 +68,7 @@ public class ProductService {
 		session = request.getSession();
 		MembersDTO loginData = (MembersDTO) session.getAttribute("loginMember");
 	
-		
+		productDao.productUpdateViewCnt(id);
 		
 		if(loginData != null) {
 			CartDTO cartDto = new CartDTO();

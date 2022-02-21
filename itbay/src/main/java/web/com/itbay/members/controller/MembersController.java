@@ -103,7 +103,7 @@ public class MembersController {
 	}
 
 	@RequestMapping(value = "/kakao", method = RequestMethod.GET)
-	public String kakaologin(String code, Model model, HttpSession session) {
+	public String kakaologin(HttpServletRequest request, HttpServletResponse response, String code, Model model, HttpSession session) {
 		HashMap<String, String> token = kakaoservice.accessToken(code);
 		HashMap<String, String> kakaoLogin_Memberinfo = kakaoservice.kakaoMemberInfo(token.get("access_token"));
 
@@ -123,6 +123,27 @@ public class MembersController {
 			MembersDTO logindata = kakaoservice.getLoginData(kakaoLogindata);
 			session.setAttribute("loginMember_img", kakaoLogin_Memberinfo.get("profile_image"));
 			session.setAttribute("loginMember", logindata);
+			// 마솔 - 비회원 장바구니 기능 추가 시작
+			Cookie[] cookies = request.getCookies();
+			if (cookies != null) {
+				List<Integer> idList = new ArrayList<Integer>();
+				for (Cookie cookie : cookies) {
+					if (!cookie.getName().equals("JSESSIONID")) {
+						idList.add(Integer.parseInt(cookie.getValue()));
+					}
+
+				}
+				cartService.addCart(idList, logindata.getId());
+				// 마솔 - 비회원 장바구니 기능 추가 끝
+				for (Cookie cookie : cookies) {
+					if (!cookie.getName().equals("JSESSIONID")) {
+						cookie.setMaxAge(0);
+						response.addCookie(cookie);
+					}
+
+				}
+			}
+
 		} else {
 			session.setAttribute("login", false);
 		}

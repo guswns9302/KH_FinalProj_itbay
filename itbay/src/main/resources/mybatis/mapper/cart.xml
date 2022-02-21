@@ -54,10 +54,18 @@
 		
 	</select>
 
-	<select id="countMemberCart" parameterType="web.com.itbay.cart.model.CartDTO" resultType="int"> 
+	<select id="countMemberCart" parameterType="web.com.itbay.history.purchase.model.PurchaseHistoryDTO" resultType="int"> 
 		SELECT COUNT(*) FROM CART
 		 WHERE PRODUCT_ID = #{product_id}
 		   AND MEMBERS_ID = #{members_id}
 	</select>
+
+
+	<delete id="deletePur" parameterType="web.com.itbay.cart.model.CartDTO">
+		DELETE FROM CART 
+		WHERE PRODUCT_ID = #{product_id}
+		AND MEMBERS_ID = #{members_id}
+	</delete>
+
 
 </mapper>
