@@ -25,8 +25,8 @@
 	
 	function deleteCart(id, members_id) {
 		
-		var id = document.getElementById("members_id").value;
-		if(id == null || id == ""){
+		var loginId = document.getElementById("members_id").value;
+		if(loginId == null || loginId == ""){
 			alert("로그인후 이용가능합니다.");
 			location.href="/login";
 		} else {

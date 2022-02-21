@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.support.DaoSupport;
@@ -14,8 +16,11 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import web.com.itbay.PagingUtil;
+import web.com.itbay.cart.model.CartDAO;
+import web.com.itbay.cart.model.CartDTO;
 import web.com.itbay.img.model.ImgDAO;
 import web.com.itbay.img.model.ImgDTO;
+import web.com.itbay.members.model.MembersDTO;
 
 @Service
 public class ProductService {
@@ -25,6 +30,9 @@ public class ProductService {
 	
 	@Autowired
 	ImgDAO imgDao;
+	
+	@Autowired
+	CartDAO cartDao;
 	
 	
 	private static String uploadPath = "C:\\Users\\user\\git\\KH_FinalProj_itbay\\itbay\\src\\main\\webapp\\resources\\img\\";
@@ -52,10 +60,24 @@ public class ProductService {
 
 	}
 	
-	public ProductDTO selectProductDetail(int id) {
+	public ProductDTO selectProductDetail(int id, HttpServletRequest request, Model model, HttpSession session) {
 		
 		ProductDTO productDto = new ProductDTO();
 		productDto.setId(id);
+		
+		session = request.getSession();
+		MembersDTO loginData = (MembersDTO) session.getAttribute("loginMember");
+	
+		
+		
+		if(loginData != null) {
+			CartDTO cartDto = new CartDTO();
+			cartDto.setMembers_id(loginData.getId());
+			cartDto.setProduct_id(id);
+			model.addAttribute("loginData",loginData);
+			int cartCount = cartDao.selectMemberCart(cartDto);
+			model.addAttribute("cartCount", cartCount);
+		}		
 		
 		return productDao.selectProductDetail(productDto);
 		

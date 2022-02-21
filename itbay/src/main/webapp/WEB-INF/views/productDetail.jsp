@@ -53,6 +53,7 @@
 					success: function(data){
 						if(data){
 							alert("장바구니에 저장되었습니다.");
+							location.reload();
 						}
 					} 
 				});				
@@ -143,6 +144,15 @@
 	  			<button type="button" id="gocart" class="submit-btn btn btn-secondary">장바구니</button>
 	  		</c:otherwise>
 	  	</c:choose>
+
+		<c:choose>
+	  		<c:when test="${cartCount > 0}">
+			  	<button type="button" id="gocart" class="btn btn-secondary text-uppercase" disabled="disabled">장바구니</button>
+	  		</c:when>
+	  		<c:otherwise>
+	  			<button type="button" id="gocart" class="submit-btn btn btn-primary">장바구니</button>
+	  		</c:otherwise>	  
+  		</c:choose>	
 	  </div>
 	  <br>
 	  <br>
