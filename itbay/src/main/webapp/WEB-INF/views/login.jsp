@@ -24,15 +24,21 @@
 			<input type="text" class="form-control" id="pw" placeholder="Enter password" name="pw">
 			<label for="pwd">Password</label>
 		</div>
-		<div style="margin : 10px;">
+		<div style="display: inline-block">
 			<a href="/join"><button type="button" class="btn btn-secondary text-uppercase" style="width: 183px;">회원가입</button>	</a>
+		</div>
+		<div style="display: inline-block">
 			<button type="submit" class="btn btn-secondary text-uppercase" style="width: 183px;">login</button>
 		</div>
 		<div style="margin : 10px;">
+		<div style="display: inline-block">
 			<a href="/findid"><button type="button" class="btn btn-secondary text-uppercase" style="width: 183px;">ID찾기</button>	</a>
+		</div>
+		<div style="display: inline-block">
 			<a href="/findpw"><button type="button" class="btn btn-secondary text-uppercase" style="width: 183px;">PW찾기</button>	</a>
 		</div>
-		<div>
+		</div>
+		<div style="margin : 10px;">
 			<a href="https://kauth.kakao.com/oauth/authorize?
 				client_id=ea71971929c14c8aef7a4bef54e9b082&
 				redirect_uri=http://localhost/kakao&

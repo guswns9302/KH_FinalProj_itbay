@@ -163,8 +163,11 @@
 						<input type="text" class="form-control" id="address" name="address" value="${loginMember.getAddress() }" readonly>
 						<label for="text">Address</label>
 					</div>
-					<div id="button_modify">
+					<div id="button_modify"style="display: inline-block">
 						<button type="button" class="btn btn-secondary text-uppercase" id="modify" onclick="modify_profile();">Modify</button>
+					</div>
+					<div style="display: inline-block">
+						<a href="/deleteMember"><button type="button" class="btn btn-secondary text-uppercase" id="deleteMember">회원 탈퇴</button></a>
 					</div>
 				</section>
 			</div>
