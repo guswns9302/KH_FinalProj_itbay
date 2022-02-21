@@ -33,9 +33,14 @@ public class review_board<review_boardDto> {
 	ImgService imgService;
 	
 	@RequestMapping(value = "/review_board", method = RequestMethod.GET)
-	public String review_boardlist(Model model,HttpSession session) {
+	public String review_boardlist(Model model,HttpSession session,@RequestParam(value="pageofnum", defaultValue="5") int pageofnum, String page) {
+		model.addAttribute("pageofnum", pageofnum);
 		List<review_boardDTO> list = service.selectReview();
 		model.addAttribute("list", list);
+		if(page == null) {
+			page = "1";
+		}
+		model.addAttribute("vpage",Integer.parseInt(page));
 		return "/review_board";
 	}
 	@RequestMapping(value="/review_boardDetail", method = RequestMethod.GET)

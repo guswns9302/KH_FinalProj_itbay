@@ -37,6 +37,23 @@
       	</span>
 		<table class="table table-striped table-hover">
 			<thead>
+<<<<<<< HEAD
+=======
+				<tr>
+	                <td>판매내역</td>
+	                <td></td>
+	                <td></td>
+	                <td></td>
+	                <td>
+	                	<c:set var="pn" value="${empty param.pageofnum ? pageofnum : param.pageofnum}" />
+		    			<select name="pageofnum" onChange="location.href='/review_board' + this.value">
+	           				<option value="_np">전체 보기</option>
+					        <option value="?pageofnum=5" ${pn eq 5 ? "selected" : ""}>5개 씩 보기</option>
+					        <option value="?pageofnum=10" ${pn eq 10 ? "selected" : ""}>10개 씩 보기</option> 
+	        			</select>
+	        		</td>
+	            </tr>
+>>>>>>> refs/remotes/origin/0220황원준
 	            <tr>
 	                <th>상품사진</th>
 	                <th>제품번호</th>
