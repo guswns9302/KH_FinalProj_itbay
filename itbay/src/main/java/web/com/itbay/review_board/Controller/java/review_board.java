@@ -46,9 +46,11 @@ public class review_board<review_boardDto> {
 	@RequestMapping(value="/review_boardDetail", method = RequestMethod.GET)
 	public String reviewdetail(Model model, String reviewid) {
 		int id = Integer.parseInt(reviewid);
+		
 		List<commentDTO> comments=service.getComment(id);
 		System.out.println(id);
 		review_boardDTO dto=service.getselectreviewDetail(id);
+		service.inviewcnt(id);
 		model.addAttribute("dto",dto);
 		model.addAttribute("comments",comments);
 	
@@ -101,10 +103,10 @@ public class review_board<review_boardDto> {
 	  @RequestMapping(value="/review_boardDelete",	 method=RequestMethod.GET)
 			public String deletereview(Model model,HttpServletResponse response,String reviewid) throws Exception{
 		  int idss =Integer.parseInt(reviewid);
-			boolean res = service.deletereview(idss);
+			boolean res1 = service.deletereview(idss);
 			System.out.print("알이에스:");
-			System.out.println(res);
-			if(res) {
+			System.out.println(res1);
+			if(res1) {
 				System.out.println("삭제성공");
 				return "redirect:/review_board";
 			} else {

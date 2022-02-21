@@ -48,8 +48,13 @@
 						</div>
 						<div class="col">
 							<div class="form-floating mb-3 mt-3">
-								<input type="text" class="form-control"  id="date" name="date" value="" readonly>
-								<label for="date">Date</label>
+								<input type="text" class="form-control"  id="dates" name="dates" value="${dto.create_date}" readonly>
+								<label for="dates">Date</label>
+							</div>
+								<div class="col">
+							<div class="form-floating mb-3 mt-3">
+								<input type="text" class="form-control"  id="viewcnt" name="viewcnt" value="${dto.view_cnt}" readonly>
+								<label for="viewcnt">View_cnt</label>
 							</div>
 						</div>
 						<div class="col">

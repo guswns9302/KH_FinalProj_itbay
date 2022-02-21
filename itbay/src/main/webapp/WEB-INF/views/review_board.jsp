@@ -42,6 +42,7 @@
 				<th>Buyer</th>
 				<th>Price</th>
 				<th>Score</th>
+				<th>Viewcnt</th>
 				<th>Date</th>
 			</tr>	
 		</thead>
@@ -63,7 +64,8 @@
 						<td>${list[num].name}</td>
 						<td>${list[num].price}원</td>
 						<td>${list[num].score}</td>
-						<td>${list[num].order_date}</td>
+						<td>${list[num].view_cnt}</td>
+						<td>${list[num].create_date}</td>
 					</tr>
 				</c:forEach>
 			</c:if>

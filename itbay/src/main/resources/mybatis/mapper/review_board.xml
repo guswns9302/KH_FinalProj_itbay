@@ -15,6 +15,7 @@ SELECT
      ,A.SCORE
      ,B.PRICE
      ,A.contents
+     ,A.view_cnt
      ,A.create_DATE,
       A.ORDER_DATE,
 (SELECT D.nickname FROM members D  WHERE a.members_id=d.id AND D.master = 'N') 
@@ -48,6 +49,7 @@ SELECT
                 SUBJECT,
                 CONTENTS,
                 SCORE,           
+                CREATE_DATE,
                 ORDER_DATE
             )
             VALUES
@@ -58,7 +60,8 @@ SELECT
                 #{subject},
                 #{contents},
                 #{score},
-                SYSDATE
+                SYSDATE,
+                 SYSDATE
             )
         ]]>
     </insert>
@@ -71,6 +74,8 @@ SELECT
  	,A.SUBJECT
  	,A.CONTENTS
  	,A.SCORE
+ 	,A.VIEW_CNT
+ 	,A.CREATE_DATE
  	,(SELECT B.nickname FROM members B  WHERE A.members_id=B.id AND B.master = 'N') 
 	   AS NAME
       from review_board A
@@ -110,4 +115,14 @@ SELECT
 		INSERT INTO REPLY(ID, REVIEW_ID, MEMBERS_ID, rgrpl, CONTENTS, CREATE_DATE)
 		     VALUES(REPLY_ID_SEQ.NEXTVAL, #{review_id}, #{members_id}, 0, #{contents}, SYSDATE)
 	</insert>
+	<update id="viewcnt">
+	UPDATE review_board
+	SET view_cnt=view_cnt+1
+	where id=#{id}
+	</update>
+	
+	<delete id="deletecomment">
+	DELETE FROM REPLY
+	WHERE review_id=#{review_id}
+	</delete>
 </mapper>

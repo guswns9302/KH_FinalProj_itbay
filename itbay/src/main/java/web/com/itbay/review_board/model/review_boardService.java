@@ -44,8 +44,10 @@ public ProductDTO getproductdata(int ids) {
 	return dto;
 }
 public boolean deletereview(int idss) {
-	boolean res = dao.deletereview(idss);
-	return res;
+	int res2 = dao.deletcomment(idss);
+	boolean res1 = dao.deletereview(idss);
+	
+	return res1;
 }
 
 public void reviewupdate(review_boardDTO review_boardDto) {
@@ -72,6 +74,14 @@ public boolean insertcomment(int review_id, int members_id, String contents) {
 	if(result==1) {
 		return true;
 	}
+	return false;
+}
+
+public boolean inviewcnt(int id) {
+	int result=dao.updateviewcnt(id);
+	if(result ==1) {
+		return true;
+}
 	return false;
 }
 

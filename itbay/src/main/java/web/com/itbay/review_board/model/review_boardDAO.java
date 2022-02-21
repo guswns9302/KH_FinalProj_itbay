@@ -69,4 +69,16 @@ public int insertcomment(commentDTO data) {
 
 	return session.insert("review_boardMapper.insertcomment",data);
 }
+
+
+public int updateviewcnt(int id) {
+	
+	return session.update("review_boardMapper.viewcnt",id);
+}
+
+
+public int deletcomment(int idss) {
+	
+	return session.delete("review_boardMapper.deletecomment",idss);
+}
 }
