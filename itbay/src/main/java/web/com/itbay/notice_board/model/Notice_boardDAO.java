@@ -47,4 +47,9 @@ public class Notice_boardDAO {
 		int res = this.session.delete("NoticeMapper.deleteNotice", id);
 		return res == 1 ? true : false;
 	}
+
+	public int updateNoticeViewCnt(int id) {
+		int res = this.session.update("NoticeMapper.updateNoticeViewCnt",id);
+		return res;
+	}
 }

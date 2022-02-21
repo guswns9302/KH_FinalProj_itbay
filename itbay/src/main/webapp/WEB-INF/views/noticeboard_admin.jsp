@@ -42,6 +42,7 @@
 				<th>Num</th>
 				<th>Subject</th>
 				<th>Writer</th>
+				<th>Views</th>
 				<th>Date</th>
 			</tr>
 		</thead>
@@ -50,7 +51,8 @@
 			<tr>
 				<td>${data.id}</td>
 				<td><a href="/noticeContents_admin?noticeId=${data.id}">${data.subject}</a></td>
-				<td>	${data.username}</td>
+				<td>${data.username}</td>
+				<td>${data.view_CNT}</td>
 				<td><fmt:formatDate value="${data.create_date}" pattern="yyyy년 MM월 dd일"/></td>
 			</tr>
 		</c:forEach>

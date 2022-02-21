@@ -24,8 +24,15 @@ public class Notice_boardService {
 	}
 	
 	public Notice_boardDTO getNoticeContents(int id) {
-		Notice_boardDTO dto = dao.selectContents(id);
-		return dto;
+		int res = dao.updateNoticeViewCnt(id);
+		Notice_boardDTO dto = new Notice_boardDTO();
+		if(res == 1) {
+			dto = dao.selectContents(id);
+			return dto;
+		}
+		else {
+			return dto;
+		}
 	}
 
 	public List<MembersDTO> getMembers() {

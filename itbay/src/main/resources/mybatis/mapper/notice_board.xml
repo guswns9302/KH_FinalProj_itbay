@@ -63,4 +63,8 @@
 	DELETE FROM NOTICE_BOARD
 	 WHERE ID = #{id}
   </delete>
+  
+  <update id="updateNoticeViewCnt" parameterType="int">
+  	UPDATE NOTICE_BOARD SET VIEW_CNT = VIEW_CNT+1 WHERE ID = #{id}
+  </update>
 </mapper>
