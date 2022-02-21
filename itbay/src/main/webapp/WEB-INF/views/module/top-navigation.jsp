@@ -22,12 +22,6 @@
 				<li class="nav-item">
 					<a class="nav-link" href="/review_board">Review</a>
 				</li>
-				<li>
-					<form class="d-flex">
-						<input class="form-control me-2" type="text" id="searchText" placeholder="Search">
-						<button class="btn btn-primary" type="button" id="searchBtn">Search</button>
-					</form>
-				</li>
 			</ul>
 			<div class="d-flex">
 				<ul class="navbar-nav">
@@ -81,6 +75,7 @@
 							<li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
 						</c:when>
 						<c:otherwise>
+								<li class="nav-item"><a class="nav-link" href="/cart">Cart</a></li>
 								<li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
 						</c:otherwise>
 					</c:choose>

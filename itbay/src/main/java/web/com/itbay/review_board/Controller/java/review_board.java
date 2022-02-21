@@ -158,11 +158,7 @@ public class review_board<review_boardDto> {
 	  @RequestMapping(value="/review_comment",method = RequestMethod.POST)
 	  public String insertrcomment(int review_id,int members_id,String contents,HttpSession session,HttpServletRequest request)
 	  {
-//		MembersDTO logindata = new MembersDTO();	
-//			if(logindata != null) {
-//				session.setAttribute("login", true);
-//				session.setAttribute("loginMember", logindata);
-//			}	
+
 		  MembersDTO logindata = (MembersDTO) session.getAttribute("loginMember");
 		  boolean result= service.insertcomment(review_id,members_id,contents);
 		  return "redirect:/review_boardDetail?reviewid="+review_id;
