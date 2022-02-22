@@ -51,7 +51,7 @@
 									<li class="nav-item dropdown">
 										<a class="nav-link dropdown-toggle" href="/myinfo" role="button" data-bs-toggle="dropdown">Admin</a>
 										<ul class="dropdown-menu">
-											<li><a class="dropdown-item" href="/member_list">Member List</a></li>
+											<!--  <li><a class="dropdown-item" href="/member_list">Member List</a></li>-->
 											<li><a class="dropdown-item" href="/sales_history">Sales History</a></li>
 										</ul>
 									</li>
