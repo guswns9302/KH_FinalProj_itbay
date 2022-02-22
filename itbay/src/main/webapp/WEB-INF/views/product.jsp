@@ -74,7 +74,7 @@
 				<c:forEach var="product" items="${list}" varStatus="status">
 				        <div class="col">
 				          <div class="card shadow-sm">
-				            <img class="bd-placeholder-img card-img-top" width="100%" height="225" alt="" src="/resources/img/${product.img_name}">
+				            <img class="bd-placeholder-img card-img-top" onerror="this.src='resources/icon/itbay_logo.png'" width="100%" height="225" alt="" src="/resources/img/${product.img_name}">
 				            <div class="card-body">
 				              <div class="clearfix">
 					              <h5 class="card-text float-start"><c:out value="${product.subject}" /></h5>

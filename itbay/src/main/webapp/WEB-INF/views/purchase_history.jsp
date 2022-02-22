@@ -50,7 +50,7 @@
 				<c:if test="${endNum > 0 }">
 					<c:forEach var="num" begin="${(page - 1) * pn}" end="${endNum }">
 						<tr>
-							<td> <img src="resources/img/${purchaseList[num].img_name}" width="50" height="50"></td>
+							<td> <img src="resources/img/${purchaseList[num].img_name}" onerror="this.style.display='none'" width="50" height="50"></td>
 							<td>${purchaseList[num].product_id}</td>
 							<td>${purchaseList[num].subject}</td>
 							<td>${purchaseList[num].price}원</td>

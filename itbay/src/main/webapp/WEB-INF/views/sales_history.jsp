@@ -57,7 +57,7 @@
 				</c:choose>
 				<c:forEach var="num" begin="${(page - 1) * pn}" end="${endNum }">
 					<tr>
-						<td> <img src="resources/img/${salesList[num].img_name}".png width="50" height="50"></td>
+						<td> <img src="resources/img/${salesList[num].img_name}".png onerror="this.style.display='none'" width="50" height="50"></td>
 						<td>${salesList[num].product_id}</td>
 						<td>${salesList[num].subject}</td>
 						<td>${salesList[num].price}</td>

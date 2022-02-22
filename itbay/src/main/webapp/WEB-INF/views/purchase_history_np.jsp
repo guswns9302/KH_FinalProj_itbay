@@ -41,7 +41,7 @@
 			<tbody>
 				<c:forEach var="list" items="${listNp}">
 					<tr>
-						<td><img src="resources/img/${list.img_name}" width="50" height="50"></td>
+						<td><img src="resources/img/${list.img_name}" onerror="this.style.display='none'" width="50" height="50"></td>
 						<td>${list.product_id}</td>
 						<td>${list.subject}</td>
 						<td>${list.price}원</td>
