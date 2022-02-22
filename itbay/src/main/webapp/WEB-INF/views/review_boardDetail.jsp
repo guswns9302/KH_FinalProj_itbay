@@ -24,7 +24,7 @@
 				<section class="container p-5 my-5">
 					<div class="card">
 						<div style="text-align:center;">
-							<img src="resources/img/${dto.img_name}" class="img-thumbnail" alt="Cinque Terre" width="350" height="350">
+							<img src="resources/img/${dto.img_name}" class="img-thumbnail" alt="Cinque Terre" onerror="this.src='resources/icon/itbay_logo.png'" width="350" height="350">
 						</div>
 					</div>
 				</section>
