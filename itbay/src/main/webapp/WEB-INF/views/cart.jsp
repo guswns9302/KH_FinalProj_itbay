@@ -110,7 +110,7 @@
 					<c:forEach var="cart" items="${list}" varStatus="status">
 					<tr style="vertical-align: middle;">
 						<td scope="row" class="col-2">
-							<img width="150" height="100" alt="" src="/resources/img/${cart.img_name}">
+							<img width="150" height="100" alt="" src="/resources/img/${cart.img_name}" onerror="this.style.display='none'">
 						</td>
 						<td>${cart.product_id}</td>
 						<td  onclick="detail(${cart.product_id})">${cart.subject}</td>

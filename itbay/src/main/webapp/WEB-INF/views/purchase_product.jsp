@@ -79,7 +79,7 @@
 				<div class="card">
 						<div>
 						  	<div style="text-align:center;">
-								<img src="/resources/img/${productInfo.img_name}" class="img-thumbnail" alt="Cinque Terre">
+								<img src="/resources/img/${productInfo.img_name}" class="img-thumbnail" onerror="this.src='resources/icon/itbay_logo.png'" alt="Cinque Terre">
 							</div>
 							<div class="card-body">
 								<div class="container">

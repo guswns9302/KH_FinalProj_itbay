@@ -59,7 +59,7 @@
 			<c:if test="${endNum > 0 }">
 				<c:forEach var="num" begin="${(page - 1) * pn}" end="${endNum }">
 					<tr>
-						<td><img src="resources/img/${list[num].img_name}" width="50" height="50"></td>
+						<td><img src="resources/img/${list[num].img_name}" width="50" height="50" onerror="this.style.display='none'"></td>
 						<td colspan="2"><a href="/review_boardDetail?reviewid=${list[num].id}">${list[num].subject}</a></td>
 						<td>${list[num].name}</td>
 						<td>${list[num].price}원</td>
