@@ -28,9 +28,14 @@
 	
 	<!-- DataSource 정보 등록 -->
 	<context:property-placeholder location="file:///C:/dev/oracle/itbay/oracle_connection.prop"/>
+	<!-- 
+	aws에 배포하기위한 경로
+	<context:property-placeholder location="file:/usr/share/tomcat/webapps/ROOT/WEB-INF/classes/mybatis/oracle_connection.prop"/>
+	 -->
 	<beans:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<beans:property name="driverClassName" value="oracle.jdbc.OracleDriver"></beans:property>
 		<beans:property name="url" value="${url}"></beans:property>
+		<!-- aws에 배포하기위해 변경 : 리눅스 명령어와 겹쳐서 user -> user1 / password -> password1 -->
 		<beans:property name="username" value="${user}"></beans:property>
 		<beans:property name="password" value="${password}"></beans:property>
 	</beans:bean>
