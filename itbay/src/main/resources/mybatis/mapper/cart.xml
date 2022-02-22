@@ -48,10 +48,16 @@
 		'Y' AND ROWNUM = 1) AS IMG_NAME 
 		FROM PRODUCT_BOARD A
 		WHERE ID IN 
-		<foreach collection="list" index="index" item="idList" open="(" close=")" separator=",">
-			#{idList}
-		</foreach>
-		
+ 		<choose>
+			<when test="list.size != 0">
+				<foreach collection="list" index="index" item="idList" open="(" close=")" separator=",">
+					#{idList}
+				</foreach>
+			</when>
+			<otherwise>
+				NULL
+			</otherwise>
+		</choose>
 	</select>
 
 	<select id="countMemberCart" parameterType="web.com.itbay.history.purchase.model.PurchaseHistoryDTO" resultType="int"> 

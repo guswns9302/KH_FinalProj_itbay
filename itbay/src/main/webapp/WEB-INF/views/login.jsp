@@ -31,12 +31,17 @@
 			<button type="submit" class="btn btn-secondary text-uppercase" style="width: 183px;">login</button>
 		</div>
 		<div style="margin : 10px;">
-		<div style="display: inline-block">
-			<a href="/findid"><button type="button" class="btn btn-secondary text-uppercase" style="width: 183px;">ID찾기</button>	</a>
+			<div style="display: inline-block">
+				<a href="/findid"><button type="button" class="btn btn-secondary text-uppercase" style="width: 183px;">ID찾기</button>	</a>
+			</div>
+			<div style="display: inline-block">
+				<a href="/findpw"><button type="button" class="btn btn-secondary text-uppercase" style="width: 183px;">PW찾기</button>	</a>
+			</div>
 		</div>
-		<div style="display: inline-block">
-			<a href="/findpw"><button type="button" class="btn btn-secondary text-uppercase" style="width: 183px;">PW찾기</button>	</a>
-		</div>
+		<div style="margin : 10px;">
+			<div style="display: inline-block">
+				<a href="/"><button type="button" class="btn btn-secondary text-uppercase" style="width: 183px;">돌아가기</button>	</a>
+			</div>
 		</div>
 		<div style="margin : 10px;">
 			<a href="https://kauth.kakao.com/oauth/authorize?

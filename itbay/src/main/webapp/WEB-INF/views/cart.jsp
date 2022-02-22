@@ -76,10 +76,7 @@
 	});
 	
 </script>
-
 </head>
-
-
 <body>
 	<header>
 		<jsp:include page="/WEB-INF/views/module/top-navigation.jsp"
@@ -87,68 +84,52 @@
 			<jsp:param name="login" value="${sessionScope.login }" />
 		</jsp:include>
 	</header>
-	<input type="hidden" id="members_id" value="${loginMember.getId()}">
-	<div class="container">
-		<div>
-			<span style="font-weight:bold">내 장바구니</span>
-		</div>
-
-	<br>
-
-	
-	<br>
-	<br>
-	
-	<c:set var = "sum" value = "0" />
-	<c:forEach var="cart" items="${list}" varStatus="status">
-		<c:set var= "sum" value="${sum + cart.price}"/>
-	</c:forEach>
-	<div style="font-weight: bold; float: right;">총 금액 : <fmt:formatNumber value="${sum}" pattern="#,###"/>원</div>
-	<br>
-	<div>
-		<button style="float:right" id="allPur">전체 구매</button>
-	</div>
-
-	<table class="table">
-		<thead class="thead-dark">
-			<tr>
-				<th scope="col">대표 사진</th>
-				<th scope="col">제품 번호</th>
-				<th scope="col">제품 명</th>
-				<th scope="col">가 격</th>
-			</tr>
-		</thead>
-		<tbody>
+		<input type="hidden" id="members_id" value="${loginMember.getId()}">
+		
+		<div class="container" style="margin-top:20px;">
+			<div>
+				<span style="font-weight:bold">내 장바구니</span>
+			</div>
+			<c:set var = "sum" value = "0" />
 			<c:forEach var="cart" items="${list}" varStatus="status">
-			<tr style="vertical-align: middle;">
-				<td scope="row" class="col-2">
-					<img width="150" height="100" alt="" src="/resources/img/${cart.img_name}">
-				</td>
-				<td>${cart.product_id}</td>
-				<td  onclick="detail(${cart.product_id})">${cart.subject}</td>
-				<td>${cart.price}</td>
-				<td>
-					<button onclick="deleteCart(${cart.id}, ${cart.members_id})">삭제</button>
-					<br>
-					<c:choose>
-				  		<c:when test="${cart.order_status eq 'N'}">
-						  	<a href="/purchase_product?product_id=${cart.product_id}" class="btn btn-secondary text-uppercase">Buy</a>
-				  		</c:when>
-				  		<c:otherwise>
-				  			<a class="btn btn-secondary text-uppercase">Sold Out</a>
-				  		</c:otherwise>
-				  	</c:choose>
-				</td>
-			</tr>
-						
+				<c:set var= "sum" value="${sum + cart.price}"/>
 			</c:forEach>
-			
-			
-
-
-		</tbody>
-	</table>
-	
-	</div>
+			<div style="font-weight: bold; float: right;">
+				총 금액 : <fmt:formatNumber value="${sum}" pattern="#,###"/>원
+			</div>
+			<table class="table" style="text-align:center;">
+				<thead class="thead-dark">
+					<tr>
+						<th scope="col">IMG</th>
+						<th scope="col">NUN</th>
+						<th scope="col">Subjcet</th>
+						<th scope="col">Price</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="cart" items="${list}" varStatus="status">
+					<tr style="vertical-align: middle;">
+						<td scope="row" class="col-2">
+							<img width="150" height="100" alt="" src="/resources/img/${cart.img_name}">
+						</td>
+						<td>${cart.product_id}</td>
+						<td  onclick="detail(${cart.product_id})">${cart.subject}</td>
+						<td>${cart.price}</td>
+						<td>
+							<c:choose>
+						  		<c:when test="${cart.order_status eq 'N'}">
+								  	<a href="/purchase_product?product_id=${cart.product_id}" class="btn btn-secondary text-uppercase">Buy</a>
+						  		</c:when>
+						  		<c:otherwise>
+						  			<a class="btn btn-secondary text-uppercase">Sold Out</a>
+						  		</c:otherwise>
+						  	</c:choose>
+							<button class="btn btn-secondary text-uppercase" onclick="deleteCart(${cart.id}, ${cart.members_id})">Delete</button>
+						</td>
+					</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
 </body>
 </html>

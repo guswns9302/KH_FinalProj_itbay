@@ -260,20 +260,12 @@ public class MembersController {
 	public HashMap<String, Object> findid(String username, String phone) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 
-		System.out.println("Set name : " + username);
-		System.out.println("Set phone : " + phone);
-
 		MembersDTO findId = new MembersDTO();
 		findId.setUsername(username);
 		findId.setPhone(phone);
 
-		System.out.println("Get name : " + findId.getUsername());
-		System.out.println("Get phone : " + findId.getPhone());
-
 		String result = service.findId(findId);
 		map.put("nickname", result);
-
-		System.out.println("Find ID : " + result);
 
 		return map;
 	}
@@ -289,31 +281,19 @@ public class MembersController {
 	public HashMap<String, Object> findpw(String username, String phone, String nickname) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 
-		System.out.println("Set name : " + nickname);
-		System.out.println("Set name : " + username);
-		System.out.println("Set phone : " + phone);
-
 		MembersDTO findPw = new MembersDTO();
 		findPw.setNickname(nickname);
 		findPw.setUsername(username);
 		findPw.setPhone(phone);
 
-		System.out.println("Get name : " + findPw.getNickname());
-		System.out.println("Get name : " + findPw.getUsername());
-		System.out.println("Get phone : " + findPw.getPhone());
-
 		String result = service.findPw(findPw);
 		map.put("pw", result);
-
-		System.out.println("Find Pw : " + result);
-
 		return map;
 	}
 
 	@GetMapping(value = "/deleteMember")
 	public String deleteMember(Model model,HttpSession session) {
 		MembersDTO loginData = (MembersDTO) session.getAttribute("loginMember");
-		System.out.println(loginData);
 		model.addAttribute("loginData", loginData);
 		return "/deleteMember";
 	}
@@ -321,9 +301,6 @@ public class MembersController {
 	@PostMapping(value = "/deleteMember")
 	public String deleteMember(@RequestParam("pw") String pw, @RequestParam("id") int id,HttpSession session) {
 		boolean isSuccess = false;
-		System.out.println("pw : " + pw);
-		System.out.println("id : " + id);
-		
 		MembersDTO membersDto = new MembersDTO();
 		membersDto.setId(id);
 		membersDto.setPw(pw);
@@ -334,10 +311,9 @@ public class MembersController {
 			
 			Object object = session.getAttribute("login");
 			if(object != null) {
-				session.removeAttribute("login");
 				session.invalidate();
 			}
-			return "/login";
+			return "redirect:/";
 			
 		}else {
 			return "/deleteMember";

@@ -85,17 +85,10 @@ public class CartController {
 						idList.add(Integer.parseInt(cookie.getValue()));
 					}
 				}
-				
-				
 				List<CartDTO> list = cartService.selectCookieProductBoard(idList);
 				model.addAttribute("list", list);
 			}
-
 		}
-		
-		
-		
-		
 		return "/cart";
 	}
 	
