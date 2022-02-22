@@ -45,7 +45,7 @@
 			<tbody>
 				<c:forEach var="slist" items="${sListNp}">
 					<tr>
-						<td><img src="resources/img/${slist.img_name}".png width="50" height="50"></td>
+						<td><img src="resources/img/${slist.img_name}".png onerror="this.style.display='none'" width="50" height="50"></td>
 						<td>${slist.product_id}</td>
 						<td>${slist.subject}</td>
 						<td>${slist.price}</td>
