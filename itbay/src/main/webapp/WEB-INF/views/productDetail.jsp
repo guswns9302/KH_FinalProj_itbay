@@ -21,7 +21,7 @@
 		$(document).ready(function(){
 			
 			var master = $("#masterYn").val();
-			if(master == "master"){
+			if(master == "master@master.com"){
 				$(".masterInput").removeAttr("readonly");
 			}
 			
@@ -170,7 +170,7 @@
 	    </textarea>
 	  </div>		  
 	  <div>
-		<c:if test="${loginMember.getNickname() eq 'master'}">
+		<c:if test="${loginMember.getNickname() eq 'master@master.com'}">
 			<button class="btn btn-primary" type="submit">수정</button>
 			<button class="btn btn-danger" type="button" id="delete">삭제</button>
 		</c:if>	  

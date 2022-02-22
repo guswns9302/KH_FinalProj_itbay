@@ -59,7 +59,7 @@
     	<div class="container">
     	
     		<div>
-				<c:if test="${loginMember.getNickname() eq 'master'}">
+				<c:if test="${loginMember.getNickname() eq 'master@master.com'}">
 					<button class="btn btn-primary" type="button" id="productSaveBtn">제품등록</button>
 				</c:if>
 			</div>		
