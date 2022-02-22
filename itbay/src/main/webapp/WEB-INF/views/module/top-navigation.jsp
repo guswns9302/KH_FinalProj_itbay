@@ -28,7 +28,7 @@
 					<c:choose>
 						<c:when test="${param.login }">
 							<!-- Button to Open the Modal -->
-							<a href="#" data-bs-toggle="modal" data-bs-target="#myModal" style="margin-right:50px;"><img src="resources/icon/chat_logo.png" width="100" height="50"></a>
+							<a href="#" onclick="connectChat();" data-bs-toggle="modal" data-bs-target="#myModal" style="margin-right:50px;"><img src="resources/icon/chat_logo.png" width="100" height="50"></a>
 							<c:choose>
 								<c:when test="${loginMember.getSocial_login() eq 'Y'.charAt(0) }">
 									<img src="${loginMember_img}" width="50" height="50" >
@@ -99,9 +99,6 @@
       <!-- Modal body -->
       <div class="modal-body">
 		<div>
-			<button type="button" onclick="connectChat();">채팅연결</button>
-		</div>
-		<div>
 				<textarea rows="10" cols="60" id="messageArea" readonly></textarea>
 			<div>
 				<input type="text" id="message" onkeyup="enterkey()">
@@ -125,7 +122,6 @@
 		
 		ws.onopen = function(){
 			console.log("서버 접속");
-			$("#messageArea").append("${loginMember.getNickname()} 접속!\n");
 		}
 	}
 	function enterkey() {
