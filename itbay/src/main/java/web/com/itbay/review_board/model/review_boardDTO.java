@@ -9,14 +9,20 @@ public class review_boardDTO {
 	private String subject;
 	private String contents;
 	private int score;
-	private int view_CNT;
+	private int view_cnt;
 	private Date order_date;
+	private Date create_date;
 	private String img_name;
 	private int price;
 	private String usernickname;
 	private String name;
 	
-
+	public Date getCreate_date() {
+		return create_date;
+	}
+	public void setCreate_date(Date create_date) {
+		this.create_date = create_date;
+	}
 
 	
 	public review_boardDTO(String subject,int product_id,int score, String contents,String name,String img_name) {
@@ -76,9 +82,7 @@ public class review_boardDTO {
 	public int getScore() {
 		return score;
 	}
-	public int getView_CNT() {
-		return view_CNT;
-	}
+	
 	public Date getOrder_date() {
 		return order_date;
 	}
@@ -98,8 +102,12 @@ public class review_boardDTO {
 	public void setScore(int score) {
 		this.score = score;
 	}
-	public void setView_CNT(int view_CNT) {
-		this.view_CNT = view_CNT;
+	
+	public int getView_cnt() {
+		return view_cnt;
+	}
+	public void setView_cnt(int view_cnt) {
+		this.view_cnt = view_cnt;
 	}
 	public void setOrder_date(Date order_date) {
 		this.order_date = order_date;

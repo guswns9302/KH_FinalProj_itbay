@@ -18,24 +18,47 @@
 		<jsp:param name="login" value="${sessionScope.login }" />
 	</jsp:include>
 </header>
-ITBAY
+<section class="container p-5 my-5" style="text-align:center;">
+ 	<h1 class="h3 mb-3 fw-normal">Review Notice</h1>
+ 	</section>
+<div class="container">
    <form action='<c:url value='/review_boardinsert'/>' method="post">
-    <label >회원 아이디</label>
-	 	<input type="text" name="members_id" value="${loginMember.getId()}" readonly>
-	 	 <label >제품 번호</label>
-	 	 <input type="text" name="product_id" value="${product_data.getId()}" readonly>
-	 	  <label >가격</label>
-	 	 <span>${product_data.getPrice()}</span>
-              <label >제목</label>            
-            <input type="text" name="subject" value="${dto.getSubject()}" placeholder="제목을 작성해주세요.">
-            <label >내용</label>
-            <textarea  name="contents" rows="10"></textarea>
-  <input type="number" name="score"  min="0" max="10">
-        <button type="submit">등록하기</button>
-	<td>첨부파일</td>
-                	<td>
-                		<input type="file" name="img_name" multiple="multiple"><%-- 파일 업로드 --%>
-                	</td>
+     <div class="form-group">
+    <label  style="font-weight: bold;">회원 아이디</label>
+	 	<input type="text" class="form-control"  name="members_id" value="${loginMember.getId()}" readonly>
+	 	 </div>
+	 	 	 
+	    <div class="form-group">
+	 	 <label  style="font-weight: bold;">제품 번호</label>
+	 	 <input type="text" class="form-control" name="product_id" value="${product_data.getId()}" readonly>
+	 	 	 </div>
+	 	 	 
+	 	 	 
+	 	 	  <div class="form-group"> 
+	 	  <label style="font-weight: bold;">가격</label>
+	 	 <span class="form-control" readonly>${product_data.getPrice()} </span>
+	 	 </div>
+	 	 
+	 	  <div class="form-group">
+              <label style="font-weight: bold;">제목</label>            
+            <input type="text" class="form-control" name="subject" value="${dto.getSubject()}" placeholder="제목을 작성해주세요.">
+            </div>
+            
+              <div class="form-group">
+            <label style="font-weight: bold;">내용</label>
+            <textarea class="form-control" name="contents" rows="10"></textarea>
+            </div>
+          
+       <div class="form-group">      
+   <label style="font-weight: bold;">평점</label>         
+  <input type="number"  class="form-control" name="score"  min="0" max="10">
+   </div>
+  
+  <div class="change">
+        <button class="submit-btn btn btn-primary" type="submit">등록하기</button>
+       </div> 
     </form>
+    	</div>
 </body>
+
 </html>
