@@ -41,7 +41,7 @@
 	 	 
 	 	  <div class="form-group">
               <label style="font-weight: bold;">제목</label>            
-            <input type="text" class="form-control" name="subject" value="${dto.getSubject()}" placeholder="제목을 작성해주세요.">
+            <input type="text" class="form-control" name="subject"  placeholder="제목을 작성해주세요.">
             </div>
             
               <div class="form-group">
