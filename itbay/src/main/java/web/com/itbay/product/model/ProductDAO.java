@@ -59,4 +59,9 @@ public class ProductDAO {
 		List<ProductDTO> viewCount = this.session.selectList("ProductMapper.selectViewCount");
 		return viewCount;
 	}
+
+	public void productUpdateViewCnt(int id) {
+		this.session.update("ProductMapper.updateViewCnt", id);
+		
+	}
 }

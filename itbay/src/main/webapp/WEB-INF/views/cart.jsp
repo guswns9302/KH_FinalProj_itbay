@@ -44,6 +44,35 @@
 			location.href = "/product?subject="+subject+"&sold_out="+sold_out;
 		});
 		
+		
+		$("#allPur").click(function(){
+			
+			
+			var allList = new Array();
+
+			
+			<c:forEach items="${allPur}" var="item">
+				allList.push("${item}");
+			</c:forEach>
+			
+			
+			console.log(JSON.stringify(allList))
+			var params = JSON.stringify(allList);
+			
+			$.ajax({
+				contentType: 'application/json',
+				url: "/cart/all/pur",
+				type : "post",
+				dataType : "json",
+				data: allList,
+				success: function(data){
+	
+				} 
+			});					
+			
+		});
+		
+		
 	});
 	
 </script>
@@ -66,12 +95,7 @@
 
 	<br>
 
-	<select name="sold_out" class="form-control" id="sold_out"
-		onChange="soldOutChange()" style="float: right;">
-		<option value="">전체 보기</option>
-		<option value="">5개씩 정렬</option>
-		<option value="">10개씩 정렬</option>
-	</select>
+	
 	<br>
 	<br>
 	
@@ -82,7 +106,7 @@
 	<div style="font-weight: bold; float: right;">총 금액 : <fmt:formatNumber value="${sum}" pattern="#,###"/>원</div>
 	<br>
 	<div>
-		<button style="float:right">전체 구매</button>
+		<button style="float:right" id="allPur">전체 구매</button>
 	</div>
 
 	<table class="table">
@@ -118,6 +142,9 @@
 			</tr>
 						
 			</c:forEach>
+			
+			
+
 
 		</tbody>
 	</table>
