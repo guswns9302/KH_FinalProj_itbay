@@ -19,8 +19,11 @@ import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
@@ -49,6 +52,7 @@ public class MembersController {
 	@Autowired
 	CartService cartService;
 	// 마솔 - 비회원 장바구니 기능 추가 끝
+
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login() {
@@ -216,38 +220,33 @@ public class MembersController {
 	public String join(String nickname, String pw, String email_address, String username, java.sql.Date birth,
 			String phone, String address, HttpServletResponse res) throws IOException {
 
-		boolean chkresult = service.idCheck(nickname);
+		MembersDTO membersjoin = new MembersDTO();
+		membersjoin.setNickname(nickname);
+		membersjoin.setPw(pw);
+		membersjoin.setUsername(username);
+		membersjoin.setBirth(birth);
+		membersjoin.setPhone(phone);
+		membersjoin.setAddress(address);
+		membersjoin.setEmail_address(email_address);
 
-		if (chkresult == true) {
-			System.out.println("중복");
-			// 자바에서 제이에스피로 문자열을 전송하는 방법
-			res.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = res.getWriter();
-			out.println("<script>alert('ID 중복'); history.go(-1);</script>");
-			out.flush();
+		boolean result = service.join(membersjoin);
+
+		if (result == true) {
+			System.out.println("회원가입 성공");
 		} else {
-			System.out.println("중복아님");
-
-			MembersDTO membersjoin = new MembersDTO();
-			membersjoin.setNickname(nickname);
-			membersjoin.setPw(pw);
-			membersjoin.setUsername(username);
-			membersjoin.setBirth(birth);
-			membersjoin.setPhone(phone);
-			membersjoin.setAddress(address);
-			membersjoin.setEmail_address(email_address);
-
-			boolean result = service.join(membersjoin);
-
-			if (result == true) {
-				System.out.println("회원가입 성공");
-			} else {
-				System.out.println("회원가입 실패");
-			}
-
+			System.out.println("회원가입 실패");
 		}
+
 		return "redirect:/";
 
+	}
+
+	/* ID중복 Controller */
+	@RequestMapping(value = "/user/idCheck", method = RequestMethod.GET)
+	@ResponseBody
+	public int idCheck(@RequestParam("nickname") String nickname) {
+
+		return service.idCheck(nickname);
 	}
 
 	@RequestMapping(value = "/findid", method = RequestMethod.GET)
@@ -309,5 +308,39 @@ public class MembersController {
 		System.out.println("Find Pw : " + result);
 
 		return map;
+	}
+
+	@GetMapping(value = "/deleteMember")
+	public String deleteMember(Model model,HttpSession session) {
+		MembersDTO loginData = (MembersDTO) session.getAttribute("loginMember");
+		System.out.println(loginData);
+		model.addAttribute("loginData", loginData);
+		return "/deleteMember";
+	}
+
+	@PostMapping(value = "/deleteMember")
+	public String deleteMember(@RequestParam("pw") String pw, @RequestParam("id") int id,HttpSession session) {
+		boolean isSuccess = false;
+		System.out.println("pw : " + pw);
+		System.out.println("id : " + id);
+		
+		MembersDTO membersDto = new MembersDTO();
+		membersDto.setId(id);
+		membersDto.setPw(pw);
+		
+		isSuccess = service.deleteMember(membersDto);
+
+		if(isSuccess) {
+			
+			Object object = session.getAttribute("login");
+			if(object != null) {
+				session.removeAttribute("login");
+				session.invalidate();
+			}
+			return "/login";
+			
+		}else {
+			return "/deleteMember";
+		}
 	}
 }

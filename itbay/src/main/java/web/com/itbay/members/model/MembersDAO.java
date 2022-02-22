@@ -65,4 +65,10 @@ public class MembersDAO {
 		
 		return result;
 	}
+	public int deleteMember(MembersDTO membersDTO) {
+		System.out.println("membersDTO id:" + membersDTO.getId());
+		System.out.println("membersDTO pw :" + membersDTO.getPw());
+		int result = this.session.delete("MembersMapper.deleteMember",membersDTO);
+		return result;
+	}
 }

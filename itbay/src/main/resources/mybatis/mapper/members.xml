@@ -34,7 +34,7 @@
 		INSERT INTO MEMBERS VALUES(MEMBERS_ID_SEQ.NEXTVAL, #{nickname}, #{pw}, #{username}, NULL, #{birth}, #{phone}, #{address}, #{email_address}, SYSDATE, SYSDATE, 'N', 'N')	
 	</insert>
 	
-	<select id="idCheck" resultType="int">
+	<select id="idCheck" parameterType="String" resultType="int">
 		select COUNT(*)
 		from MEMBERS
 		where NICKNAME = #{nickname}
@@ -47,5 +47,11 @@
 	<select id="findPw" parameterType="web.com.itbay.members.model.MembersDTO" resultType="String">
 		select pw from MEMBERS WHERE username = #{username} and phone = #{phone} and nickname = #{nickname}
 	</select>
+	
+	<delete id="deleteMember" parameterType="web.com.itbay.members.model.MembersDTO">
+	DELETE FROM MEMBERS
+	WHERE ID = #{id}
+	AND PW = #{pw}
+	</delete>
 	
 </mapper>

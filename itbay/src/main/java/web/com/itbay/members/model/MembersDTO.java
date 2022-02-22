@@ -19,7 +19,6 @@ public class MembersDTO {
 	
 	private String img_name;
 	
-	
 	public String getImg_name() {
 		return img_name;
 	}
