@@ -311,7 +311,13 @@ public class MembersController {
 
 		if(isSuccess) {
 			
+			Object object = session.getAttribute("login");
+			if(object != null) {
+				session.removeAttribute("login");
+				session.invalidate();
+			}
 			return "/login";
+			
 		}else {
 			return "/deleteMember";
 		}
