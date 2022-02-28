@@ -80,9 +80,9 @@
 
 	<br><br><br>
 				
-	<div class="wrapper" style="height: 400px;">
+	<div class="wrapper">
 		<div class="container" style="min-width: 640px; max-width: 640px;">
-			<div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style="width: 640px;">
+			<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
 			  <div class="carousel-inner" style="width: 640px;">
 				<c:forEach var="img" items="${imgList}" varStatus="status">
 					<c:if test="${status.index == 0}">

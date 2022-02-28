@@ -74,7 +74,7 @@
 	
 	<beans:bean id="WebsocketChat" class="web.com.itbay.websocket.chat.ChattingHandler" />
 	<websocket:handlers>
-		<websocket:mapping handler="WebsocketChat" path="/chat"/>
+		<websocket:mapping handler="WebsocketChat" path="/chat/*"/>
 		<websocket:handshake-interceptors>
 			<beans:bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"/>
 		</websocket:handshake-interceptors>

@@ -49,14 +49,14 @@ public class KakaoLoginService {
 			bufferedWriter.flush();
 			
 			// 응답 확인 : 200이면 성공
-//			int responseCode = urlConnection.getResponseCode();
-//			System.out.println("responseCode : " + responseCode);
+			// int responseCode = urlConnection.getResponseCode();
+			// System.out.println("responseCode : " + responseCode);
 			
 			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
 			String result = bufferedReader.readLine();
 			
 			// json data 확인
-//			System.out.println("response body : " + result);
+			// System.out.println("response body : " + result);
 			
 			JSONParser jsonParser = new JSONParser();
 			JSONObject jsonObject = (JSONObject) jsonParser.parse(result);
@@ -82,8 +82,8 @@ public class KakaoLoginService {
 			httpURLConnection.setRequestProperty("Authorization", "Bearer " + access_Token);
 			
 			// 응답 확인 : 200이면 성공
-//			int responseCode = httpURLConnection.getResponseCode();
-//			System.out.println("responseCode : " + responseCode);
+			//int responseCode = httpURLConnection.getResponseCode();
+			//System.out.println("responseCode : " + responseCode);
 			
 			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
 			String result = bufferedReader.readLine();

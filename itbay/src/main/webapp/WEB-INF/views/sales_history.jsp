@@ -27,6 +27,7 @@
 		</jsp:include>
 	</header>
 	<section class="container p-5 my-5">
+		<span class="float-start">판매 누적 금액 : <fmt:formatNumber value="${total_price}" pattern="#,###"/>\</span>
 		<c:set var="pn" value="${empty param.pageofnum ? pageofnum : param.pageofnum}" />
 		<span class="float-end">
    			<select name="pageofnum" onChange="location.href='/sales_history' + this.value" class="btn btn-secondary text-uppercase">

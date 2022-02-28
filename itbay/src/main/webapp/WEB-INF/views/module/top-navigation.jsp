@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
 	<div class="container-fluid">
 		<a class="navbar-brand" href="/"><img src="resources/icon/itbay_logo.png" width="120" height="70"></a>
@@ -51,7 +52,7 @@
 									<li class="nav-item dropdown">
 										<a class="nav-link dropdown-toggle" href="/myinfo" role="button" data-bs-toggle="dropdown">Admin</a>
 										<ul class="dropdown-menu">
-											<!--  <li><a class="dropdown-item" href="/member_list">Member List</a></li>-->
+											<li><a class="dropdown-item" href="/member_list">Member List</a></li>
 											<li><a class="dropdown-item" href="/sales_history">Sales History</a></li>
 										</ul>
 									</li>
@@ -95,7 +96,6 @@
         <h4 class="modal-title">Modal Heading</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
-
       <!-- Modal body -->
       <div class="modal-body">
 		<div>
@@ -106,22 +106,39 @@
 			</div>
 		</div>
       </div>
-
+		
       <!-- Modal footer -->
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="closeChat();">Close</button>
       </div>
 
     </div>
   </div>
 </div>
+
+<c:url var="chat_ajax_url" value="/liveChat" />
 <script type="text/javascript">
 	var ws;
 	function connectChat(){
-		ws = new WebSocket("ws://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/chat");
-		
+		ws = new WebSocket("ws://localhost:80/chat/${loginMember.getId()}");
+		// console.log("${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}");
 		ws.onopen = function(){
 			console.log("서버 접속");
+			console.log("컨트롤러 호출");
+			
+			$.ajax({
+				url: "${chat_ajax_url}",
+				type: "POST",
+				dataType: "json",
+				data:{
+					members_id : ${loginMember.getId()}
+				},
+				success: function(data){
+					if(data.status === "success"){
+						console.log(data.message);
+					}
+				}
+			});
 		}
 	}
 	function enterkey() {
@@ -141,6 +158,7 @@
 		}
 	}
 	function closeChat(){
+		ws.close();
 		ws.onclose = function(event){
 			console.log("연결 해제");
 		}

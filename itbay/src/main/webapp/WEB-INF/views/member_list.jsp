@@ -28,36 +28,44 @@
 	</div>
 </div>	
 <div>
-<!-- 회원목록 들어갈 공간-->
-<c:forEach var="member" items="${datas}">
-	<table>
-		<tr>
-			<td rowspan="2">
-				<c:choose>
-					<c:when test="${member.getSocial_login() eq 'Y'.charAt(0) }">
-						<div style="text-align:center;">
-							<img src="${member_img}" class="img-thumbnail" alt="Cinque Terre"/>
-						</div>
-					</c:when>
-					<c:otherwise>
-					  	<div style="text-align:center;">
-							<img src="resources/img/${member.getImg_name() }" class="img-thumbnail" alt="Cinque Terre">
-						</div>
-					</c:otherwise>
-				</c:choose>
-			</td>
-			<td>${member.getId() }</td>
-			<td>${member.getNickname() }</td>
-			<td>${member.getPhone() }</td>
-			<td>${member.getEmail_address() }</td>
-		</tr>
-		<tr>
-			<td>${member.getAddress() }</td>
-			<td><a href="/member_purchase_history?membersId=${member.getId() }">구매 내역</a></td>
-			<td>${member.getJoinDate() }</td>
-		</tr>
-	</table>
-</c:forEach>
+	<!-- 회원목록 들어갈 공간-->
+		<table class="table table-striped table-hover align-middle" style="text-align: center;">
+			<thead>
+				<tr>
+					<th>Img</th>
+					<th>ID</th>
+					<th>Nickname</th>
+					<th>Phone</th>
+					<th>Email</th>
+					<th>Add</th>
+					<th>JoinDate</th>
+				</tr>	
+			</thead>
+			<c:forEach var="member" items="${datas}">
+			<tr>
+				<td>
+					<c:choose>
+						<c:when test="${member.getSocial_login() eq 'Y'.charAt(0) }">
+							<div style="text-align:center;">
+								<img src="${member_img}" class="img-thumbnail" alt="Cinque Terre"/>
+							</div>
+						</c:when>
+						<c:otherwise>
+						  	<div style="text-align:center;">
+								<img src="resources/img/${member.getImg_name() }" class="img-thumbnail" alt="Cinque Terre">
+							</div>
+						</c:otherwise>
+					</c:choose>
+				</td>
+				<td>${member.getId() }</td>
+				<td>${member.getNickname() }</td>
+				<td>${member.getPhone() }</td>
+				<td>${member.getEmail_address() }</td>
+				<td>${member.getAddress() }</td>
+				<td><a href="/member_purchase_history?membersId=${member.getId() }">구매 내역</a></td>
+				<td>${member.getJoinDate() }</td>
+			</c:forEach>
+		</table>
 </div>
 <div>
 	<ul>

@@ -31,6 +31,7 @@ public class ChattingHandler extends TextWebSocketHandler {
 	private String getSender(WebSocketSession session) {
 		Map<String,Object> httpsessionData = session.getAttributes();
 		MembersDTO logindata = (MembersDTO)httpsessionData.get("loginMember");
+		
 		if(logindata == null) {
 			return session.getId();
 		}

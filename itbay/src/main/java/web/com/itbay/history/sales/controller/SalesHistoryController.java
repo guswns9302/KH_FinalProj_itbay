@@ -29,6 +29,12 @@ public class SalesHistoryController {
 		List<SalesHistoryDTO> salesList = salesService.selectSalesHistory();
 		model.addAttribute("salesList", salesList);
 		
+		int total_price = 0;
+		for(int i = 0; i < salesList.size(); i++) {
+			total_price += salesList.get(i).getPrice();
+		}
+		model.addAttribute("total_price",total_price);
+		
 		if(page == null) {
 			page = "1";
 		}
