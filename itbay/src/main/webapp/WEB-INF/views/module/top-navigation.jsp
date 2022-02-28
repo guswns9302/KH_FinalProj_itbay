@@ -117,6 +117,7 @@
 </div>
 
 <c:url var="chat_ajax_url" value="/liveChat" />
+<c:url var="send_ajax_url" value="/insertMsg" />
 <script type="text/javascript">
 	var ws;
 	function connectChat(){
@@ -135,7 +136,10 @@
 				},
 				success: function(data){
 					if(data.status === "success"){
-						console.log(data.message);
+						console.log("ajax 성공");
+						var msg_data = data.chatting_data;
+						$("#messageArea").append("${loginMember.getNickname()} : " + msg_data + "\n");
+						$("#message").val("");
 					}
 				}
 			});
@@ -153,8 +157,23 @@
 			// 서버로부터 응답을 받을 때 사용
 			console.log(event.data);
 			var msg_data = event.data;
-			$("#messageArea").append(msg_data + "\n");
+			$("#messageArea").append("${loginMember.getNickname()} : " + msg_data + "\n");
 			$("#message").val("");
+			
+			$.ajax({
+				url: "${send_ajax_url}",
+				type: "POST",
+				dataType: "json",
+				data:{
+					members_id : ${loginMember.getId()},
+					send_Msg : msg_data
+				},
+				success: function(data){
+					if(data.status === "success"){
+						console.log(data.message);
+					}
+				}
+			});
 		}
 	}
 	function closeChat(){

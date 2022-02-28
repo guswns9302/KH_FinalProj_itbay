@@ -24,9 +24,6 @@ public class ChattingHandler extends TextWebSocketHandler {
 	// 채팅 연결 시 채팅방 번호, 유저 저장
 	private Map<String, Integer> chatRoom_num = new HashMap<String, Integer>();
 	
-//	@Autowired
-//	ChatService service;
-	
 	// 웹소켓에서 httpsession 정보를 활용 => httpsession에서 로그인한 사용자의 nickname정보를 가져옴
 	private String getSender(WebSocketSession session) {
 		Map<String,Object> httpsessionData = session.getAttributes();
@@ -46,40 +43,16 @@ public class ChattingHandler extends TextWebSocketHandler {
 		sessionList.add(session);
 		String sender = getSender(session);
 		userSessions.put(sender, session);
-		
-		// sender정보로 chat data 조회
-//		ChatDTO chatdto = service.getRoomNum(sender);
-//		System.out.println(chatdto);
-//		// 채팅방 번호 부여
-//		int roomNum = 0;
-//		if(chatdto == null) {
-//			// chat data가 없을 때
-//			int max_chatRoom = service.getMaxRoomNum();
-//			if(max_chatRoom == 0) {
-//				roomNum = 1;
-//			}
-//			else {
-//				roomNum = max_chatRoom++;
-//			}
-//			System.out.println("chatdto == null --> " + roomNum);
-//		}
-//		else {
-//			// chat data가 있을 때
-//			roomNum = chatdto.getRoomnum();
-//			System.out.println("chatdto != null --> " + roomNum);
-//		}
-//		chatRoom_num.put(sender, roomNum);
-//		System.out.println(chatRoom_num.get(sender));
 	}
 	
 	// 소켓이 메세지를 보낼 때
 	@Override
 	public void handleMessage(WebSocketSession session, WebSocketMessage<?> message) throws Exception {
-		String sender = getSender(session);
+		//String sender = getSender(session);
 		// 브로드 캐스팅 -> 모든 유저에게 메세지를 보냄
 		String msg = (String) message.getPayload();
 		for(WebSocketSession s: sessionList) {
-			TextMessage sendMSG = new TextMessage(sender + ": " + msg);
+			TextMessage sendMSG = new TextMessage(msg);
 			s.sendMessage(sendMSG);
 		}
 	}
