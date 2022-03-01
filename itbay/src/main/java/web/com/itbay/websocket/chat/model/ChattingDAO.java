@@ -20,4 +20,9 @@ public class ChattingDAO {
 		List<ChattingDTO> chatting_data = this.session.selectList("ChattingMapper.selectChatData", roomNum);
 		return chatting_data;
 	}
+
+	public List<ChattingRoomNumDTO> selectChatRoom() {
+		List<ChattingRoomNumDTO> getChatRoom = this.session.selectList("ChattingMapper.selectChatRoom");
+		return getChatRoom;
+	}
 }

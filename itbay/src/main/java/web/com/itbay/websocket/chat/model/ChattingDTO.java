@@ -4,12 +4,20 @@ public class ChattingDTO {
 	private int id;
 	private int roomnum;
 	private int members_id;
+	private String members_nickname;
 	private String chat_contents;
 	
-	public ChattingDTO(int roomNum, int members_id, String send_Msg) {
+	public ChattingDTO(int roomNum, int members_id,String members_nickname, String send_Msg) {
 		this.roomnum = roomNum;
 		this.members_id = members_id;
+		this.members_nickname = members_nickname;
 		this.chat_contents = send_Msg;
+	}
+	public String getMembers_nickname() {
+		return members_nickname;
+	}
+	public void setMembers_nickname(String members_nickname) {
+		this.members_nickname = members_nickname;
 	}
 	public int getId() {
 		return id;

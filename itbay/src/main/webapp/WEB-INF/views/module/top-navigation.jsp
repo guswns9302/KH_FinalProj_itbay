@@ -45,8 +45,16 @@
 									</c:choose>
 								</c:when>
 							</c:choose>
-							
-							<c:choose>
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="/myinfo" role="button" data-bs-toggle="dropdown">Mypage</a>
+								<ul class="dropdown-menu">
+									<li><a class="dropdown-item" href="/myinfo">Profile</a></li>
+									<li><a class="dropdown-item" href="/mileage">Mileage</a></li>
+									<li><a class="dropdown-item" href="/cart?members_id=${loginMember.getId()}">Cart</a></li>
+									<li><a class="dropdown-item" href="/purchase_history">Purchase History</a></li>
+								</ul>
+							</li>
+							<%-- <c:choose>
 								<c:when test="${loginMember.getUsername() eq '마스터' }">
 								
 									<li class="nav-item dropdown">
@@ -71,7 +79,7 @@
 									</li>
 		
 								</c:otherwise>
-							</c:choose>
+							</c:choose> --%>
 							
 							<li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
 						</c:when>
@@ -94,7 +102,7 @@
       <!-- Modal Header -->
       <div class="modal-header">
         <h4 class="modal-title">Modal Heading</h4>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="closeChat();"></button>
       </div>
       <!-- Modal body -->
       <div class="modal-body">
@@ -124,22 +132,22 @@
 		ws = new WebSocket("ws://localhost:80/chat/${loginMember.getId()}");
 		// console.log("${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}");
 		ws.onopen = function(){
-			console.log("서버 접속");
-			console.log("컨트롤러 호출");
-			
 			$.ajax({
 				url: "${chat_ajax_url}",
 				type: "POST",
 				dataType: "json",
 				data:{
-					members_id : ${loginMember.getId()}
+					roomNum : ${loginMember.getId()}
 				},
 				success: function(data){
 					if(data.status === "success"){
-						console.log("ajax 성공");
 						var msg_data = data.chatting_data;
-						$("#messageArea").append("${loginMember.getNickname()} : " + msg_data + "\n");
-						$("#message").val("");
+						if($('#messageArea').val() === ''){
+							for(list in msg_data){
+								$("#messageArea").append(msg_data[list].MEMBERS_NICKNAME + " : " + msg_data[list].CHAT_CONTENTS + "\n");
+								$("#message").val("");
+							}
+						}
 					}
 				}
 			});
@@ -153,6 +161,7 @@
 	}
 	function sendMSG(message){
 		ws.send(message);
+		var roomNum = ws.url.substring(20);
 		ws.onmessage = function(event){
 			// 서버로부터 응답을 받을 때 사용
 			console.log(event.data);
@@ -165,7 +174,7 @@
 				type: "POST",
 				dataType: "json",
 				data:{
-					members_id : ${loginMember.getId()},
+					roomNum : roomNum,
 					send_Msg : msg_data
 				},
 				success: function(data){

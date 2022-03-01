@@ -27,4 +27,9 @@ public class ChattingService {
 		return chatting_data;
 	}
 
+	public List<ChattingRoomNumDTO> getChatRoom() {
+		List<ChattingRoomNumDTO> chatRoom = dao.selectChatRoom();
+		return chatRoom;
+	}
+
 }

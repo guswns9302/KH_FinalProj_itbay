@@ -4,10 +4,14 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ChattingMapper">
 	<insert id="insertMsg" parameterType="web.com.itbay.websocket.chat.model.ChattingDTO">
-		INSERT INTO CHAT VALUES(CHAT_ID_SEQ.NEXTVAL, #{roomnum}, #{members_id}, #{chat_contents})
+		INSERT INTO CHAT VALUES(CHAT_ID_SEQ.NEXTVAL, #{roomnum}, #{members_id}, #{members_nickname}, #{chat_contents})
 	</insert>
 	
 	<select id="selectChatData" parameterType="int" resultType="web.com.itbay.websocket.chat.model.ChattingDTO">
 		SELECT * FROM CHAT WHERE ROOMNUM = #{roomnum} ORDER BY ID
+	</select>
+	
+	<select id="selectChatRoom" resultType="web.com.itbay.websocket.chat.model.ChattingRoomNumDTO">
+		SELECT DISTINCT ROOMNUM,MEMBERS_NICKNAME FROM CHAT WHERE NOT MEMBERS_NICKNAME IN ('master@master.com')
 	</select>
 </mapper>

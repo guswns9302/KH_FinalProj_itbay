@@ -19,9 +19,18 @@
 </head>
 <body>
 	<header>
-		<jsp:include page="/WEB-INF/views/module/top-navigation.jsp" flush="false" >
-			<jsp:param name="login" value="${sessionScope.login }" />
-		</jsp:include>
+		<c:choose>
+			<c:when test="${loginMember.getUsername() eq '마스터' }">
+				<jsp:include page="/WEB-INF/views/module/top-navigation_master.jsp" flush="false" >
+					<jsp:param name="login" value="${sessionScope.login }" />
+				</jsp:include>
+			</c:when>
+			<c:otherwise>
+				<jsp:include page="/WEB-INF/views/module/top-navigation.jsp" flush="false" >
+					<jsp:param name="login" value="${sessionScope.login }" />
+				</jsp:include>
+			</c:otherwise>
+		</c:choose>
 	</header>
 	<section class="container p-5 my-5">
 		<c:set var="pn" value="${empty param.pageofnum ? pageofnum : param.pageofnum}" />
