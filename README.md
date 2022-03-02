@@ -21,8 +21,43 @@ Open Authorization의 약자로 사의 사이트에 대한 접근 권한을 얻�
 3. AccessToken을 기반으로 Kakao Login Service에 Login요청을 하여 Kakao에 동의한 회원 정보를 불러온다.  
 <img src="https://user-images.githubusercontent.com/87797716/155881283-97bfcade-f24c-4e58-b65d-05b1370ae953.png"></img>  
 
+### 2. Live Chatting  
+WebSocket Protocol을 이용한 사용자와 관리자 사이의 1:1 실시간 채팅 구현  
+<img src="https://user-images.githubusercontent.com/87797716/156277041-8680c1e9-07de-480d-bd94-0148335b6cf3.png"></img>  
+* 사용자 : 메세지 입력  
+<img src="https://user-images.githubusercontent.com/87797716/156277485-e0358798-e102-44d6-8faa-e0c8ec231e65.png" width="450px"></img>
+<img src="https://user-images.githubusercontent.com/87797716/156277445-1b780a45-4b96-4137-9f81-5596d02f8e0b.png" width="450px"></img>  
+* 관리자 : 채팅방 생성 확인 / 메세지 입력  
+1. 이용자별로 Private한 채팅시스템을 위해 채팅방 개념 구현    
+1.1 어느 페이지에서든 채팅시스템을 이용할 수 있도록 상단 네비게이션 bar를 header로 사용   
+<img src="https://user-images.githubusercontent.com/87797716/156278309-06ea97dd-b4a7-4371-a573-8cbf23c06b45.png"></img>  
+1.2 채팅방을 구현하기위해, 사용자와 관리자 페이지 분리   
+<img src="https://user-images.githubusercontent.com/87797716/156278524-798806eb-050b-4679-b87b-cec510cf2812.png" width="450px"></img>  
+<img src="https://user-images.githubusercontent.com/87797716/156278596-35e58c47-aebc-432a-8240-0a14e333a31c.png" width="450px"></img>  
+1.3 사용자 별로 socket 연결 url을 달리하여 채팅방 개념 적용  
+<img src="https://user-images.githubusercontent.com/87797716/156280803-e04b32ef-b166-4a30-b429-fd472604d5f1.png"></img>  
+Bean 설정 : socket 연결 url을 localhost:80/chat/(회원번호)로 연결하기위해 paht=/chat/* 적용  
+<img src="https://user-images.githubusercontent.com/87797716/156280722-1139e96f-7e93-4b41-9c3b-8fb96e687d51.png"></img>  
+socket 연결 : socket 연결 url을 localhost:80/chat/(회원번호)로 연결하기위해 session에 저장된 data 사용  
+1.4 관리자 -> ajax로 생성된 채팅방 List를 가져옴  
+<img src="https://user-images.githubusercontent.com/87797716/156281830-40fbe37c-f97f-47c2-ad0e-6470b3aaf086.png"></img>  
+controller : list에 저장된 채팅방 data를 JSON data로 저장  
+ex) {[채팅방 번호, 회원 아이디], [1,회원1], [2, 회원2]}   
+<img src="https://user-images.githubusercontent.com/87797716/156281534-ef5c27f1-d8c5-462b-8594-a8015874bde1.png"></img>  
+jsp : 채팅방 list.size만큼 button을 생성하며 생성된 버튼을 클릭하면 해당 채팅방 번호를 받아와 socket 연결  
+2. 페이지 이동 시, socket연결이 재연결되며 대화 이력을 불러 올 수 있도록 구현  
+2.1 메세지 입력을 할 때마다 DB에 저장  
+ajax를 통해 Controller 연결  
+<img src="https://user-images.githubusercontent.com/87797716/156282355-2b130128-1c69-4f37-8215-a72dc6c91ac6.png"></img>  
+Controller는 전송할 메세지와, 채팅방 번호를 전달 받아 db에 저장
+<img src="https://user-images.githubusercontent.com/87797716/156282514-169c9be9-7227-4413-aba1-53f2d22d19f6.png"></img>  
+2.2 socket 연결 시, db에서 해당 방번호로 채팅 이력을 가져옴  
+ajax를 통해 Controller 연결  
+<img src="https://user-images.githubusercontent.com/87797716/156283152-d299dfe4-5d09-40d1-b1da-ee4e081e368f.png"></img>  
+Controller는 채팅방 번호를 전달 받아 list에 대화 이력을 불러와 data를 JSON data로 정
+<img src="https://user-images.githubusercontent.com/87797716/156282514-169c9be9-7227-4413-aba1-53f2d22d19f6.png"></img>  
 
-### 2. 마일리지 시스템  
+### 3. 마일리지 시스템  
 결제 시스템을 구현하지 못하여 다른 서비스 로직을 생각하였다.  
 1. 이용자가 원하는 만큼의 마일리지를 충전하도록 구현  
 <img src="https://user-images.githubusercontent.com/87797716/155881667-db1b4845-928b-4568-a1cb-699428bcd631.png"></img>  
@@ -32,11 +67,6 @@ Open Authorization의 약자로 사의 사이트에 대한 접근 권한을 얻�
 * 보유 마일리지보다 가격이 높으면 마일리지 충전 페이지로 이동  
 3. 충전 내역과 잔여 마일리지를 확인할 수 있는 기능 구현  
 <img src="https://user-images.githubusercontent.com/87797716/155881647-bdba042a-b439-4890-8441-55785e277bc2.png"></img>  
-
-### 3. Live Chatting  
-<img src="https://user-images.githubusercontent.com/87797716/155881579-7dea4f1b-584f-4b53-8cc6-2fd938ef1ab6.png"></img>  
-WebSocket Protocol을 이용한 실시간 채팅을 구현  
-
 
 ## 구현 기능
 1. 회원 기능  
